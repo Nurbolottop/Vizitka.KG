@@ -7,4 +7,8 @@ from apps.index.models import Settings
 
 def index(request):
     setting = Settings.objects.latest('id')
-    return render(request, 'index.html', locals())
+    return render(request, 'base/home-default.html', locals())
+
+def contact(request):
+    setting = Settings.objects.latest('id')
+    return render(request, 'base/page-contact.html', locals())

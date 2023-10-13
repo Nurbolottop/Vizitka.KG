@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="HTML5 Template Iteck Multi-Purpose themeforest" />
+    <meta name="description" content="Iteck - Multi-Purpose HTML5 Template" />
+    <meta name="author" content="" />
+
+    <!-- Title  -->
+    <title>{{ setting.title}} - {{setting.descriptions}}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/fav.png' %}" title="Favicon" sizes="16x16" />
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/bootstrap.min.css' %}">
+
+    <!-- font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- ionicons icons  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/ionicons.css' %}">
+    <!-- line-awesome icons  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/line-awesome.css' %}">
+    <!-- animate css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/animate.css' %}" />
+    <!-- fancybox popup  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/jquery.fancybox.css' %}" />
+    <!-- lity popup  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/lity.css' %}" />
+    <!-- swiper slider  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/swiper.min.css' %}" />
+
+    <!-- ====== main style ====== -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <title> {{ setting.title}} - {{setting.descriptions}} </title>
+</head>
+
+<body class="home-style1">
+
+        <!-- ====== start loading page ====== -->
+    <div class="loading-page style1">
+        <div class="lad-cont">
+            <h2 class="loading loading01">
+                <span>V</span>
+                <span>i</span>
+                <span>z</span>
+                <span>i</span>
+                <span>t</span>
+                <span>k</span>
+                <span>a</span>
+                <span>.</span>
+                <span>k</span>
+                <span>g</span>
+            </h2>
+            <small class="loading loading01">
+
+            </small>
+        </div>
+    </div>
+        
+    <!-- ====== end loading page ====== -->
+    {% block content %}
+
+    {% endblock %}
+    <!-- ====== request ====== -->
+    <script src="{% static 'assets/js/lib/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery-migrate-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.fancybox.js' %}"></script>
+    <script src="{% static 'assets/js/lib/lity.js' %}"></script>
+    <script src="{% static 'assets/js/lib/swiper.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.counterup.js' %}"></script>
+    <!-- <script src="{% static 'assets/js/lib/pace.js' %}"></script> -->
+    <script src="{% static 'assets/js/lib/back-to-top.js' %}"></script>
+    <script src="{% static 'assets/js/lib/parallaxie.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -17,10 +17,6 @@ class Settings(models.Model):
         verbose_name="Логотип",
         blank = True, null = True
     )
-    descriptions_contacts = models.TextField(
-        verbose_name="Описание для страницы 'Контакты' ",
-        blank=True,null=True
-    )
     phone = models.CharField(
         max_length=255,
         verbose_name='Телефон номер'
