@@ -83,79 +83,31 @@
                             <div class="tc-trends-news-slider1 tc-slider-style2">
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
+                                        {% for blog in blog%}
                                         <div class="swiper-slide">
                                             <div class="tc-post-overlay-default">
                                                 <div class="img th-650 img-cover">
-                                                    <img src="{% static 'assets/img/trend/2.png' %} " alt="">
-                                                    <div class="tags">
-                                                        <a href="home-default.html#">featured,</a>
-                                                        <a href="home-default.html#">news</a>
-                                                    </div>
+                                                    <img src="{{blog.image.url}}" alt="">
+
                                                 </div>
                                                 <div class="content ps-40 pe-40 pb-40">
                                                     <h2 class="title mb-20">
-                                                        <a href="page-single-post-creative.html">2022 NFL Craf predict:
-                                                            <br> Top 4 Quarterbacks
-                                                            selected</a>
+                                                        <a href="{% url 'blog_detail' blog.id%}">2{{blog.title}}</a>
                                                     </h2>
-                                                    <div class="text mb-40">
-                                                        Its first decline in subscribers since 2011 triggered a $54
-                                                        billion stock value loss and raised questions [...]
+                                                    <div class="text mb-40">{{blog.descriptions|truncatewords:5}}
                                                     </div>
                                                     <div class="meta-bot lh-1">
                                                         <ul class="d-flex">
                                                             <li class="date me-5">
-                                                                <a href="home-default.html#"><i class="la la-calendar me-2"></i> Dec 14,
-                                                                    2022</a>
+                                                                <a href="home-default.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
                                                             </li>
-                                                            <li class="author me-5">
-                                                                <a href="home-default.html#"><i class="la la-user me-2"></i> by Admin</a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="home-default.html#"><i class="la la-comment me-2"></i> 55
-                                                                    Comments</a>
-                                                            </li>
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="tc-post-overlay-default">
-                                                <div class="img th-650 img-cover">
-                                                    <img src="{% static 'assets/img/trend/3.png' %} " alt="">
-                                                    <div class="tags">
-                                                        <a href="home-default.html#">technology</a>
-                                                    </div>
-                                                </div>
-                                                <div class="content ps-40 pe-40 pb-40">
-                                                    <h2 class="title mb-20">
-                                                        <a href="page-single-post-creative.html">Myenergi's award
-                                                            winning product the zappi EV
-                                                            charger</a>
-                                                    </h2>
-                                                    <div class="text mb-40">
-                                                        Its first decline in subscribers since 2011 triggered a $54
-                                                        billion stock value loss and raised questions [...]
-                                                    </div>
-                                                    <div class="meta-bot lh-1">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="home-default.html#"><i class="la la-calendar me-2"></i> Dec 14,
-                                                                    2022</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="home-default.html#"><i class="la la-user me-2"></i> by Admin</a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="home-default.html#"><i class="la la-comment me-2"></i> 55
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <!-- arrows -->

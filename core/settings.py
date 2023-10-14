@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    #settings
+    'ckeditor',
     
     #apps
-    'apps.index'
+    'apps.index',
+    'apps.blog'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,64 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#Jazzmin
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Visitka.KG",  # Заголовок сайта
+    "site_header": "Visitka.KG",  # Заголовок на экране входа
+    "site_brand": "Visitka.KG",  # Выходит на сайте вместо Django-admin.(Администрирование сайта)
+    "welcome_sign": "Добро пожаловать в Visitka.KG",  # Приветственный текст на экране входа
+    "copyright": "Visitka.KG",  # Авторское право (footer)
+    "search_model": ["auth.User", "apps.blog"],
+    
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        # telega
+        {"name": "Support", "url": "https://t.me/geeksosh", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "books"},
+    ],
+
+    "show_sidebar": True,
+
+    "changeform_format": "horizontal_tabs",
+
+}
+
+# Выбрал только то что мне понравилось если что можем поменять тему
+JAZZMIN_UI_TWEAKS = {
+    # белый фон:
+    "dark_mode_theme": "darkly",
+    
+    # "theme": "flatly",
+    # "theme" : "simplex",  # белый фон с цветами - RGB
+    # "theme": "sketchy",     #  мультяшный
+
+    # темный фон:
+    "theme": "cyborg",
+    #"theme": "slate",    # темный (серьезный , полностью)
+
+}
+
+#Ckeditor
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'  # URL to jQuery
+CKEDITOR_IMAGE_BACKEND = "pillow"  # Путь к пакету Pillow для обработки изображений
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',  # Вы можете настроить свою собственную панель инструментов CKEditor
+        'height': 300,
+        'width': 800,
+    },
+}

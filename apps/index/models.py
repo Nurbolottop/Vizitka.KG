@@ -8,7 +8,7 @@ class Settings(models.Model):
         verbose_name="Название сайта"
     )
     descriptions = models.TextField(
-        verbose_name="Описание сайта"
+        verbose_name="Описание сайта",
     )
     logo = ResizedImageField(
         force_format="WEBP", 

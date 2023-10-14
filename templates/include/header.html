@@ -35,8 +35,8 @@
                     </div>
                     <div class="col-lg-4">
                         <a href="home-default.html#" class="logo-brand d-none d-lg-block">
-                            <img src="{{setting.logo.url}}"style="max-width:350px;" alt="" class="dark-none">
-                            <img src="{{setting.logo.url}}"style="max-width:350px;" alt="" class="light-none">
+                            <img src="{{setting.logo.url}}"" alt="" class="dark-none">
+                            <img src="{{setting.logo.url}}"" alt="" class="light-none">
                         </a>
                     </div>
                     <div class="col-lg-4">
@@ -109,16 +109,10 @@
                                 Главная страница
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Blog
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog' %}">
+                                Новости
                             </a>
-                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="page-blog.html">Blog</a></li>
-                                <li><a class="dropdown-item" href="page-author.html">authors</a></li>
-                                <li><a class="dropdown-item" href="page-author-details.html">author details</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
