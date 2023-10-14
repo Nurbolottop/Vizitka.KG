@@ -16,8 +16,15 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
+        
 # News - Новости
 class Blog(models.Model):
+    category = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="blog_category",
+        verbose_name="Категории",
+        blank=True,null=True
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="Заголовок "
@@ -45,7 +52,7 @@ class Blog(models.Model):
         blank=True, null=True
     )
     def __str__(self):
-        return f"{self.title} - {self.descriptions}"
+        return f"{self.title} - {self.info_text}"
     
     class Meta:
         verbose_name = "Новость"
@@ -64,7 +71,7 @@ class BlogSubTitle(models.Model):
     )
 
     def __str__(self):
-        return f"{self.blog} {self.sub_title}"
+        return f"{self.sub_title}"
     
     class Meta:
         verbose_name = 'Дополнительный подзаголовок'
@@ -82,7 +89,7 @@ class BlogInfoText(models.Model):
     )
 
     def __str__(self):
-        return f"{self.blog} {self.info_text}"
+        return f"{self.info_text}"
     
     class Meta:
         verbose_name = 'Дополнительный информационный текст'
@@ -103,7 +110,7 @@ class BlogImage(models.Model):
     )
 
     def __str__(self):
-        return f"{self.blog} {self.image}"
+        return f"{self.image}"
     
     class Meta:
         verbose_name = 'Картинка новстей'

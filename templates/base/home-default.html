@@ -92,7 +92,7 @@
                                                 </div>
                                                 <div class="content ps-40 pe-40 pb-40">
                                                     <h2 class="title mb-20">
-                                                        <a href="{% url 'blog_detail' blog.id%}">2{{blog.title}}</a>
+                                                        <a href="{% url 'blog_detail' blog.id%}">{{blog.title}}</a>
                                                     </h2>
                                                     <div class="text mb-40">{{blog.descriptions|truncatewords:5}}
                                                     </div>

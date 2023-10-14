@@ -134,55 +134,32 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Jazzmin
-
+# Настройки Jazzmin
 JAZZMIN_SETTINGS = {
-    "site_title": "Visitka.KG",  # Заголовок сайта
+    "site_title": "Visitka.KG",  # Заголовок админ-панели
     "site_header": "Visitka.KG",  # Заголовок на экране входа
-    "site_brand": "Visitka.KG",  # Выходит на сайте вместо Django-admin.(Администрирование сайта)
-    "welcome_sign": "Добро пожаловать в Visitka.KG",  # Приветственный текст на экране входа
-    "copyright": "Visitka.KG",  # Авторское право (footer)
-    "search_model": ["auth.User", "apps.blog"],
-    
+    "site_brand": "Visitka.KG",  # Бренд в верхней части админ-панели
+    "welcome_sign": "Добро пожаловать в Visitka.KG",  # Приветственное сообщение
+    "search_model": ["auth.User", "blog.Post"],  # Модели, доступные для поиска
     "topmenu_links": [
-
-        # Url that gets reversed (Permissions can be added)
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-
-        # external url that opens in a new window (Permissions can be added)
-        # telega
         {"name": "Support", "url": "https://t.me/geeksosh", "new_window": True},
-
-        # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
-
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "books"},
+        {"app": "blog"},
     ],
-
     "show_sidebar": True,
-
     "changeform_format": "horizontal_tabs",
-
-}
-
-# Выбрал только то что мне понравилось если что можем поменять тему
-JAZZMIN_UI_TWEAKS = {
-    # белый фон:
-    "dark_mode_theme": "darkly",
+    "header_classes": "navbar-dark bg-dark",  # Темный фон верхней части админ-панели
+    "header_color": "#000000",  # Черный цвет верхней части админ-панели
+    "dark_mode_theme": True,  # Включить темный режим
+    "show_language_chooser": True,  # Включить выбор языка в админ-панели
+    "custom_css": None,  # Путь к пользовательскому CSS-файлу (если нужен)
+    "show_ui_builder": True,  # Показать UI Builder
     
-    # "theme": "flatly",
-    # "theme" : "simplex",  # белый фон с цветами - RGB
-    # "theme": "sketchy",     #  мультяшный
-
-    # темный фон:
-    "theme": "cyborg",
-    #"theme": "slate",    # темный (серьезный , полностью)
-
 }
+
 
 #Ckeditor
-
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'  # URL to jQuery
 CKEDITOR_IMAGE_BACKEND = "pillow"  # Путь к пакету Pillow для обработки изображений
