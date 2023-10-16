@@ -9,6 +9,8 @@ from apps.blog.models import Blog
 def index(request):
     setting = models.Settings.objects.latest('id')
     blog = Blog.objects.all()
+    latest_news = Blog.objects.order_by('-created_at')[:5]
+    latest_new = Blog.objects.order_by('-created_at')[:1]
     return render(request, 'base/home-default.html', locals())
 
 def contact(request):

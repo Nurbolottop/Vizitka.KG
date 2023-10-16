@@ -285,14 +285,15 @@
         <section class="tc-latest-news-style1">
             <div class="container">
                 <div class="section-content pt-50 pb-50 border-bottom border-1 brd-gray">
-                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="page-blog.html"> latest news </a> <i class="la la-angle-right ms-1"></i>
+                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="page-blog.html"> Последние новости </a> <i class="la la-angle-right ms-1"></i>
                     </p>
                     <div class="row">
+                        {% for latest_new in latest_new %}
                         <div class="col-lg-5 border-end brd-gray border-1">
                             <div class="tc-post-grid-default">
                                 <div class="item">
                                     <div class="img img-cover th-330">
-                                        <img src="{% static 'assets/img/latest/1.png' %} " alt="">
+                                        <img src="{{latest_new.image.url}} " alt="">
                                         <a href="https://youtu.be/pGbIOC83-So?t=21" data-lity
                                             class="video_icon icon-70">
                                             <i class="ion-play"></i>
@@ -300,158 +301,52 @@
                                     </div>
                                     <div class="content pt-30">
                                         <a href="page-blog.html"
-                                            class="news-cat color-999 fsz-13px text-uppercase mb-10">politics</a>
+                                            class="news-cat color-999 fsz-13px text-uppercase mb-10">{{latest_new.category}}</a>
                                         <h2 class="title mb-20">
-                                            <a href="page-single-post-features.html">Biden asks Congress for $33 billion
-                                                to support Ukraine</a>
+                                            <a href="{% url 'blog_detail' latest_new.id%}">{{latest_new.title}}</a>
                                         </h2>
                                         <div class="text color-666">
-                                            The social-media company is in discussions to sell itself to Elon, a
-                                            dramatic turn of events just 11 days after the [...]
+                                            {{latest_new.sub_title|truncatewords:6}}
                                         </div>
                                         <div class="meta-bot lh-1 mt-40">
                                             <ul class="d-flex">
                                                 <li class="date me-5">
-                                                    <a href="home-default.html#"><i class="la la-calendar me-2"></i> Dec 14, 2022</a>
+                                                    <a href="home-default.html#"><i class="la la-calendar me-2"></i>{{latest_new.created_at}}</a>
                                                 </li>
-                                                <li class="author me-5">
-                                                    <a href="home-default.html#"><i class="la la-user me-2"></i> by Admin </a>
-                                                </li>
-                                                <li class="comment">
-                                                    <a href="home-default.html#"><i class="la la-comment me-2"></i> 55 Comments</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <div class="col-lg-4 border-end brd-gray border-1">
                             <div class="tc-post-list-style2">
                                 <div class="items">
+                                    {% for latest_news in latest_news%}
                                     <div class="item">
                                         <div class="row gx-3 align-items-center">
                                             <div class="col-4">
                                                 <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/3.png' %} " alt="">
+                                                    <img src="{{latest_news.image.url}}" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-8">
                                                 <div class="content">
                                                     <div class="news-cat color-999 fsz-13px text-uppercase mb-1">
-                                                        politics
+                                                        {{latest_news.category}}
                                                     </div>
                                                     <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Disputes in the South China
-                                                            Sea show no sign of ending</a>
+                                                        <a href="{% url 'blog_detail' latest_news.id%}"
+                                                            class="hover-underline">{{latest_news.title}}</a>
                                                     </h5>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/4.png' %} " alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <div class="news-cat color-999 fsz-13px text-uppercase mb-1">sport
-                                                        <b class="text-danger"> <i
-                                                                class="icon-6 rounded-circle bg-danger ms-2 me-1 d-inline-block"></i>
-                                                            live</b> </div>
-                                                    <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Live of MLB Baseball 2022:
-                                                            NY Yankees Vs NY Mets</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/5.png' %} " alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <div class="news-cat color-999 fsz-13px text-uppercase mb-1">
-                                                        lifestyle</div>
-                                                    <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Paddling in Miami Beach</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/6.png' %} " alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <div class="news-cat color-999 fsz-13px text-uppercase mb-1">
-                                                        business
-                                                    </div>
-                                                    <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Stock market in last week:
-                                                            "The strength of bulls"</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/7.png' %} " alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <div class="news-cat color-999 fsz-13px text-uppercase mb-1">
-                                                        lifestyle</div>
-                                                    <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Stock market in last week:
-                                                            "The strength of bulls"</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item border-0">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-70 img-cover">
-                                                    <img src="{% static 'assets/img/latest/8.png' %} " alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <div class="news-cat color-999 fsz-13px text-uppercase mb-1">
-                                                        lifestyle</div>
-                                                    <h5 class="title ltspc--1">
-                                                        <a href="page-single-post-creative.html"
-                                                            class="hover-underline">Helm Extract Infuse cream,
-                                                            1000mg Full spectrum</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {%endfor%}
+                                    
                                 </div>
                             </div>
                         </div>

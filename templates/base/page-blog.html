@@ -31,14 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <form class="search-form">
-                        <div class="form-group">
-                            <input type="text" placeholder="search in this blog">
-                            <button type="submit"> <i class="la la-search"></i> </button>
-                        </div>
-                    </form>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -134,135 +127,40 @@
         <section class="tc-popular-posts-blog">
             <div class="container">
                 <div class="content pt-50 pb-50 border-1 border-bottom brd-gray">
-                    <p class="color-000 text-uppercase mb-30 ltspc-1"> popular posts </p>
+                    <p class="color-000 text-uppercase mb-30 ltspc-1"> Популярные посты </p>
                     <div class="tc-post-grid-default">
                         <div class="tc-popular-posts-blog-slider9 tc-slider-style1">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
+                                    {% for popular in popular_posts%}
                                     <div class="swiper-slide">
                                         <div class="item">
                                             <div class="img img-cover th-180">
-                                                <img src="https://newzin-html.themescamp.com/assets/img/latest/122.png" alt="">
+                                                <img src="{{popular.image.url}}" alt="">
                                             </div>
                                             <div class="content pt-20">
                                                 <a href="page-blog.html#"
-                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">sport</a>
+                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">{{popular.category}}</a>
                                                 <h4 class="title ltspc--1 mb-10">
-                                                    <a href="page-single-post-creative.html">
-                                                        Hawks acquire All-Star guard Murray from Spurs
+                                                    <a href="{% url 'blog_detail' popular.id%}">
+                                                        {{popular.title}}
                                                     </a>
                                                 </h4>
                                                 <div class="text color-666">
-                                                    The Boston Red Sox scored three runs in the 10th inning [...]
+                                                    {{popular.sub_title|truncatewords:5}}
                                                 </div>
                                                 <div class="meta-bot lh-1 mt-20">
                                                     <ul class="d-flex">
                                                         <li class="date me-5">
-                                                            <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Sep 7, 2023
+                                                            <a href=""><i class="la la-calendar me-2"></i>{{popular.created_at}}
                                                             </a>
-                                                        </li>
-                                                        <li class="comment">
-                                                            <a href="page-blog.html#"><i class="la la-comment me-2"></i> 2</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="item">
-                                            <div class="img img-cover th-180">
-                                                <img src="https://newzin-html.themescamp.com/assets/img/latest/124.png" alt="">
-                                            </div>
-                                            <div class="content pt-20">
-                                                <a href="page-blog.html#"
-                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                <h4 class="title ltspc--1 mb-10">
-                                                    <a href="page-single-post-features.html">
-                                                        PGA Tour Highlights: Travelers Championship Round 1
-                                                    </a>
-                                                </h4>
-                                                <div class="text color-666">
-                                                    The Boston Red Sox scored three runs in the 10th inning [...]
-                                                </div>
-                                                <div class="meta-bot lh-1 mt-20">
-                                                    <ul class="d-flex">
-                                                        <li class="date me-5">
-                                                            <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Dec 17, 2022
-                                                            </a>
-                                                        </li>
-                                                        <li class="comment">
-                                                            <a href="page-blog.html#"><i class="la la-comment me-2"></i> 3 </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="item">
-                                            <div class="img img-cover th-180">
-                                                <img src="https://newzin-html.themescamp.com/assets/img/latest/123.png" alt="">
-                                            </div>
-                                            <div class="content pt-20">
-                                                <a href="page-blog.html#"
-                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                <h4 class="title ltspc--1 mb-10">
-                                                    <a href="page-single-post-creative.html">
-                                                        Hamilton, Russell question safety of bouncing F1 cars
-                                                    </a>
-                                                </h4>
-                                                <div class="text color-666">
-                                                    The Boston Red Sox scored three runs in the 10th inning [...]
-                                                </div>
-                                                <div class="meta-bot lh-1 mt-20">
-                                                    <ul class="d-flex">
-                                                        <li class="date me-5">
-                                                            <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Dec 25, 2022
-                                                            </a>
-                                                        </li>
-                                                        <li class="comment">
-                                                            <a href="page-blog.html#"><i class="la la-comment me-2"></i> 7 </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="item">
-                                            <div class="img img-cover th-180">
-                                                <img src="https://newzin-html.themescamp.com/assets/img/latest/130.png" alt="">
-                                                <a href="https://youtu.be/pGbIOC83-So?t=21" data-lity=""
-                                                    class="video_icon icon-50 border-2">
-                                                    <i class="ion-play fsz-20px"></i>
-                                                </a>
-                                            </div>
-                                            <div class="content pt-20">
-                                                <a href="page-single-post-features.html"
-                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                <h4 class="title ltspc--1 mb-10">
-                                                    <a href="page-single-post-features.html">
-                                                        14th Best linebacker of Bill
-                                                    </a>
-                                                </h4>
-                                                <div class="text color-666">
-                                                    The Boston Red Sox scored three runs in the 10th inning [...]
-                                                </div>
-                                                <div class="meta-bot lh-1 mt-20">
-                                                    <ul class="d-flex">
-                                                        <li class="date me-5">
-                                                            <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Dec 25, 2022
-                                                            </a>
-                                                        </li>
-                                                        <li class="comment">
-                                                            <a href="page-blog.html#"><i class="la la-comment me-2"></i> 7 </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="swiper-button-next"></div>
@@ -894,7 +792,7 @@
                     </a>
                     <a href="page-blog.html#" class="cat-card">
                         <div class="img img-cover">
-                            <img src="assets/img/videos/1.png" alt="">
+                            <img src="  " alt="">
                         </div>
                         <div class="info">
                             <h5>videos</h5>
