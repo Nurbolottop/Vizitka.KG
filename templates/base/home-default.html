@@ -118,49 +118,35 @@
                         <div class="col-lg-3">
                             <div class="tc-post-list-style1">
                                 <div class="tc-post-title-style1">
-                                    <a href="page-blog.html"> trending posts </a>
+                                    <a href="page-blog.html"> Трендовые посты </a>
                                 </div>
+                                {% for popular_post in popular_post%}
                                 <div class="tc-post-overlay-default">
                                     <div class="img th-200 img-cover">
-                                        <img src="{% static 'assets/img/trend/4.png' %} " alt="">
+                                        <img src="{{popular_post.image.url}}" alt="">
                                     </div>
                                     <div class="content ps-20 pe-20 pb-20 text-white">
                                         <a href="page-single-post-creative.html"
-                                            class="text-uppercase fsz-13px mb-1">lifestyle</a>
+                                            class="text-uppercase fsz-13px mb-1">{{popular_post.category}}</a>
                                         <h4 class="title">
-                                            <a href="home-default.html#">The story about Hoki</a>
+                                            <a href="{% url 'blog_detail' popular_post.id%}">{{popular_post.title}}</a>
                                         </h4>
                                     </div>
                                 </div>
+                                {% endfor %}
                                 <div class="items">
-                                    <a href="page-single-post-creative.html" class="item hover-main">
+                                    {% for popular in popular_posts%}
+                                    <a href="{% url 'blog_detail' popular.id%}" class="item hover-main">
                                         <h2 class="num">
                                             2
                                         </h2>
                                         <div class="content">
-                                            <span class="fsz-12px color-999 text-uppercase mb-2">news</span>
-                                            <h6 class="title">Elon Musk got Twitter because he gets Twitter</h6>
+                                            <span class="fsz-12px color-999 text-uppercase mb-2">{{popular.category}}</span>
+                                            <h6 class="title">{{popular.title}}</h6>
                                         </div>
                                     </a>
-                                    <a href="page-single-post-creative.html" class="item hover-main">
-                                        <h2 class="num">
-                                            3
-                                        </h2>
-                                        <div class="content">
-                                            <span class="fsz-12px color-999 text-uppercase mb-2">technology</span>
-                                            <h6 class="title">NFT Technology is become trends in 2022</h6>
-                                        </div>
-                                    </a>
-                                    <a href="page-single-post-creative.html" class="item hover-main">
-                                        <h2 class="num">
-                                            4
-                                        </h2>
-                                        <div class="content">
-                                            <span class="fsz-12px color-999 text-uppercase mb-2">lifestyle</span>
-                                            <h6 class="title">MLB become 1st fashion brands in US</h6>
-                                        </div>
-                                    </a>
-                                    <a href="home-default.html#" class="fsz-13px color-999  pt-30 pb-30">
+                                    {% endfor %}
+                                    <a href="{% url 'blog' %}" class="fsz-13px color-999  pt-30 pb-30">
                                         See all posts <i class="la la-angle-right"></i>
                                     </a>
                                 </div>

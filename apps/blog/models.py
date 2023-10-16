@@ -62,3 +62,26 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
+
+
+class Stories(models.Model):
+    image = models.ImageField(
+        upload_to='story_photos/',
+        verbose_name="Изображение"
+        )
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название",
+        blank=True, null=True
+        )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        blank=True,null=True
+        )
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Сторис"
+        verbose_name_plural = "Сторисы"
