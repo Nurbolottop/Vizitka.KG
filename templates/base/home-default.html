@@ -24,14 +24,14 @@
                         <div class="col-lg-3">
                             <div class="tc-stock-card mb-30">
                                 <a href="home-default.html#" class="stock-card-title">
-                                    Stocks Market today
+                                    СРЕДНИЙ КУРС В БИШКЕКЕ 
                                     <span class="la la-arrow-circle-o-right color-666"></span>
                                 </a>
                                 <div class="stock-card-body">
                                     <div class="stock-card-item">
                                         <div class="title">
-                                            <h6>DOW <small class="indicator text-danger"> <i
-                                                        class="ion-arrow-down-b"></i> 2,82%</small></h6>
+                                            <h6>Доллар <small class="indicator text-danger"> <i
+                                                        class="ion-arrow-down-b"></i>{{usd_rate}}</small></h6>
                                             <span class="price">33,811.47</span>
                                         </div>
                                         <div class="inf">
@@ -66,14 +66,12 @@
                             <div class="tc-post-grid-default">
                                 <div class="item">
                                     <div class="img img-cover th-200">
-                                        <img src="{% static 'assets/img/trend/1.png' %} " alt="">
+                                        <img src="{{big_advert.image.url}}" alt="">
                                     </div>
                                     <div class="content py-4 px-3 bg-gray2">
-                                        <p class="color-main fsz-13px text-uppercase mb-1">Sponsored Content</p>
-                                        <h4 class="title ltspc--1"> <a href="page-single-post-creative.html">3D2N at
-                                                Sixsense Resort 5 stars just
-                                                $1,299</a> </h4>
-                                        <a href="home-default.html#" class="color-999 fsz-12px mt-20">booking.com <i
+                                        <p class="color-main fsz-13px text-uppercase mb-1">{{big_advert.title}}</p>
+                                        <h4 class="title ltspc--1"> <a href="{{big_advert.url_booking}}">{{big_advert.sub_title}}</a> </h4>
+                                        <a href="{{big_advert.url_booking}}" class="color-999 fsz-12px mt-20">Перейти<i
                                                 class="la la-external-link-square-alt"></i></a>
                                     </div>
                                 </div>
@@ -668,103 +666,62 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- widget-podcast -->
-                            <div class="tc-widget-podcast">
-                                <p class="color-000 text-uppercase mb-30 ltspc-1 lh-2"> new podcasts <i
-                                        class="la la-angle-right ms-1"></i> </p>
-                                <div class="main-card">
-                                    <div class="img img-cover">
-                                        <img src="{% static 'assets/img/pdc1.png' %} " alt="">
-                                    </div>
-                                    <div class="info pt-10">
-                                        <small>2 Hours ago</small>
-                                        <h5>
-                                            <a href="home-default.html#" class="title">
-                                                Start A New Day with A Smile
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <audio controls class="audio">
-                                        <source src="{% static 'assets/img/audio1.mp3' %}" type="audio/mpeg">
-                                    </audio>
-                                </div>
-                                
-                            </div>
-                            <!-- widget-sponsored -->
+                           
                             <div class="tc-widget-sponsored-style1">
                                 <div class="img img-cover">
-                                    <img src="{% static 'assets/img/sponsored/1.png' %} " alt="">
+                                    <img src="{{big_advert.image.url}}" alt="">
                                 </div>
                                 <div class="info pt-10">
-                                    <div class="spon-cat"> Sponsored Content </div>
+                                    <div class="spon-cat"> {{big_advert.title}} </div>
                                     <h6 class="title">
-                                        <a href="home-default.html#">
-                                            Dile & Kamine Soap from pure natura 100%
+                                        <a href="{{big_advert.url_booking}}">
+                                           {{ big_advert.sub_title }}
                                         </a>
                                     </h6>
-                                    <a href="home-default.html#">
-                                        <small>dileandkamina.com <i
+                                    <a href="{{big_advert.url_booking}}">
+                                        <small>Перейти<i
                                                 class="las la-external-link-square-alt ms-2"></i></small>
                                     </a>
                                 </div>
                             </div>
                             <!-- popular posts -->
                             <div class="tc-widget-popular-style1">
-                                <p class="color-000 text-uppercase mb-20 ltspc-1"> popular posts </p>
+                                <p class="color-000 text-uppercase mb-20 ltspc-1"> Популярные посты </p>
+                                {% for popular_post in popular_post%}
                                 <div class="main-card">
                                     <div class="img th-300 img-cover">
-                                        <img src="{% static 'assets/img/wid_popular/1.png' %} " alt="">
+                                        <img src="{{popular_post.image.url}}" alt="">
                                         <div class="tags">
-                                            <a href="home-default.html#">business</a>
+                                            <a href="{% url 'blog_detail' popular_post.id%}">{{popular_post.category}}</a>
                                         </div>
                                     </div>
                                     <div class="content">
                                         <h4 class="title">
-                                            <a href="page-single-post-creative.html">Big Title for featured post with double</a>
+                                            <a href="{% url 'blog_detail' popular_post.id%}">{{popular_post.title}}</a>
                                         </h4>
                                         <div class="meta-bot">
                                             <ul class="d-flex">
                                                 <li class="date me-4">
-                                                    <a href="home-default.html#"><i class="la la-calendar me-1"></i> Dec 14, 2022</a>
-                                                </li>
-                                                <li class="comment">
-                                                    <a href="home-default.html#"><i class="la la-comment me-1"></i> 55 </a>
+                                                    <a href="home-default.html#"><i class="la la-calendar me-1"></i>{{popular_post.created_at}}</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                                 <div class="tc-widget-popular-list">
-                                    <a href="page-single-post-creative.html" class="item">
+                                    {% for popular in popular_posts %}
+                                    <a href="{% url 'blog_detail' popular.id%}" class="item">
                                         <div class="img img-cover">
-                                            <img src="{% static 'assets/img/wid_popular/2.png' %} " alt="">
+                                            <img src="{{popular.image.url}}" alt="">
                                         </div>
                                         <div class="info">
                                             <h6 class="title">
-                                                Joe Biden did not participate in the war
+                                                {{popular.title}}
                                             </h6>
                                         </div>
                                     </a>
-                                    <a href="page-single-post-creative.html" class="item">
-                                        <div class="img img-cover">
-                                            <img src="{% static 'assets/img/wid_popular/3.png' %} " alt="">
-                                        </div>
-                                        <div class="info">
-                                            <h6 class="title">
-                                                Mindset to Succesful, Become Lion King
-                                            </h6>
-                                        </div>
-                                    </a>
-                                    <a href="page-single-post-creative.html" class="item">
-                                        <div class="img img-cover">
-                                            <img src="{% static 'assets/img/wid_popular/4.png' %} " alt="">
-                                        </div>
-                                        <div class="info">
-                                            <h6 class="title">
-                                                Experience ballon balls in Turkey
-                                            </h6>
-                                        </div>
-                                    </a>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <!-- widget-adbox -->
