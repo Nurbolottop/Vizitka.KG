@@ -32,6 +32,32 @@ $( function() {
     })
 
 
+function changeImage() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+
+function updateImage() {
+    var newImageUrl = document.getElementById("newImage").value;
+    if (newImageUrl) {
+        var storyImage = document.getElementById("story-image");
+        storyImage.src = newImageUrl;
+        closeModal();
+    }
+}
+
+function changeText() {
+    var newText = prompt("Enter new text:");
+    if (newText) {
+        var userNameElement = document.getElementById("user-name");
+        userNameElement.textContent = newText;
+    }
+}
 
     // ---------- to top -----------
 
