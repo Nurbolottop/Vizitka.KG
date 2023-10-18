@@ -24,43 +24,35 @@
                         <div class="col-lg-3">
                             <div class="tc-stock-card mb-30">
                                 <a href="home-default.html#" class="stock-card-title">
-                                    СРЕДНИЙ КУРС В БИШКЕКЕ 
+                                    Курс валют 
                                     <span class="la la-arrow-circle-o-right color-666"></span>
                                 </a>
                                 <div class="stock-card-body">
                                     <div class="stock-card-item">
                                         <div class="title">
-                                            <h6>Доллар <small class="indicator text-danger"> <i
-                                                        class="ion-arrow-down-b"></i>{{usd_rate}}</small></h6>
-                                            <span class="price">33,811.47</span>
-                                        </div>
-                                        <div class="inf">
-                                            <p>Dow Jones Indus. Avg</p>
-                                            <span class="price text-danger">-981.36</span>
+                                            <h6>Доллар <small class="indicator text-danger"> </small></h6>
+                                            <span class="price">{{dollar}}</span>
                                         </div>
                                     </div>
                                     <div class="stock-card-item">
                                         <div class="title">
-                                            <h6>NASDAQ <small class="indicator text-danger"> <i
-                                                        class="ion-arrow-down-b"></i> 1,76% </small></h6>
-                                            <span class="price">12,839.95</span>
-                                        </div>
-                                        <div class="inf">
-                                            <p>NASDQ Composite Index</p>
-                                            <span class="price text-danger">-217.86</span>
+                                            <h6>Евро <small class="indicator text-danger"> </small></h6>
+                                            <span class="price">{{euro}}</span>
                                         </div>
                                     </div>
                                     <div class="stock-card-item">
                                         <div class="title">
-                                            <h6>S&P 500 <small class="indicator text-success"> <i
-                                                        class="ion-arrow-up-b"></i> 3,93% </small></h6>
-                                            <span class="price">4,271.7</span>
-                                        </div>
-                                        <div class="inf">
-                                            <p>S&P 500 Index</p>
-                                            <span class="price text-success">+125.8</span>
+                                            <h6>Рубль <small class="indicator text-danger"> </small></h6>
+                                            <span class="price">{{rub}}</span>
                                         </div>
                                     </div>
+                                    <div class="stock-card-item">
+                                        <div class="title">
+                                            <h6>Тенге <small class="indicator text-danger"> </small></h6>
+                                            <span class="price">{{tenge}}</span>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="tc-post-grid-default">
@@ -270,8 +262,8 @@
                 <div class="content pt-50 pb-50 border-bottom border-1 brd-gray">
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
-                            <a href="home-default.html#" class="d-block img-cover">
-                                <img src="{% static 'assets/img/banner1.png' %} " alt="">
+                            <a href="{{noraml_advert.url_booking}}" class="d-block img-cover">
+                                <img src="{{normal_advert.image.url}}" alt="">
                             </a>
                         </div>
                     </div>
@@ -517,8 +509,8 @@
                                 <div class="content">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-10">
-                                            <a href="home-default.html#" class="d-block img-cover">
-                                                <img src="{% static 'assets/img/banner2.png' %} " alt="">
+                                            <a href="{{noraml_advert.url}}" class="d-block img-cover">
+                                                <img src="{{normal_advert.image.url}}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -726,8 +718,8 @@
                             </div>
                             <!-- widget-adbox -->
                             <div class="tc-widget-adbox-style1">
-                                <a href="home-default.html#" class="img">
-                                    <img src="{% static 'assets/img/banner12.png' %} " alt="" class="">
+                                <a href="{{small_advert.url_booking}}" class="img">
+                                    <img src="{{small_advert.image.url}} " alt="" class="">
                                 </a>
                             </div>
                             <!-- widget-survey -->
