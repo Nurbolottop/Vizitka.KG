@@ -43,9 +43,12 @@ class Blog(models.Model):
         verbose_name="Видео материал",
         blank=True,null=True
     )
-    image = models.ImageField(
-        upload_to="Image_blog/",
-        verbose_name="Фотография"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='blog_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -65,10 +68,13 @@ class Blog(models.Model):
 
 
 class Stories(models.Model):
-    image = models.ImageField(
-        upload_to='story_photos/',
-        verbose_name="Изображение"
-        )
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='stories_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="Название",

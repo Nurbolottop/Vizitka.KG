@@ -1,10 +1,14 @@
 from django.db import models
+from django_resized.forms import ResizedImageField 
 
 # Create your models here.
 class BigAdvert(models.Model):
-    image = models.ImageField(
-        upload_to="images_advert",
-        verbose_name="Фотографии"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='bigadvert_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
     )
     title = models.CharField(
         max_length=255,
@@ -26,9 +30,12 @@ class BigAdvert(models.Model):
         verbose_name_plural = "Большие рекламы"
         
 class NormalAdvert(models.Model):
-    image = models.ImageField(
-        upload_to="normaladvert_image",
-        verbose_name="Баннер в размере 970х90 - 1200х120"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='normadvert_image/',
+        verbose_name="Баннер в размере 970х90 - 1200х120",
+        blank = True, null = True
     )
     url_booking = models.URLField(
         verbose_name="Ссылка"
@@ -39,9 +46,12 @@ class NormalAdvert(models.Model):
         verbose_name_plural = "Средние рекламы"
 
 class SmallAdvert(models.Model):
-    image = models.ImageField(
-        upload_to="smalladvert_image",
-        verbose_name="Баннер в размере 250x250"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='smalladvert_image/',
+        verbose_name="Баннер в размере 250x250",
+        blank = True, null = True
     )
     url_booking = models.URLField(
         verbose_name="Ссылка"
