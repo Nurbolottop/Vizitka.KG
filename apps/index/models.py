@@ -10,12 +10,9 @@ class Settings(models.Model):
     descriptions = models.TextField(
         verbose_name="Описание сайта",
     )
-    logo = ResizedImageField(
-        force_format="WEBP", 
-        quality=100, 
-        upload_to='logo/',
-        verbose_name="Логотип",
-        blank = True, null = True
+    logo = models.ImageField(
+        upload_to="logo/",
+        verbose_name="Логотип"
     )
     phone = models.CharField(
         max_length=255,
@@ -41,9 +38,37 @@ class Settings(models.Model):
         verbose_name='Youtube URL',
         blank=True, null=True
     )
+    facebook = models.URLField(
+        verbose_name='Facebook URL',
+        blank=True, null=True
+    )
     def __str__(self):
         return self.title
     
     class Meta:
             verbose_name = "Основная настройка"
             verbose_name_plural = "Основные настройки"
+            
+class Team(models.Model):
+    image  = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='team_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+    name = models.CharField(
+        max_length=255,
+        verbose_name="ФИО"
+    )
+    work = models.CharField(
+        max_length=255,
+        verbose_name="Профессия"
+    )
+    
+    def __str__(self):
+        return f"{self.name} - {self.work}"
+    
+    class Meta:
+        verbose_name = "Наша комманда"
+        verbose_name_plural = "Наша комманда"

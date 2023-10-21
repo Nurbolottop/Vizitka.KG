@@ -56,7 +56,7 @@ class Blog(models.Model):
     )
     views = models.PositiveIntegerField(default=0)
     def __str__(self):
-        return f"{self.title} - {self.info_text}"
+        return f"{self.title} - {self.category}"
     
     def increase_views(self):
         self.views += 1
