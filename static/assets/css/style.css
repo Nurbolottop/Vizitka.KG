@@ -279,6 +279,15 @@ TABLE OF CONTENTS:-
 .hover-color1:hover {
   color: var(--color-main) !important;
 }
+.form-group{
+  border-radius: 5px;
+  border: 1px solid #ccc;
+
+}
+.form-group input{
+  outline: none;
+  border: none;
+}
 
 /* ===============================================================
 			[ * global Section ] 
