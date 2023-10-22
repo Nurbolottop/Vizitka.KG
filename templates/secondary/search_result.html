@@ -1,0 +1,440 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+    <!-- ====== start navbar-container ====== -->
+
+    <!-- ====== start nav search ====== -->
+    <div class="tc-blog-nav-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="info">
+                        <h2>Результаты по запросу: {{query}}</h2>
+                        <div class="links">
+                            <a >Найдено: {{blog_results.all.count}}</a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- ====== end nav search ====== -->
+
+    <!--Contents-->
+    <main>
+
+        <!-- ====== start features posts ====== -->
+        
+        <!-- ====== end features posts ====== -->
+
+        <!-- ====== start popular posts ====== -->
+        <section class="tc-popular-posts-blog">
+            <div class="container">
+                
+                <div class="content-widgets pt-50 pb-50">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="tc-post-list-style3">
+                                <div class="items">
+                                    {% for blog in blog_results %}
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <div class="img th-230 img-cover overflow-hidden">
+                                                    <img src="{{blog.image.url}}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-7">
+                                                <div class="content mt-20 mt-lg-0">
+                                                    <a href="page-blog.html#"
+                                                        class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
+                                                    <h4 class="title mb-15"> <a href="page-single-post-features.html">{{blog.title}}</a> </h4>
+                                                    <div class="text color-666">
+                                                        {{blog.sub_title}}
+                                                    </div>
+                                                    <div class="meta-bot fsz-13px color-666">
+                                                        <ul class="d-flex">
+                                                            <li class="date me-5">
+                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="pagination style-1 color-main justify-content-center mt-60">
+                                <a href="page-blog.html#" class="active">
+                                    <span>1</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span>2</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span>3</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span>4</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span>...</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span>20</span>
+                                </a>
+                                <a href="page-blog.html#">
+                                    <span class="text text-uppercase">next <i class="la la-angle-right"></i> </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="widgets-sticky mt-5 mt-lg-0">
+                                <p class="color-000 text-uppercase mb-30"> Stay Connected </p>
+                                <!-- widget-social -->
+                                <div class="tc-widget-social-style5 mb-40">
+                                    <a href="page-blog.html#" class="social-card">
+                                        <div class="icon facebook-icon">
+                                            <i class="lab la-facebook-f"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <strong> <b class="counter">575,5</b>K</strong>
+                                            <span>Followers</span>
+                                        </div>
+                                    </a>
+                                    <a href="page-blog.html#" class="social-card">
+                                        <div class="icon twitter-icon">
+                                            <i class="lab la-twitter"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <strong> <b class="counter">215,5</b>K</strong>
+                                            <span>Followers</span>
+                                        </div>
+                                    </a>
+                                    <a href="page-blog.html#" class="social-card">
+                                        <div class="icon insta-icon">
+                                            <i class="lab la-instagram"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <strong> <b class="counter">98,5</b>K</strong>
+                                            <span>Followers</span>
+                                        </div>
+                                    </a>
+                                    <a href="page-blog.html#" class="social-card border-0 pb-0">
+                                        <div class="icon youtube-icon">
+                                            <i class="lab la-youtube"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <strong> <b class="counter">24,2</b>K</strong>
+                                            <span>Subscriber</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- widget-trends -->
+                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40">
+                                    <p class="color-000 text-uppercase p-15">trending posts</p>
+                                    <div class="tc-post-list-style1">
+                                        <div class="tc-post-overlay-default">
+                                            <div class="img th-200 img-cover">
+                                                <img src="assets/img/trend/4.png" alt="">
+                                            </div>
+                                            <div class="content ps-20 pe-20 pb-20 text-white">
+                                                <a href="page-blog.html#" class="text-uppercase fsz-13px mb-1">lifestyle</a>
+                                                <h4 class="title">
+                                                    <a href="page-single-post-creative.html">The story about Hoki</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="items px-4 py-2">
+                                            <div class="item">
+                                                <h2 class="num">
+                                                    2
+                                                </h2>
+                                                <div class="content">
+                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
+                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
+                                                        <a href="page-single-post-creative.html" class="">The MLB lockout explained in 5 minutes</a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <h2 class="num">
+                                                    3
+                                                </h2>
+                                                <div class="content">
+                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
+                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
+                                                        <a href="page-single-post-creative.html" class="">“Now or Never” Falcons for the 2022
+                                                            season</a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <h2 class="num">
+                                                    4
+                                                </h2>
+                                                <div class="content">
+                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
+                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
+                                                        <a href="page-single-post-creative.html" class="">MLB become 1st fashion brands in US</a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <a href="page-blog.html#" class="fsz-13px text-capitalize color-666 mt-30 mb-20">
+                                                <span>See all posts</span>
+                                                <i class="las la-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- widget-sponsored -->
+                                <div class="tc-widget-sponsored-style1">
+                                    <div class="img img-cover">
+                                        <img src="assets/img/sponsored/1.png" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <div class="spon-cat text-uppercase mt-20"> Sponsored Content </div>
+                                        <h6 class="title">
+                                            <a href="page-blog.html#">
+                                                Dile &amp; Kamine Soap from pure natura 100%
+                                            </a>
+                                        </h6>
+                                        <a href="page-blog.html#">
+                                            <small>dileandkamina.com <i
+                                                    class="las la-external-link-square-alt ms-2"></i></small>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- widget tags -->
+                                <div class="tc-widget-tags-style5 mb-40">
+                                    <p class="color-000 text-uppercase mb-30"> Hot Tags Today </p>
+                                    <div class="tags-content">
+                                        <a href="page-blog.html#">Covid-19</a>
+                                        <a href="page-blog.html#">Bitcoin</a>
+                                        <a href="page-blog.html#">NFT</a>
+                                        <a href="page-blog.html#">Elon Musk</a>
+                                        <a href="page-blog.html#">Google Cloud</a>
+                                        <a href="page-blog.html#">Crypto</a>
+                                        <a href="page-blog.html#">Marketplace</a>
+                                        <a href="page-blog.html#">Game Consoles</a>
+                                        <a href="page-blog.html#">Robotics</a>
+                                        <a href="page-blog.html#">Hackers</a>
+                                    </div>
+                                </div>
+                                <!-- end widget tags -->
+
+                                <!-- widget-adbox -->
+                                <div class="tc-widget-adbox-style1">
+                                    <a href="page-blog.html#" class="img">
+                                        <img src="assets/img/banner12.png" alt="" class="">
+                                    </a>
+                                </div>
+
+                                <!-- widget-survey -->
+                                <div class="tc-widget-survey-style1 mb-40">
+                                    <p class="color-000 text-uppercase mb-20 ltspc-1"> quick survey </p>
+                                    <div class="ques-title lh-4">
+                                        How was your experience on Newzin?
+                                    </div>
+                                    <div class="ansr-content">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quesCheck"
+                                                id="quesCheck1">
+                                            <label class="form-check-label" for="quesCheck1">
+                                                Awesome, I’m satisfied!
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quesCheck"
+                                                id="quesCheck2">
+                                            <label class="form-check-label" for="quesCheck2">
+                                                Normal
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quesCheck"
+                                                id="quesCheck3">
+                                            <label class="form-check-label" for="quesCheck3">
+                                                Bad! Need improve more
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="btns">
+                                        <a href="page-blog.html#" class="btn active me-2">
+                                            Submit
+                                        </a>
+                                        <a href="page-blog.html#" class="btn">
+                                            Result
+                                        </a>
+                                    </div>
+
+                                    <small class="pl-num">
+                                        <span class="color-000">24,562 </span> Peoples joined
+                                    </small>
+                                </div>
+
+                                <!-- widget webStories -->
+                                <div class="tc-widget-webStories-style5">
+                                    <p class="color-000 text-uppercase mb-30"> google web stories </p>
+                                    <div class="web-content">
+                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card pt-0"
+                                            data-fancybox="">
+                                            <div class="img img-cover">
+                                                <img src="assets/img/google-stories/1.png" alt="">
+                                            </div>
+                                            <div class="cont">
+                                                <h6>Kayak stories</h6>
+                                            </div>
+                                        </a>
+                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card seen"
+                                            data-fancybox="">
+                                            <div class="img img-cover">
+                                                <img src="assets/img/google-stories/2.png" alt="">
+                                            </div>
+                                            <div class="cont">
+                                                <h6>6 Tips Successful for Developers</h6>
+                                            </div>
+                                        </a>
+                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card pb-0 border-0"
+                                            data-fancybox="">
+                                            <div class="img img-cover">
+                                                <img src="assets/img/google-stories/3.png" alt="">
+                                            </div>
+                                            <div class="cont">
+                                                <h6>PS Controller</h6>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== end popular posts ====== -->
+
+        <!-- ====== start modals ====== -->
+
+        <div class="offcanvas offcanvas-start sidebar-popup-style1" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <div class="logo">
+                    <img src="assets/img/logo_home1.png" alt="" class="dark-none">
+                    <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
+                </div>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body mt-4">
+                <h6 class="color-000 text-uppercase mb-15 ltspc-1"> about us <i class="la la-angle-right ms-1"></i>
+                </h6>
+                <div class="text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem optio tempora quia iure quae.
+                    Soluta corporis quidem aperiam amet nihil.
+                </div>
+
+                <div class="sidebar-categories mt-40">
+                    <h6 class="color-000 text-uppercase mb-30 ltspc-1"> categories <i
+                            class="la la-angle-right ms-1"></i> </h6>
+                    <a href="page-blog.html#" class="cat-card">
+                        <div class="img img-cover">
+                            <img src="assets/img/bussines/1.png" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>bussines</h5>
+                            <span class="num">12</span>
+                        </div>
+                    </a>
+                    <a href="page-blog.html#" class="cat-card">
+                        <div class="img img-cover">
+                            <img src="assets/img/trend/3.png" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>technology</h5>
+                            <span class="num">14</span>
+                        </div>
+                    </a>
+                    <a href="page-blog.html#" class="cat-card">
+                        <div class="img img-cover">
+                            <img src="assets/img/must_read/3.png" alt="">
+                        </div>
+                        <div class="info">
+                            <h5>culture</h5>
+                            <span class="num">20</span>
+                        </div>
+                    </a>
+                    <a href="page-blog.html#" class="cat-card">
+                        <div class="img img-cover">
+                            <img src="  " alt="">
+                        </div>
+                        <div class="info">
+                            <h5>videos</h5>
+                            <span class="num">14</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="sidebar-contact-info mt-50">
+                    <h6 class="color-000 text-uppercase mb-20 ltspc-1"> Contact & follow <i
+                            class="la la-angle-right ms-1"></i> </h6>
+                    <ul class="m-0">
+                        <li class="mb-3">
+                            <i class="las la-map-marker me-2 color-main fs-5"></i>
+                            <a href="page-blog.html#">streat name 12, hollywood City, USA</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="las la-envelope me-2 color-main fs-5"></i>
+                            <a href="page-blog.html#">Newzin@gmail.com</a>
+                        </li>
+                        <li class="mb-3">
+                            <i class="las la-phone-volume me-2 color-main fs-5"></i>
+                            <a href="page-blog.html#">+12 123 456 789</a>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="page-blog.html#">
+                            <i class="la la-twitter"></i>
+                        </a>
+                        <a href="page-blog.html#">
+                            <i class="la la-facebook-f"></i>
+                        </a>
+                        <a href="page-blog.html#">
+                            <i class="la la-instagram"></i>
+                        </a>
+                        <a href="page-blog.html#">
+                            <i class="la la-youtube"></i>
+                        </a>
+                        <a href="page-blog.html#">
+                            <i class="la la-spotify"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ====== end modals ====== -->
+
+    </main>
+    <!--End-Contents-->
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}

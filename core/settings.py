@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'apps.index',
     'apps.blog',
     'apps.advert',
-    'apps.category'
+    'apps.category',
+    'apps.category_apps',
+    
 ]
 
 MIDDLEWARE = [

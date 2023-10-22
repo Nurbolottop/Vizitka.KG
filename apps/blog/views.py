@@ -31,6 +31,7 @@ def blog(request):
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('-views')[:5]
     popular_posts = Blog.objects.order_by('-views')[:5]
+    
     big_advert = BigAdvert.objects.latest('id')
     # temperature, weather_condition = get_weather_data()
     return render(request, 'base/page-blog.html', locals())

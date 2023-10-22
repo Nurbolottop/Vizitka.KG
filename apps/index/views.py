@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-
+from django.db.models import Q
 # my imports
 from apps.index import models
 from apps.blog.models import Blog,Stories
@@ -85,4 +85,15 @@ def contact(request):
     return render(request, 'base/page-contact.html', locals())
 
 
+def search(request):
+    current_date = datetime.now()
+    setting = models.Settings.objects.latest('id')
+    # temperature, weather_condition = get_weather_data()
     
+    query = request.POST.get('query', '')
+    blog_results = []
+
+    if query:
+        # Используйте Q-объекты для выполнения поиска в моделях Shop и Product
+        blog_results = Blog.objects.filter(Q(title__icontains=query) | Q(sub_title__icontains=query))
+    return render(request, 'secondary/search_result.html', locals())

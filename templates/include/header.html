@@ -171,13 +171,14 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <form class="form">
+                    <form class="form" action="{% url 'search' %}" method = "POST">
+                        {% csrf_token %}
                         <span class="color-777 fst-italic text-capitalize mb-2 fsz-13px">Enter Keyword</span>
                         <div class="form-group">
                             <span class="icon">
                                 <i class="la la-search"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Elon Musk ... ">
+                            <input type="text" name = "query" class="form-control" placeholder="Elon Musk ... ">
                             <button type="submit">search</button>
                         </div>
                     </form>
