@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.db.models import Q
+from datetime import datetime
+
 # my imports
 from apps.index import models
 from apps.blog.models import Blog,Stories
-from datetime import datetime
 from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
 from apps.category.models import FirstBlog
 # from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
@@ -15,7 +16,6 @@ def index(request):
     team = models.Team.objects.all()
     stories = Stories.objects.all()
     #< end basic info >
-    
     #< start extra >
     current_date = datetime.now()
     #< end extra >

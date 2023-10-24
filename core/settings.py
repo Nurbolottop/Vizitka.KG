@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.advert',
     'apps.category',
-    'apps.category_apps',
-    
+    'apps.category_blog',
+    'apps.users'
 ]
+AUTH_USER_MODEL = 'users.User'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -174,3 +176,10 @@ CKEDITOR_CONFIGS = {
         'width': 800,
     },
 }
+
+
+EMAIL_USE_TLS = True  # Использовать TLS для защищенного соединения
+EMAIL_HOST = 'smtp.gmail.com'  # Адрес SMTP сервера Gmail
+EMAIL_PORT = 587  # Порт для подключения к SMTP серверу Gmail
+EMAIL_HOST_USER = 'bullabratan@gmail.com'
+EMAIL_HOST_PASSWORD = 'zlrwdyljhsupxnfo'

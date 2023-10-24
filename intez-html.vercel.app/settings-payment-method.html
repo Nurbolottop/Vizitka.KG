@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intez</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="dashboard">
+
+<div id="preloader">
+    <i>.</i>
+    <i>.</i>
+    <i>.</i>
+</div>
+
+<div id="main-wrapper">
+
+    <div class="header">
+    <div class="container">
+       <div class="row">
+          <div class="col-xxl-12">
+             <div class="header-content">
+                <div class="header-left">
+                   <div class="brand-logo"><a class="mini-logo" href="/"><img src="./images/logoi.png" alt="" width="40"></a></div>
+                   <div class="search">
+                      <form action="#">
+                         <div class="input-group"><input type="text" class="form-control" placeholder="Search Here"><span class="input-group-text"><i class="ri-search-line"></i></span></div>
+                      </form>
+                   </div>
+                </div>
+                <div class="header-right">
+                   <div class="dark-light-toggle"><span class="dark"><i class="ri-moon-line"></i></span><span class="light"><i class="ri-sun-line"></i></span></div>
+                   <div class="nav-item dropdown notification dropdown">
+                      <div data-toggle="dropdown" aria-haspopup="true" class="" aria-expanded="false">
+                         <div class="notify-bell icon-menu"><span><i class="ri-notification-2-line"></i></span></div>
+                      </div>
+                      <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu notification-list dropdown-menu dropdown-menu-right">
+                         <h4>Recent Notification</h4>
+                         <div class="lists">
+                            <a class="" href="/#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon success"><i class="ri-check-line"></i></span>
+                                  <div>
+                                     <p>Account created successfully</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="/#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon fail"><i class="ri-close-line"></i></span>
+                                  <div>
+                                     <p>2FA verification failed</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="/#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon success"><i class="ri-check-line"></i></span>
+                                  <div>
+                                     <p>Device confirmation completed</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a class="" href="/#">
+                               <div class="d-flex align-items-center">
+                                  <span class="me-3 icon pending"><i class="ri-question-mark"></i></span>
+                                  <div>
+                                     <p>Phone verification pending</p>
+                                     <span>2020-11-04 12:00:23</span>
+                                  </div>
+                               </div>
+                            </a>
+                            <a href="/notification.html">More<i class="ri-arrow-right-s-line"></i></a>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="dropdown profile_log dropdown">
+                      <div data-toggle="dropdown" aria-haspopup="true" class="" aria-expanded="false">
+                         <div class="user icon-menu active"><span><i class="ri-user-line"></i></span></div>
+                      </div>
+                      <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu dropdown-menu-right">
+                         <div class="user-email">
+                            <div class="user">
+                               <span class="thumb"><img src="./images/profile/3.png" alt=""></span>
+                               <div class="user-info">
+                                  <h5>Jannatul Maowa</h5>
+                                  <span>Intez.inc@gmail.com</span>
+                               </div>
+                            </div>
+                         </div>
+                         <a class="dropdown-item" href="/profile.html"><span><i class="ri-user-line"></i></span>Profile</a>
+                         <a class="dropdown-item" href="/balance.html"><span><i class="ri-wallet-line"></i></span>Balance</a>
+                         <a class="dropdown-item" href="/settings-profile.html"><span><i class="ri-settings-3-line"></i></span>Settings</a>
+                         <a class="dropdown-item" href="/settings-activity.html"><span><i class="ri-time-line"></i></span>Activity</a>
+                         <a class="dropdown-item" href="/lock.html"><span><i class="ri-lock-line"></i></span>Lock</a>
+                         <a class="dropdown-item logout" href="/signin.html"><i class="ri-logout-circle-line"></i>Logout</a>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+    <div class="sidebar">
+    <div class="brand-logo"><a class="full-logo" href="/"><img src="./images/logoi.png" alt="" width="30"></a></div>
+    <div class="menu">
+        <ul>
+            <li><a href="/index.html">
+                    <span><i class="ri-home-5-line"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li><a href="/balance.html">
+                    <span><i class="ri-wallet-line"></i></span>
+                    <span class="nav-text">Wallet</span>
+                </a>
+            </li>
+            <li><a href="/bill.html">
+                    <span><i class="ri-secure-payment-line"></i></span>
+                    <span class="nav-text">Payment</span>
+                </a>
+            </li>
+            <li><a href="/invoice.html">
+                    <span><i class="ri-file-copy-2-line"></i></span>
+                    <span class="nav-text">Invoice</span>
+                </a>
+            </li>
+            <li><a href="/settings-profile.html">
+                    <span><i class="ri-settings-3-line"></i></span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </li>
+            <li class="logout"><a href="/signin.html">
+                    <span><i class="ri-logout-circle-line"></i></span>
+                    <span class="nav-text">Signout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-title">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-xl-4">
+                                <div class="page-title-content">
+                                    <h3>Payment Method</h3>
+                                    <p class="mb-2">Welcome to Intez Payment Method page</p>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="breadcrumbs"><a href="#">Settings </a><span><i class="ri-arrow-right-s-line"></i></span><a href="#">Payment Method</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-12">
+                    <div class="settings-menu">
+    <a href="settings-profile.html">Profile</a>
+    <a href="settings-application.html">Application</a>
+    <a href="settings-security.html">Security</a>
+    <a href="settings-activity.html">Activity</a>
+    <!-- <a href="settings-privacy.html">Privacy</a> -->
+    <a href="settings-payment-method.html">Payment Method</a>
+    <a href="settings-api.html">API</a>
+    <!-- <a href="settings-fees.html">Fees</a> -->
+</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Add a payment method </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="verify-content">
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-3 icon-circle bg-primary text-white"><i
+                                                    class="ri-bank-line"></i></span>
+                                            <div class="primary-number">
+                                                <h5 class="mb-0">Bank of America</h5>
+                                                <small>Bank **************5421</small>
+                                                <br>
+                                                <span class="text-success">Verified</span>
+                                            </div>
+                                        </div>
+                                        <button class=" btn btn-outline-primary">Manage</button>
+                                    </div>
+                                    <hr class="dropdown-divider my-4">
+                                    <div class="verify-content">
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-3 icon-circle bg-primary text-white"><i
+                                                    class="ri-mastercard-line"></i></span>
+                                            <div class="primary-number">
+                                                <h5 class="mb-0">Master Card</h5>
+                                                <small>Credit Card *********5478</small>
+                                                <br>
+                                                <span class="text-success">Verified</span>
+                                            </div>
+                                        </div>
+                                        <button class=" btn btn-outline-primary">Manage</button>
+                                    </div>
+
+                                    <div class="mt-5 text-center">
+                                        <button type="button" class="btn btn-primary m-2" data-toggle="modal"
+                                            data-target="#addBank">Add New Bank</button>
+                                        <button type="button" class="btn btn-primary m-2" data-toggle="modal"
+                                            data-target="#addCard">Add New Card</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addBank" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add bank account</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="verify-step-6.html" class="identity-upload">
+                    <div class="row g-3">
+                        <div class="col-xl-12">
+                            <label class="form-label">Routing number </label>
+                            <input type="text" class="form-control" placeholder="25487">
+                        </div>
+                        <div class="col-xl-12">
+                            <label class="form-label">Account number </label>
+                            <input type="text" class="form-control" placeholder="36475">
+                        </div>
+                        <div class="col-xl-12">
+                            <label class="form-label">Fulll name </label>
+                            <input type="text" class="form-control" placeholder="Jannatul Maowa">
+                        </div>
+                        <div class="col-xl-12">
+                            <img src="./images/routing.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                    data-target="#successBankAccount">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="successBankAccount" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Success</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-form">
+                    <div class="card-body">
+                        <form action="verify-step-2.html" class="identity-upload">
+                            <div class="identity-content">
+                                <span class="icon"><i class="icofont-check"></i></span>
+                                <p class="text-dark">Congratulation. Your bank added</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addCard" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCardLabel">Add card</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="identity-upload">
+                    <div class="row g-3">
+                        <div class="col-xl-12">
+                            <label class="form-label">Name on card </label>
+                            <input type="text" class="form-control" placeholder="Jannatul Maowa">
+                        </div>
+                        <div class="col-xl-12">
+                            <label class="form-label">Card number </label>
+                            <input type="text" class="form-control" placeholder="5658 4258 6358 4756">
+                        </div>
+                        <div class="col-xl-4">
+                            <label class="form-label">Expiration </label>
+                            <input type="text" class="form-control" placeholder="10/22">
+                        </div>
+                        <div class="col-xl-4">
+                            <label class="form-label">CVC </label>
+                            <input type="text" class="form-control" placeholder="125">
+                        </div>
+                        <div class="col-xl-4">
+                            <label class="form-label">Postal code </label>
+                            <input type="text" class="form-control" placeholder="2368">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                    data-target="#successCard">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="successCard" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Success</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-form">
+                    <div class="card-body">
+                        <form action="verify-step-2.html" class="identity-upload">
+                            <div class="identity-content">
+                                <span class="icon"><i class="icofont-check"></i></span>
+                                <p class="text-dark">Congratulation. Your bank added</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./js/scripts.js"></script>
+
+
+</body>
+
+</html>

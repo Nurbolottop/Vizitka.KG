@@ -13,7 +13,6 @@ class TeamFilterAdmin(admin.ModelAdmin):
     list_display = ('name', 'work')
     search_fields = ('name', 'work')
     
-admin.site.unregister(User)
 admin.site.unregister(Group) 
 admin.site.register(Settings, SettingsFilterAdmin)
 admin.site.register(Team, TeamFilterAdmin)

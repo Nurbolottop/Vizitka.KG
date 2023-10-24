@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 # my imports
 from apps.index import models
-from datetime import datetime
-
 from apps.blog.models import Blog
-from apps.advert.models import BigAdvert
+from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
+from apps.category_blog import blogs
 
 # Create your views here.
 # def get_weather_data():
@@ -26,14 +26,24 @@ from apps.advert.models import BigAdvert
 
 
 def blog(request):
-    blog = Blog.objects.all()  
+    blog = Blog.objects.all().order_by('-views')  
     current_date = datetime.now()
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('-views')[:5]
-    popular_posts = Blog.objects.order_by('-views')[:5]
-    
+    popular_post = Blog.objects.order_by('-views')[:1]
+    # < start advert>
     big_advert = BigAdvert.objects.latest('id')
+    normal_advert = NormalAdvert.objects.latest('id')
+    small_advert = SmallAdvert.objects.latest('id')
+    # < end advert>
+    # < start category >
+    firstnews1 = blogs.firstnewsblog1_mtehod()
+    firstnews3 = blogs.firstnewsblog3_mtehod()
+    
+    # < start temperature>
     # temperature, weather_condition = get_weather_data()
+    # < end temperature>
+    
     return render(request, 'base/page-blog.html', locals())
 
 def blog_detail(request, id):

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>{{setting.title}} - {{setting.descriptions}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/fonts/flaticon/font/flaticon.css' %}">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{{setting.logo.url}}" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/css/style.css' %}">
+
+</head>
+<body id="top">
+<div class="page_loader"></div>
+
+<!-- Login 32 start -->
+<div class="login-32">
+    <div class="login-32-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-section">
+                        <div class="logo">
+                            <a href="login-32.html">
+                                <img src="{{setting.logo.url}}" alt="logo">
+                            </a>
+                        </div>
+                        <div class="btn-section">
+                            <a href="{% url 'login' %}" class="link-btn active">Логин</a>
+                            <a href="{% url 'register' %}" class="link-btn">Регистрация</a>
+                        </div>
+                        <div class="login-inner-form">
+                            <form  method="POST">
+                                {% csrf_token %}
+                                <div class="form-group form-box">
+                                    <input type="text" name="username" class="form-control" placeholder="Имя" aria-label="Имя пользователя">
+                                    <i class="flaticon-user"></i>
+                                </div>
+                                <div class="form-group form-box">
+                                    <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Пароль" aria-label="Пароль">
+                                    <i class="flaticon-password"></i>
+                                </div>
+                                <div class="form-group form-box checkbox clearfix">
+                                    <div class="form-check checkbox-theme">
+                                        <input class="form-check-input" type="checkbox" value=""name="remember_me"  id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            Запомнить меня
+                                        </label>
+                                    </div>
+                                    <a href="{% url 'password_reset' %}">Забыли пароль</a>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn-md btn-theme w-100">Войти</button>
+                                </div>
+                            </form>
+                            <div class="extra-login">
+                                <span>Или Войдите Через</span>
+                            </div>
+                            <ul class="social-list clearfix">
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="animate-image-2"><img src="{% static 'register_assets/img/img-36.png' %}" alt="photo"></div>
+    <div class="animate-image-1"><img src="{% static 'register_assets/img/img-37.png' %}" alt="photo"></div>
+</div>
+<!-- Login 32 end -->
+
+<!-- External JS libraries -->
+<script src="{% static 'register_assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'register_assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'register_assets/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'register_assets/js/app.js' %}"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

@@ -53,14 +53,14 @@
                         <div class="tc-popular-posts-blog-slider9 tc-slider-style1">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
-                                    {% for popular in popular_posts%}
+                                    {% for popular in blog %}
                                     <div class="swiper-slide">
                                         <div class="item">
                                             <div class="img img-cover th-180">
                                                 <img src="{{popular.image.url}}" alt="">
                                             </div>
                                             <div class="content pt-20">
-                                                <a href="page-blog.html#"
+                                                <a href="{% url 'blog_detail' popular.id%}"
                                                     class="news-cat color-999 fsz-13px text-uppercase mb-10">{{popular.category}}</a>
                                                 <h4 class="title ltspc--1 mb-10">
                                                     <a href="{% url 'blog_detail' popular.id%}">
@@ -94,81 +94,35 @@
                         <div class="col-lg-9">
                             <div class="tc-post-list-style3">
                                 <div class="items">
+                                    {% for blog in firstnews1%}
                                     <div class="item">
                                         <div class="row">
                                             <div class="col-lg-5">
                                                 <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="assets/img/must_read/1.png" alt="">
+                                                    <img src="{{blog.image.url}}" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-7">
                                                 <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title mb-15"> <a href="page-single-post-creative.html">Manoah dominates, closes on
-                                                            <br> Blue
-                                                            Jays history</a> </h4>
+                                                    <a href="{% url 'blog_detail' blog.id%}"
+                                                        class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
+                                                    <h4 class="title mb-15"> <a href="{% url 'blog_detail' blog.id%}">{{blog.title}}</h4>
                                                     <div class="text color-666">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
+                                                        {{blog.sub_title|truncatewords:5}}
                                                     </div>
                                                     <div class="meta-bot fsz-13px color-666">
                                                         <ul class="d-flex">
                                                             <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
+                                                                <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
                                                             </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
+                                                           
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/latest/126.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title mb-15"> <a href="page-single-post-features.html">Grace Harbaugh is the hero we
-                                                            didn’t know we needed</a> </h4>
-                                                    <div class="text color-666">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
-                                                    </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <!-- ====== start banner20 ====== -->
@@ -176,8 +130,8 @@
                                 <div class="content">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-10">
-                                            <a href="page-blog.html#" class="d-block img-cover">
-                                                <img src="https://newzin-html.themescamp.com/assets/img/banner18.png" alt="">
+                                            <a href="{{noraml_advert.url_booking    }}" class="d-block img-cover">
+                                                <img src="{{normal_advert.image.url}}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -185,192 +139,39 @@
                             </div>
                             <div class="tc-post-list-style3">
                                 <div class="items">
-                                    <div class="item mt-30">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/latest/146.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title fw-bold">
-                                                        <a href="page-single-post-features.html" class="hover-underline">
-                                                            Hall of Famer Hugh McElhenny dies at 93
-                                                        </a>
-                                                    </h4>
-                                                    <div class="text color-666 mt-20">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
+                                    {% for blog in firstnews3 %}
+                                        <div class="item mt-30">
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <div class="img th-230 img-cover overflow-hidden">
+                                                        <img src="{{blog.image.url}}" alt="">
                                                     </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <div class="content mt-20 mt-lg-0">
+                                                        <a href="{% url 'blog_detail' blog.id%}"
+                                                            class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
+                                                        <h4 class="title fw-bold">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title}}
+                                                            </a>
+                                                        </h4>
+                                                        <div class="text color-666 mt-20">
+                                                            {{blog.sub_title|truncatewords:5}}
+                                                        </div>
+                                                        <div class="meta-bot fsz-13px color-666">
+                                                            <ul class="d-flex">
+                                                                <li class="date me-5">
+                                                                    <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
+                                                                </li>
+                                                            
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item mt-30 p-30 bg-gray1 border-bottom-0">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-180 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/sponsored/6.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-main fsz-13px text-uppercase mb-10">Sponsored
-                                                        Content</a>
-                                                    <h4 class="title fw-bold">
-                                                        <a href="page-single-post-creative.html" class="hover-underline">
-                                                            iPad Air 4G GPS, Wifi + LTE, 512GB, Dark Grey
-                                                        </a>
-                                                    </h4>
-                                                    <div class="meta-bot fsz-13px">
-                                                        <a href="page-blog.html#"> itechstore.com <i
-                                                                class="las la-external-link-square-alt ms-2"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item mt-30 border-top">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/latest/147.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title fw-bold">
-                                                        <a href="page-single-post-features.html" class="hover-underline">
-                                                            Sainz qualifies on pole for British Grand Prix
-                                                        </a>
-                                                    </h4>
-                                                    <div class="text color-666 mt-20">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
-                                                    </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/latest/148.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title fw-bold">
-                                                        <a href="page-single-post-creative.html" class="hover-underline">
-                                                            Wickens caps week with another win and birth of his son
-                                                        </a>
-                                                    </h4>
-                                                    <div class="text color-666 mt-20">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
-                                                    </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item border-0">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="https://newzin-html.themescamp.com/assets/img/latest/149.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="page-blog.html#"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">sport</a>
-                                                    <h4 class="title fw-bold">
-                                                        <a href="page-single-post-features.html" class="hover-underline">
-                                                            Viktor Hovland's clubs, luggage were lost ahead of Scottish
-                                                            Open
-                                                        </a>
-                                                    </h4>
-                                                    <div class="text color-666 mt-20">
-                                                        Stay focused and remember we design the best WordPress News and
-                                                        Magazine Themes [...]
-                                                    </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="page-blog.html#"><i class="la la-calendar me-2"></i> Aug 21,
-                                                                    2023</a>
-                                                            </li>
-                                                            <li class="author me-5">
-                                                                <a href="page-blog.html#"><i class="la la-user me-2"></i> by <span
-                                                                        class="color-000">Logan</span> </a>
-                                                            </li>
-                                                            <li class="comment">
-                                                                <a href="page-blog.html#"><i class="la la-comment me-2"></i> 0
-                                                                    Comments</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="pagination style-1 color-main justify-content-center mt-60">
@@ -442,55 +243,34 @@
 
                                 <!-- widget-trends -->
                                 <div class="tc-trending-news-style5 border border-1 brd-gray mb-40">
-                                    <p class="color-000 text-uppercase p-15">trending posts</p>
+                                    <p class="color-000 text-uppercase p-15">Популярные Новости</p>
                                     <div class="tc-post-list-style1">
-                                        <div class="tc-post-overlay-default">
-                                            <div class="img th-200 img-cover">
-                                                <img src="assets/img/trend/4.png" alt="">
+                                        {% for blog in popular_post%}
+                                            <div class="tc-post-overlay-default">
+                                                <div class="img th-200 img-cover">
+                                                    <img src="{{blog.image.url}}" alt="">
+                                                </div>
+                                                <div class="content ps-20 pe-20 pb-20 text-white">
+                                                    <a href="{% url 'blog_detail' blog.id%}" class="text-uppercase fsz-13px mb-1">{{blog.category}}</a>
+                                                    <h4 class="title">
+                                                        <a href="{% url 'blog_detail' blog.id%}">{{blog.title}}</a>
+                                                    </h4>
+                                                </div>
                                             </div>
-                                            <div class="content ps-20 pe-20 pb-20 text-white">
-                                                <a href="page-blog.html#" class="text-uppercase fsz-13px mb-1">lifestyle</a>
-                                                <h4 class="title">
-                                                    <a href="page-single-post-creative.html">The story about Hoki</a>
-                                                </h4>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                         <div class="items px-4 py-2">
-                                            <div class="item">
-                                                <h2 class="num">
-                                                    2
-                                                </h2>
-                                                <div class="content">
-                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
-                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
-                                                        <a href="page-single-post-creative.html" class="">The MLB lockout explained in 5 minutes</a>
-                                                    </h6>
+                                            {% for blog in popular_posts%}
+                                                <div class="item">
+                                                    
+                                                    <div class="content">
+                                                        <a href="{% url 'blog_detail' blog.id%}" class="color-999 fsz-12px text-uppercase mb-1">{{blog.category}}</a>
+                                                        <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="">{{blog.title}}</a>
+                                                        </h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="item">
-                                                <h2 class="num">
-                                                    3
-                                                </h2>
-                                                <div class="content">
-                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
-                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
-                                                        <a href="page-single-post-creative.html" class="">“Now or Never” Falcons for the 2022
-                                                            season</a>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <h2 class="num">
-                                                    4
-                                                </h2>
-                                                <div class="content">
-                                                    <a href="page-blog.html#" class="color-999 fsz-12px text-uppercase mb-1">sport</a>
-                                                    <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
-                                                        <a href="page-single-post-creative.html" class="">MLB become 1st fashion brands in US</a>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <a href="page-blog.html#" class="fsz-13px text-capitalize color-666 mt-30 mb-20">
+                                            {% endfor %}
+                                            <a href="#" class="fsz-13px text-capitalize color-666 mt-30 mb-20">
                                                 <span>See all posts</span>
                                                 <i class="las la-angle-right"></i>
                                             </a>
@@ -499,7 +279,7 @@
                                 </div>
 
                                 <!-- widget-sponsored -->
-                                <div class="tc-widget-sponsored-style1">
+                                {% comment %} <div class="tc-widget-sponsored-style1">
                                     <div class="img img-cover">
                                         <img src="assets/img/sponsored/1.png" alt="">
                                     </div>
@@ -515,9 +295,9 @@
                                                     class="las la-external-link-square-alt ms-2"></i></small>
                                         </a>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
 
-                                <!-- widget tags -->
+                                {% comment %} <!-- widget tags -->
                                 <div class="tc-widget-tags-style5 mb-40">
                                     <p class="color-000 text-uppercase mb-30"> Hot Tags Today </p>
                                     <div class="tags-content">
@@ -533,58 +313,17 @@
                                         <a href="page-blog.html#">Hackers</a>
                                     </div>
                                 </div>
-                                <!-- end widget tags -->
+                                <!-- end widget tags --> {% endcomment %}
 
                                 <!-- widget-adbox -->
                                 <div class="tc-widget-adbox-style1">
-                                    <a href="page-blog.html#" class="img">
-                                        <img src="assets/img/banner12.png" alt="" class="">
+                                    <a href="{{small_advert.url_booking}}" class="img">
+                                        <img src="{{small_advert.image.url}}" alt="" class="">
                                     </a>
                                 </div>
 
                                 <!-- widget-survey -->
-                                <div class="tc-widget-survey-style1 mb-40">
-                                    <p class="color-000 text-uppercase mb-20 ltspc-1"> quick survey </p>
-                                    <div class="ques-title lh-4">
-                                        How was your experience on Newzin?
-                                    </div>
-                                    <div class="ansr-content">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="quesCheck"
-                                                id="quesCheck1">
-                                            <label class="form-check-label" for="quesCheck1">
-                                                Awesome, I’m satisfied!
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="quesCheck"
-                                                id="quesCheck2">
-                                            <label class="form-check-label" for="quesCheck2">
-                                                Normal
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="quesCheck"
-                                                id="quesCheck3">
-                                            <label class="form-check-label" for="quesCheck3">
-                                                Bad! Need improve more
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="btns">
-                                        <a href="page-blog.html#" class="btn active me-2">
-                                            Submit
-                                        </a>
-                                        <a href="page-blog.html#" class="btn">
-                                            Result
-                                        </a>
-                                    </div>
-
-                                    <small class="pl-num">
-                                        <span class="color-000">24,562 </span> Peoples joined
-                                    </small>
-                                </div>
-
+                               
                                 <!-- widget webStories -->
                                 <div class="tc-widget-webStories-style5">
                                     <p class="color-000 text-uppercase mb-30"> google web stories </p>

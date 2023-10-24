@@ -279,15 +279,6 @@ TABLE OF CONTENTS:-
 .hover-color1:hover {
   color: var(--color-main) !important;
 }
-.form-group{
-  border-radius: 5px;
-  border: 1px solid #ccc;
-
-}
-.form-group input{
-  outline: none;
-  border: none;
-}
 
 /* ===============================================================
 			[ * global Section ] 
@@ -2273,6 +2264,16 @@ small.text {
   text-transform: uppercase;
   color: #fff;
   background-color: var(--color-main);
+}
+.nav-side{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-side .dropdown a{
+  color: black;
 }
 .navbar.style-1 .nav-side .icon-link {
   position: relative;

@@ -151,7 +151,35 @@
                         
                     </ul>
                     <div class="nav-side">
-                        
+                        {% if user.is_authenticated %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{user.username}}
+                            </a>
+
+                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Войти
+                            </a>
+
+                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                            <a href="home-default.html#" class="icon-link noti-dot">
+                                <i class="la la-shopping-bag fs-4"></i>
+                            </a>
                         <a href="#" class="icon-link search-btn-style1">
                             <i class="la la-search fs-4 sOpen-btn"></i>
                             <i class="la la-close fs-4 sClose-btn"></i>
