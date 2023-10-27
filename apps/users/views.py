@@ -37,6 +37,8 @@ def register(request):
 
 
 def profile(request,id):
+    setting = Settings.objects.latest('id')
+    
     user = models.User.objects.get(id=id)
     return render(request, 'users/settings-profile.html', locals())
 

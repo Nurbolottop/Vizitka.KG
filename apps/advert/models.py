@@ -12,14 +12,20 @@ class BigAdvert(models.Model):
     )
     title = models.CharField(
         max_length=255,
-        verbose_name="Заголовок"
+        verbose_name="Заголовок",
+        blank = True, null = True
+        
     )
     sub_title = models.CharField(
         max_length=255,
-        verbose_name="Подзаголовок"
+        verbose_name="Подзаголовок",
+        blank = True, null = True
+        
     )
     url_booking = models.URLField(
-        verbose_name="Ссылка"
+        verbose_name="Ссылка",
+        blank = True, null = True
+        
     )
     
     def __str__(self):
@@ -28,6 +34,8 @@ class BigAdvert(models.Model):
     class Meta:
         verbose_name = "Большая реклама"
         verbose_name_plural = "Большие рекламы"
+
+        
         
 class NormalAdvert(models.Model):
     image = ResizedImageField(
@@ -38,7 +46,9 @@ class NormalAdvert(models.Model):
         blank = True, null = True
     )
     url_booking = models.URLField(
-        verbose_name="Ссылка"
+        verbose_name="Ссылка",
+        blank = True, null = True
+        
     )
     
     class Meta:
@@ -54,7 +64,9 @@ class SmallAdvert(models.Model):
         blank = True, null = True
     )
     url_booking = models.URLField(
-        verbose_name="Ссылка"
+        verbose_name="Ссылка",
+        blank = True, null = True
+        
     )
     
     class Meta:

@@ -55,6 +55,7 @@
                                     
                                 </div>
                             </div>
+                            {% if big_advert %}
                             <div class="tc-post-grid-default">
                                 <div class="item">
                                     <div class="img img-cover th-200">
@@ -68,6 +69,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif  %}
                         </div>
                         <div class="col-lg-6">
                             <div class="tc-trends-news-slider1 tc-slider-style2">
@@ -256,6 +258,8 @@
         <!-- ====== end Latest news ====== -->
 
         <!-- ====== start banner1 ====== -->
+        {% if  normal_advert %}
+
         <section class="banner1">
             <div class="container">
                 <div class="content pt-50 pb-50 border-bottom border-1 brd-gray">
@@ -269,6 +273,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end banner1 ====== -->
 
         <!-- ====== start must read ====== -->
@@ -413,12 +418,13 @@
                         </section>
 
                         <!-- banner2 -->
+                        {% if  normal_advert %}
                         <section class="banner2">
                             <div class="container">
                                 <div class="content">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-10">
-                                            <a href="{{noraml_advert.url}}" class="d-block img-cover">
+                                            <a href="{{normal_advert.url}}" class="d-block img-cover">
                                                 <img src="{{normal_advert.image.url}}" alt="">
                                             </a>
                                         </div>
@@ -426,6 +432,7 @@
                                 </div>
                             </div>
                         </section>
+                        {% endif %}
 
                         <!-- technology -->
                         <div class="tc-technology-style1 pt-50">
@@ -529,7 +536,7 @@
                                     
                                 </div>
                             </div>
-                           
+                           {% if big_advert%}
                             <div class="tc-widget-sponsored-style1">
                                 <div class="img img-cover">
                                     <img src="{{big_advert.image.url}}" alt="">
@@ -547,6 +554,7 @@
                                     </a>
                                 </div>
                             </div>
+                            {% endif  %}
                             <!-- popular posts -->
                             <div class="tc-widget-popular-style1">
                                 <p class="color-000 text-uppercase mb-20 ltspc-1"> Популярные посты </p>
@@ -588,50 +596,14 @@
                                 </div>
                             </div>
                             <!-- widget-adbox -->
+                            {% if small_advert%}
                             <div class="tc-widget-adbox-style1">
                                 <a href="{{small_advert.url_booking}}" class="img">
                                     <img src="{{small_advert.image.url}} " alt="" class="">
                                 </a>
                             </div>
+                            {% endif %}
                             <!-- widget-survey -->
-                            <div class="tc-widget-survey-style1">
-                                <p class="color-000 text-uppercase mb-20 ltspc-1"> quick survey </p>
-                                <div class="ques-title lh-4">
-                                    How was your experience on Newzin?
-                                </div>
-                                <div class="ansr-content">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="quesCheck" id="quesCheck1">
-                                        <label class="form-check-label" for="quesCheck1">
-                                            Awesome, I’m satisfied!
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="quesCheck" id="quesCheck2">
-                                        <label class="form-check-label" for="quesCheck2">
-                                            Normal
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="quesCheck" id="quesCheck3">
-                                        <label class="form-check-label" for="quesCheck3">
-                                            Bad! Need improve more
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="btns">
-                                    <a href="#" class="btn active me-2">
-                                        Submit
-                                    </a>
-                                    <a href="#" class="btn">
-                                        Result
-                                    </a>
-                                </div>
-
-                                <small class="pl-num">
-                                    <span class="color-000">24,562 </span> Peoples joined
-                                </small>
-                            </div>
                         </div>
                     </div>
                 </div>

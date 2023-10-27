@@ -29,9 +29,9 @@ def index(request):
     #< end news/blogs >
     
     # < start advert >
-    big_advert = BigAdvert.objects.latest('id')
-    normal_advert = NormalAdvert.objects.latest('id')
-    small_advert = SmallAdvert.objects.latest('id')
+    big_advert = BigAdvert.objects.reverse().first()
+    normal_advert = NormalAdvert.objects.reverse().first()
+    small_advert = SmallAdvert.objects.reverse().first()
     # < end advert >
 
     #< start change categories >

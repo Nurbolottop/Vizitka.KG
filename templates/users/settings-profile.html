@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Intez</title>
+    <title>{{setting.title}}</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="{% static 'profile/image/logo.png' %}" sizes="16x16" href="{% static 'profile/images/favicon.png' %}">
+    <link rel="icon" type="{{settings.logo.url}}" sizes="16x16" href="{{setting.logo.url}}">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="{% static 'profile/css/style.css' %}">
 </head>
@@ -161,8 +161,8 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-xl-4">
                                 <div class="page-title-content">
-                                    <h3>Profile</h3>
-                                    <p class="mb-2">Welcome to Intez Profile page</p>
+                                    <h3>Профиль</h3>
+                                    <p class="mb-2">Добро  to Intez Profile page</p>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -174,7 +174,7 @@
                 </div>
                 <div class="col-xxl-12 col-xl-12">
                     <div class="settings-menu">
-    <a href="settings-profile.html">Profile</a>
+    <a href="settings-profile.html">Профиль </a>
     <a href="settings-application.html">Application</a>
     <a href="settings-security.html">Security</a>
     <a href="settings-activity.html">Activity</a>
