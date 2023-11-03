@@ -3,7 +3,6 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 #my imports
 from apps.users import views,resset_password
-
 urlpatterns = [
     path('register/', views.register, name="register"),
     path('login/', views.user_login, name="login"),

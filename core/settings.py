@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-import config
+import config as config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'allauth.account', 
     'allauth.socialaccount', 
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.telegram',
+    
 ]
 
 
@@ -202,8 +204,16 @@ SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {'access_type': 'offline'}
+    },
+    'telegram': {
+        'APP': {
+            'client_id': '6583749734',
+            'secret': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",
+        },
+        'AUTH_PARAMS': {'auth_date_validity': 30},
     }
 }
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
 AUTH_USER_MODEL = 'users.User'
@@ -219,3 +229,7 @@ ACCOUNT_LOGOUT_ON_GET= True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_LOGIN_ON_GET=True
+
+
+# telegram
+

@@ -91,3 +91,40 @@ class Stories(models.Model):
     class Meta:
         verbose_name = "Сторис"
         verbose_name_plural = "Сторисы"
+        
+        
+class FirstBlogDetail(models.Model):
+    first = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="first_title_detail",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    
+    class Meta:
+        verbose_name = "Первый блог в детальном просмотере"
+        verbose_name_plural = "Первые блоги в детальном просмотере"
+        
+class SecondBlogDetail(models.Model):
+    second = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="second_title_detail",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    class Meta:
+        verbose_name = "Второй блог в детальном просмотере"
+        verbose_name_plural = "Вторые блоги в детальном просмотере"
+        
+       
+class ThirdBlogDetail(models.Model):
+    third = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="third_title_detail",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    
+    class Meta:
+        verbose_name = "Третий блог в детальном просмотере"
+        verbose_name_plural = "Третие блоги в детальном просмотере"

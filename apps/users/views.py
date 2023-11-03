@@ -38,8 +38,46 @@ def register(request):
 
 def profile(request,id):
     setting = Settings.objects.latest('id')
-    
     user = models.User.objects.get(id=id)
+    if request.method == "POST":
+        if 'update_account' in request.POST:
+            first_name = request.POST.get('first_name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            address = request.POST.get('address')
+            user.first_name = first_name
+            user.phone = phone
+            user.email = email
+            user.address = address
+            user.save()
+            return redirect('profile', request.user.id)
+        if 'change_password' in request.POST:
+            old_password = request.POST['old_password']
+            new_password1 = request.POST['new_password1']
+            new_password2 = request.POST['new_password2']
+            user = request.user
+
+            # Проверяем, совпадает ли введенный старый пароль с текущим паролем пользователя
+            if user.check_password(old_password):
+                # Проверяем, совпадают ли новые пароли
+                if new_password1 == new_password2:
+                    # Устанавливаем новый пароль
+                    user.set_password(new_password1)
+                    user.save()
+                    
+                    # Авторизуем пользователя с новым паролем
+                    user = authenticate(username=user.username, password=new_password1)
+                    if user:
+                        login(request, user)
+
+                    messages.success(request, 'Пароль успешно изменен.')
+        if 'profile_images' in request.POST:
+            username = request.POST.get('username')
+            profile_image = request.FILES.get('profile_image')
+            user.username = username
+            user.profile_image = profile_image
+            user.save()
+            return redirect('profile', request.user.id)
     return render(request, 'users/settings-profile.html', locals())
 
 def get_latest_settings():

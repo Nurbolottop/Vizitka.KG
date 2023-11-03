@@ -72,6 +72,7 @@
                             {% endif  %}
                         </div>
                         <div class="col-lg-6">
+                            {% if blog%}
                             <div class="tc-trends-news-slider1 tc-slider-style2">
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
@@ -106,7 +107,9 @@
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
                             </div>
+                            {% endif %}
                         </div>
+                        {% if popular_post %}
                         <div class="col-lg-3">
                             <div class="tc-post-list-style1">
                                 <div class="tc-post-title-style1">
@@ -144,6 +147,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -151,6 +155,7 @@
         <!-- ====== end trends news ====== -->
 
         <!-- ====== start google web stories ====== -->
+        {% if stories %}
         <section class="tc-google-stories-style1">
             <div class="container">
                 <div class="section-content pt-70 pb-70 border-0 border-bottom brd-gray">
@@ -179,9 +184,11 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end google web stories ====== -->
 
         <!-- ====== start Latest news ====== -->
+        {% if latest_new%}
         <section class="tc-latest-news-style1">
             <div class="container">
                 <div class="section-content pt-50 pb-50 border-bottom border-1 brd-gray">
@@ -221,6 +228,7 @@
                             </div>
                         </div>
                         {% endfor %}
+                        
                         <div class="col-lg-4 border-end brd-gray border-1">
                             <div class="tc-post-list-style2">
                                 <div class="items">
@@ -255,11 +263,11 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end Latest news ====== -->
 
         <!-- ====== start banner1 ====== -->
         {% if  normal_advert %}
-
         <section class="banner1">
             <div class="container">
                 <div class="content pt-50 pb-50 border-bottom border-1 brd-gray">
@@ -285,6 +293,7 @@
                         <section class="tc-must-read-style1 bg-gray2 p-30">
                             <p class="color-000 text-uppercase mb-20 ltspc-1"> <a href="{% url 'blog' %}"> подробнее </a> <i
                                     class="la la-angle-right ms-1"></i> </p>
+                            {% if first_blog1%}
                             <div class="tc-post-grid-default border-1 border-bottom brd-gray pb-30">
                                 <div class="item">
                                     <div class="row">
@@ -314,6 +323,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
+                            {% if first_blog3%}
                             <div class="tc-post-grid-default pt-30">
                                 <div class="row">
                                     {% for blog in first_blog3 %}
@@ -335,7 +346,7 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            
+                            {% endif %}
                         </section>
 
                         <!-- business -->
@@ -344,6 +355,7 @@
                                     class="la la-angle-right ms-1"></i> </p>
                             <div class="main-blog pb-30 border-1 border-bottom brd-gray">
                                 <div class="row">
+                                    {% if second_blog1%}
                                     {% for blog in second_blog1 %}
                                         <div class="col-lg-8 border-1 border-end brd-gray">
                                             <div class="tc-post-overlay-default">
@@ -368,6 +380,8 @@
                                             </div>
                                         </div>
                                     {% endfor %}
+                                    {% endif %}
+                                    {% if second_blog4%}
                                     <div class="col-lg-4">
                                         <div class="tc-post-list-style2">
                                             <div class="items">
@@ -386,8 +400,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
+                            {% if second_blog2%}
                             <div class="tc-post-list-style2">
                                 <div class="items">
                                     <div class="row">
@@ -415,6 +431,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         </section>
 
                         <!-- banner2 -->
@@ -437,6 +454,7 @@
                         <!-- technology -->
                         <div class="tc-technology-style1 pt-50">
                             <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">подробнее</a> <iclass="la la-angle-right ms-1"></i> </p>
+                            {% if third_blog1%}
                             {% for blog in third_blog1 %}
                                 <div class="tc-post-overlay-default">
                                     <div class="img th-600 img-cover">
@@ -460,6 +478,8 @@
                                     </div>
                                 </div>
                             {% endfor %}
+                            {% endif %}
+                            {% if third_blog2%}
                             <div class="tc-post-list-style2">
                                 <div class="items">
                                     {% for blog in third_blog2 %}
@@ -493,6 +513,7 @@
                                    {% endfor %}
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -556,6 +577,7 @@
                             </div>
                             {% endif  %}
                             <!-- popular posts -->
+                            {% if popular_post%}
                             <div class="tc-widget-popular-style1">
                                 <p class="color-000 text-uppercase mb-20 ltspc-1"> Популярные посты </p>
                                 {% for popular_post in popular_post%}
@@ -595,6 +617,7 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                            {% endif %}
                             <!-- widget-adbox -->
                             {% if small_advert%}
                             <div class="tc-widget-adbox-style1">
@@ -815,6 +838,7 @@
         <!-- ====== end hot vedios ====== -->
 
         <!-- ====== start lifestyle ====== -->
+        {% if four_blog1 %}
         <section class="tc-lifestyle pt-50 pb-50">
             <div class="container">
                 <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">подробнее</a> <i class="la la-angle-right ms-1"></i> </p>
@@ -907,9 +931,11 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end lifestyle ====== -->
 
         <!-- ====== start columnist ====== -->
+        {% if team%}
         <section class="tc-columnist-style1">
             <div class="container">
                 <div class="content pt-50 pb-50 border-1 border-top brd-gray">
@@ -945,9 +971,11 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end columnist ====== -->
 
         <!-- ====== start another-news ====== -->
+        {% if fiveone_blog1%}
         <section class="another-news pt-50 pb-50 border-1 border-top brd-gray">
             <div class="container">
                 <div class="content">
@@ -1146,6 +1174,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- ====== end another-news ====== -->
 
         <!-- ====== start download ====== -->

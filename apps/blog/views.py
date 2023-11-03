@@ -7,6 +7,7 @@ from apps.index import models
 from apps.blog.models import Blog
 from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
 from apps.category_blog import blogs
+from apps.blog import blogs_detail
 
 # Create your views here.
 # def get_weather_data():
@@ -31,15 +32,15 @@ def blog(request):
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('-views')[:5]
     popular_post = Blog.objects.order_by('-views')[:1]
-    # < start advert>
-    big_advert = BigAdvert.objects.latest('id')
-    normal_advert = NormalAdvert.objects.latest('id')
-    small_advert = SmallAdvert.objects.latest('id')
-    # < end advert>
+    # < start advert >
+    big_advert = BigAdvert.objects.reverse().first()
+    normal_advert = NormalAdvert.objects.reverse().first()
+    small_advert = SmallAdvert.objects.reverse().first()
+    # < end advert >
     # < start category >
     firstnews1 = blogs.firstnewsblog1_mtehod()
     firstnews3 = blogs.firstnewsblog3_mtehod()
-    
+    print(firstnews1)
     # < start temperature>
     # temperature, weather_condition = get_weather_data()
     # < end temperature>
@@ -52,5 +53,10 @@ def blog_detail(request, id):
     popular_posts = Blog.objects.order_by('-views')[:5]
     current_date = datetime.now()
     # temperature, weather_condition = get_weather_data()
+    
+    # category in blog detail
+    categoryblogdetail1 = blogs.firstnewsblog1_mtehod()
+    categoryblogdetail2 = blogs_detail.firstnewsblogdetail2_mtehod()
+    categoryblogdetail3 = blogs_detail.firstnewsblogdetail3_mtehod()
     return render(request, 'detail/page-single-post-creative.html', locals())
         

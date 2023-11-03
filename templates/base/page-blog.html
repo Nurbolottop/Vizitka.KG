@@ -94,6 +94,7 @@
                         <div class="col-lg-9">
                             <div class="tc-post-list-style3">
                                 <div class="items">
+                                    {% if firstnews1%}
                                     {% for blog in firstnews1%}
                                     <div class="item">
                                         <div class="row">
@@ -123,9 +124,11 @@
                                         </div>
                                     </div>
                                     {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                             <!-- ====== start banner20 ====== -->
+                            {% if normal_advert%}
                             <div class="banner20 border-1 border-top border-bottom brd-gray pt-40 pb-40">
                                 <div class="content">
                                     <div class="row justify-content-center">
@@ -137,9 +140,10 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             <div class="tc-post-list-style3">
                                 <div class="items">
-                                    {% for blog in firstnews3 %}
+                                    {% for blog in firstnews1 %}
                                         <div class="item mt-30">
                                             <div class="row">
                                                 <div class="col-lg-5">
@@ -316,12 +320,13 @@
                                 <!-- end widget tags --> {% endcomment %}
 
                                 <!-- widget-adbox -->
+                                {% if small_advert%}
                                 <div class="tc-widget-adbox-style1">
                                     <a href="{{small_advert.url_booking}}" class="img">
                                         <img src="{{small_advert.image.url}}" alt="" class="">
                                     </a>
                                 </div>
-
+                                {% endif %}
                                 <!-- widget-survey -->
                                
                                 <!-- widget webStories -->
