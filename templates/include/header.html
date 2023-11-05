@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <a href="home-default.html#" class="logo-brand d-none d-lg-block">
+                        <a href="{% url 'index' %}" class="logo-brand d-none d-lg-block">
                             <img src="{{setting.logo.url}}"" alt="" class="dark-none">
                             <img src="{{setting.logo.url}}"" alt="" class="light-none">
                         </a>
@@ -43,10 +43,10 @@
                         <div class="sub-darkLight">
                             <div class="row text-end align-items-center">
                                 <div class="col-6">
-                                    <a href="home-default.html#0"
+                                    <a href="#"
                                         class="text-uppercase fs-6 border-bottom border-1 border-dark subs">
                                         <i class="la la-envelope fs-5 me-1"></i>
-                                        Subscribe
+                                        ПОДПИСАТЬСЯ
                                     </a>
                                 </div>
                                 <div class="col-6">
@@ -61,21 +61,23 @@
                                 </div>
                             </div>
                             <div class="nav-subs-card">
-                                <p class="fsz-16px text-uppercase mb-20"> Newsletter </p>
-                                <div class="sub-form">
-                                    <div class="form-group">
-                                        <span class="icon">
-                                            <i class="la la-envelope"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="your email">
-                                        <button>subscribe</button>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <p class="fsz-16px text-uppercase mb-20"> НОВОСТНАЯ РАССЫЛКА </p>
+                                    <div class="sub-form">
+                                        <div class="form-group">
+                                            <span class="icon">
+                                                <i class="la la-envelope"></i>
+                                            </span>
+                                            <input type="email" name="email" class="form-control" placeholder="Введите почту" required>
+                                            <button type="submit">Подписаться</button>
+                                        </div>
+                                        <p class="mt-3 color-666 fsz-12px fst-italic">Оформив подписку, вы приняли наше  <a href="home-default.html#0" class="color-777 text-decoration-underline fst-normal">Политика</a></p>
                                     </div>
-                                    <p class="mt-3 color-666 fsz-12px fst-italic">By subscribing, you accepted the
-                                        our <a href="home-default.html#0"
-                                            class="color-777 text-decoration-underline fst-normal">Policy</a></p>
-                                </div>
+                                </form> 
                                 <span class="cls"> <i class="la la-times"></i> </span>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -151,35 +153,36 @@
                         
                     </ul>
                     <div class="nav-side">
-                        {% if user.is_authenticated %}
+                            {% if user.is_authenticated %}
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{user.username}}
-                            </a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{user.username}}
+                                    </a>
 
-                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
-                            </ul>
-                        </li>
-                        {% else %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Войти
-                            </a>
+                                    <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                        <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Войти
+                                    </a>
 
-                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li>
-                                <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
-                            </ul>
-                        </li>
-                        {% endif %}
+                                    <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                        <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
                             <a href="home-default.html#" class="icon-link noti-dot">
                                 <i class="la la-shopping-bag fs-4"></i>
                             </a>
+                            
                         <a href="#" class="icon-link search-btn-style1">
                             <i class="la la-search fs-4 sOpen-btn"></i>
                             <i class="la la-close fs-4 sClose-btn"></i>
@@ -195,19 +198,19 @@
             <div class="row justify-content-center align-items-center gx-lg-5">
                 <div class="col-lg-4">
                     <div class="info">
-                        <h5> you can search by category <br> or news title </h5>
+                        <h5> Вы можете искать по категориям <br> Или название новости </h5>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <form class="form" action="{% url 'search' %}" method = "POST">
                         {% csrf_token %}
-                        <span class="color-777 fst-italic text-capitalize mb-2 fsz-13px">Enter Keyword</span>
+                        <span class="color-777 fst-italic text-capitalize mb-2 fsz-13px">Введите Ключевое Слово</span>
                         <div class="form-group">
                             <span class="icon">
                                 <i class="la la-search"></i>
                             </span>
-                            <input type="text" name = "query" class="form-control" placeholder="Elon Musk ... ">
-                            <button type="submit">search</button>
+                            <input type="text" name = "query" class="form-control" placeholder="Спорт ... ">
+                            <button type="submit">Поиск</button>
                         </div>
                     </form>
                 </div>
@@ -223,7 +226,6 @@
             <div class="row justify-content-center align-items-center gx-lg-5">
                 <div class="col-lg-4">
                     <div class="info">
-                        <h5> you can search by category <br> or news title </h5>
                     </div>
                 </div>
                 

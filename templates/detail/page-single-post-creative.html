@@ -244,34 +244,30 @@
                     <div class="row">
                         {% if categoryblogdetail1 %}
                         <div class="col-lg-4 mb-5 mb-lg-0">
-                            <a href="page-blog.html" class="color-000 text-uppercase mb-30 ltspc-1"> more from this author <i class="la la-angle-right ms-1"></i> </a>
+                            <a href="page-blog.html" class="color-000 text-uppercase mb-30 ltspc-1"> {{blog.category}} <i class="la la-angle-right ms-1"></i> </a>
                             <div class="row">
+                                {% for blog in categoryblogdetail1 %}
                                 <div class="col-12 border-1 border-end brd-gray">
                                     
                                     <div class="tc-post-grid-default">
                                         <div class="item">
                                             <div class="img img-cover th-250">
-                                                <img src="assets/img/another_news/1.png" alt="">
+                                                <img src="{{blog.image.url}}" alt="">
                                             </div>
                                             <div class="content pt-20">
-                                                <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">sport</a>
+                                                <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{ blog.category}}</a>
                                                 <h4 class="title ltspc--1 mb-10">
                                                     <a href="page-single-post-creative.html">
-                                                        America's track and field team won the 2022 olympics?
+                                                        {{blog.title}}
                                                     </a>
                                                 </h4>
                                                 <div class="text color-666">
-                                                    Crime rates on trains and buses are up in some of the nation’s
-                                                    biggest [...]
+                                                    {{blog.sub_title}}
                                                 </div>
                                                 <div class="meta-bot lh-1 mt-20">
                                                     <ul class="d-flex">
                                                         <li class="date me-5">
-                                                            <a href="page-single-post-creative.html#"><i class="la la-calendar me-2"></i> Dec 14,
-                                                                2022</a>
-                                                        </li>
-                                                        <li class="comment">
-                                                            <a href="page-single-post-creative.html#"><i class="la la-comment me-2"></i> 7</a>
+                                                            <a href="page-single-post-creative.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -280,6 +276,7 @@
                                     </div>
                                     
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                         {% endif %}

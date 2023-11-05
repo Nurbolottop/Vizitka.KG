@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount', 
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.telegram',
-    
+    'allauth.socialaccount.providers.instagram',
 ]
 
 
@@ -149,12 +149,12 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Настройки Jazzmin
+# Настройки o
 JAZZMIN_SETTINGS = {
-    "site_title": "Visitka.KG",  # Заголовок админ-панели
-    "site_header": "Visitka.KG",  # Заголовок на экране входа
-    "site_brand": "Visitka.KG",  # Бренд в верхней части админ-панели
-    "welcome_sign": "Добро пожаловать в Visitka.KG",  # Приветственное сообщение
+    "site_title": "Vizitka.KG",  # Заголовок админ-панели
+    "site_header": "Vizitka.KG",  # Заголовок на экране входа
+    "site_brand": "Vizitka.KG",  # Бренд в верхней части админ-панели
+    "welcome_sign": "Добро пожаловать в Vizitka.KG",  # Приветственное сообщение
     "search_model": ["auth.User", "blog.Post"],  # Модели, доступные для поиска
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
@@ -164,12 +164,25 @@ JAZZMIN_SETTINGS = {
     ],
     "show_sidebar": True,
     "changeform_format": "horizontal_tabs",
-    "header_classes": "navbar-dark bg-dark",  # Темный фон верхней части админ-панели
-    "header_color": "#000000",  # Черный цвет верхней части админ-панели
-    "dark_mode_theme": True,  # Включить темный режим
     "show_language_chooser": True,  # Включить выбор языка в админ-панели
     "custom_css": None,  # Путь к пользовательскому CSS-файлу (если нужен)
     "show_ui_builder": True,  # Показать UI Builder
+    "menu": [
+        {
+            "app": "index",  # Имя вашего приложения Django
+            "name": "Основные параметры",  # Имя модели
+            "icon": "fa fa-cogs",  # Иконка для меню
+            "models": [
+                {
+                    "name": "Первая модель",  # Имя вашей модели
+                    "icon": "fa fa-cog",  # Иконка для модели
+                    "model": "index.Settings",  # Имя модели в формате "app_label.model_name"
+                },
+                # Добавьте другие модели, если необходимо
+            ],
+        },
+        # Добавьте другие приложения и модели, если необходимо
+    ],
     
 }
 
@@ -211,6 +224,12 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",
         },
         'AUTH_PARAMS': {'auth_date_validity': 30},
+    },
+    'instagram': {
+        'SCOPE': ['basic'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False
     }
 }
 

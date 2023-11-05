@@ -7,8 +7,10 @@ from apps.index import models
 from apps.blog.models import Blog,Stories
 from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
 from apps.category.models import FirstBlog
+from apps.users.models import Subscriber
 # from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
 from apps.index import blogs 
+
 # Create your views here.
 def index(request):
     #< start basic info >
@@ -62,7 +64,22 @@ def index(request):
     # username = 'vizitka_kg'
     # followers_count = get_followers_count(username)
     # < end parsing >
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
 
+        # Проверяем, не подписан ли уже пользователь с таким email
+        if not Subscriber.objects.filter(email=email).exists():
+            # Если не подписан, создаем новую запись в базе данных
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            # Затем отправляем подтверждение подписчику
+            # send_subscription_email(email)  # Расскомментируйте, если есть функция отправки письма
+
+            return redirect( 'subscribe_done')
+        else:
+            # Подписчик с таким email уже существует
+                return redirect( 'subscribe_nodone')
     return render(request, 'base/home-default.html', locals())
 
 def storie(request,id):
@@ -88,12 +105,27 @@ def contact(request):
 def search(request):
     current_date = datetime.now()
     setting = models.Settings.objects.latest('id')
-    # temperature, weather_condition = get_weather_data()
-    
     query = request.POST.get('query', '')
     blog_results = []
-
     if query:
-        # Используйте Q-объекты для выполнения поиска в моделях Shop и Product
-        blog_results = Blog.objects.filter(Q(title__icontains=query) | Q(sub_title__icontains=query))
+        # Use Q objects for searching in Blog model fields title, sub_title, and related model's name field
+        blog_results = Blog.objects.filter(
+            Q(title__icontains=query) | 
+            Q(sub_title__icontains=query) | 
+            Q(category__title__icontains=query)
+        )
     return render(request, 'secondary/search_result.html', locals())
+
+
+def subscribe_done(request):
+    current_date = datetime.now()
+    setting = models.Settings.objects.latest('id')
+    
+
+        
+    return render(request, 'subscribe/subscribe_done.html', locals())
+
+def subscribe_nodone(request):
+    current_date = datetime.now()
+    setting = models.Settings.objects.latest('id')
+    return render(request, 'subscribe/subscribe_nodone.html', locals())

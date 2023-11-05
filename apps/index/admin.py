@@ -16,4 +16,3 @@ class TeamFilterAdmin(admin.ModelAdmin):
 admin.site.unregister(Group) 
 admin.site.register(Settings, SettingsFilterAdmin)
 admin.site.register(Team, TeamFilterAdmin)
-

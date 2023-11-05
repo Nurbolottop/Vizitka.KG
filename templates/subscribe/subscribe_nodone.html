@@ -1,0 +1,62 @@
+{% load static %}
+{% load socialaccount %}    
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>{{setting.title}} - {{setting.descriptions}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/fonts/flaticon/font/flaticon.css' %}">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{{setting.logo.url}}" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'register_assets/css/style.css' %}">
+
+</head>
+<body id="top">
+<div class="page_loader"></div>
+
+<!-- Login 32 start -->
+<div class="login-32">
+    <div class="login-32-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-section">
+                        <div class="logo">
+                            <a href="login-32.html">
+                               <img src="{{setting.logo.url}}" alt="logo">
+                            </a>
+                        </div>
+                        <div class="success-block" id="success-block">
+                            <img src="{% static 'assets/img/nodone.png'%}" alt="">
+                        </div>
+                        <br>
+                        <div class="login-inner-form">
+                            <div class="form-group mb-0">
+                                <a type="submit" href = "{% url 'index' %}" class="btn-md btn-theme w-100">Главная страница</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 32 end -->
+
+<!-- External JS libraries -->
+<script src="{% static 'register_assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'register_assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'register_assets/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'register_assets/js/app.js' %}"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

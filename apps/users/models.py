@@ -30,3 +30,15 @@ class User(AbstractUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+        
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)  # Поле для хранения email подписчика
+    subscribed_at = models.DateTimeField(auto_now_add=True)  # Поле для хранения времени подписки
+
+    def __str__(self):
+        return self.email
+    
+    class Meta:
+        verbose_name = "Подписчики рассылки"
+        verbose_name_plural = "Подписчики рассылки"

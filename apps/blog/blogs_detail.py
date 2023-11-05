@@ -1,5 +1,5 @@
 
-from apps.blog import models
+from apps.blog.models import Blog
 
 # Create your views here.
 

@@ -7,5 +7,6 @@ urlpatterns = [
     path('contacts', views.contact,name = "contact"),
     path('stories/<int:id>/', views.storie,name = "stories"),
     path('search', views.search,name = "search"),
-    
+    path('subscribe_done', views.subscribe_done,name = "subscribe_done"),
+    path('subscribe_nodone', views.subscribe_nodone,name = "subscribe_nodone"),
 ]

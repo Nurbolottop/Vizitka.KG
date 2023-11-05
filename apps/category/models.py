@@ -12,6 +12,7 @@ class FirstBlog(models.Model):
     class Meta:
         verbose_name = "Первый блог"
         verbose_name_plural = "Первые блоги"
+        
 
 class SecondBlog(models.Model):
     second = models.ForeignKey(

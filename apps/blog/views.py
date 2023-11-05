@@ -3,11 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 # my imports
+from apps.users.models import Subscriber
 from apps.index import models
 from apps.blog.models import Blog
 from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
 from apps.category_blog import blogs
 from apps.blog import blogs_detail
+from apps.index import blogs 
 
 # Create your views here.
 # def get_weather_data():
@@ -40,11 +42,24 @@ def blog(request):
     # < start category >
     firstnews1 = blogs.firstnewsblog1_mtehod()
     firstnews3 = blogs.firstnewsblog3_mtehod()
-    print(firstnews1)
     # < start temperature>
     # temperature, weather_condition = get_weather_data()
     # < end temperature>
-    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+
+        # Проверяем, не подписан ли уже пользователь с таким email
+        if not Subscriber.objects.filter(email=email).exists():
+            # Если не подписан, создаем новую запись в базе данных
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            # Затем отправляем подтверждение подписчику
+            # send_subscription_email(email)  # Расскомментируйте, если есть функция отправки письма
+
+            return redirect( 'subscribe_done')
+        else:
+            # Подписчик с таким email уже существует
+                return redirect( 'subscribe_nodone')
     return render(request, 'base/page-blog.html', locals())
 
 def blog_detail(request, id):
@@ -55,8 +70,24 @@ def blog_detail(request, id):
     # temperature, weather_condition = get_weather_data()
     
     # category in blog detail
-    categoryblogdetail1 = blogs.firstnewsblog1_mtehod()
+    categoryblogdetail1 = blogs.firstblog1_mtehod()
     categoryblogdetail2 = blogs_detail.firstnewsblogdetail2_mtehod()
     categoryblogdetail3 = blogs_detail.firstnewsblogdetail3_mtehod()
+    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+
+        # Проверяем, не подписан ли уже пользователь с таким email
+        if not Subscriber.objects.filter(email=email).exists():
+            # Если не подписан, создаем новую запись в базе данных
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            # Затем отправляем подтверждение подписчику
+            # send_subscription_email(email)  # Расскомментируйте, если есть функция отправки письма
+
+            return redirect( 'subscribe_done')
+        else:
+            # Подписчик с таким email уже существует
+                return redirect( 'subscribe_nodone')
     return render(request, 'detail/page-single-post-creative.html', locals())
         
