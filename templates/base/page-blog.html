@@ -40,11 +40,6 @@
     <!--Contents-->
     <main>
 
-        <!-- ====== start features posts ====== -->
-
-        <!-- ====== end features posts ====== -->
-
-        <!-- ====== start popular posts ====== -->
         <section class="tc-popular-posts-blog">
             <div class="container">
                 <div class="content pt-50 pb-50 border-1 border-bottom brd-gray">
@@ -53,7 +48,7 @@
                         <div class="tc-popular-posts-blog-slider9 tc-slider-style1">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
-                                    {% for popular in blog %}
+                                    {% for popular in popular_posts %}
                                     <div class="swiper-slide">
                                         <div class="item">
                                             <div class="img img-cover th-180">
@@ -64,7 +59,7 @@
                                                     class="news-cat color-999 fsz-13px text-uppercase mb-10">{{popular.category}}</a>
                                                 <h4 class="title ltspc--1 mb-10">
                                                     <a href="{% url 'blog_detail' popular.id%}">
-                                                        {{popular.title}}
+                                                        {{popular.title|truncatewords:5}}
                                                     </a>
                                                 </h4>
                                                 <div class="text color-666">
@@ -84,8 +79,6 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -94,57 +87,9 @@
                         <div class="col-lg-9">
                             <div class="tc-post-list-style3">
                                 <div class="items">
-                                    {% if firstnews1%}
-                                    {% for blog in firstnews1%}
-                                    <div class="item">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="img th-230 img-cover overflow-hidden">
-                                                    <img src="{{blog.image.url}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <div class="content mt-20 mt-lg-0">
-                                                    <a href="{% url 'blog_detail' blog.id%}"
-                                                        class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
-                                                    <h4 class="title mb-15"> <a href="{% url 'blog_detail' blog.id%}">{{blog.title}}</h4>
-                                                    <div class="text color-666">
-                                                        {{blog.sub_title|truncatewords:5}}
-                                                    </div>
-                                                    <div class="meta-bot fsz-13px color-666">
-                                                        <ul class="d-flex">
-                                                            <li class="date me-5">
-                                                                <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
-                                                            </li>
-                                                           
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <!-- ====== start banner20 ====== -->
-                            {% if normal_advert%}
-                            <div class="banner20 border-1 border-top border-bottom brd-gray pt-40 pb-40">
-                                <div class="content">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-10">
-                                            <a href="{{noraml_advert.url_booking    }}" class="d-block img-cover">
-                                                <img src="{{normal_advert.image.url}}" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            <div class="tc-post-list-style3">
-                                <div class="items">
-                                    {% for blog in firstnews1 %}
-                                        <div class="item mt-30">
+                                    {% if blogs %}
+                                        {% for blog in blogs %}
+                                        <div class="item">
                                             <div class="row">
                                                 <div class="col-lg-5">
                                                     <div class="img th-230 img-cover overflow-hidden">
@@ -155,94 +100,95 @@
                                                     <div class="content mt-20 mt-lg-0">
                                                         <a href="{% url 'blog_detail' blog.id%}"
                                                             class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
-                                                        <h4 class="title fw-bold">
-                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
-                                                                {{blog.title}}
-                                                            </a>
+                                                        <h4 class="title mb-15"> 
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.title|truncatewords:10}}</a>
                                                         </h4>
-                                                        <div class="text color-666 mt-20">
-                                                            {{blog.sub_title|truncatewords:5}}
-                                                        </div>
                                                         <div class="meta-bot fsz-13px color-666">
                                                             <ul class="d-flex">
                                                                 <li class="date me-5">
-                                                                    <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
+                                                                    <a href="{% url 'blog_detail' blog.id%}">
+                                                                        <i class="la la-calendar me-2"></i> {{blog.created_at}}
+                                                                    </a>
                                                                 </li>
-                                                            
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
+                                        {% endfor %}
+                                        {% else %}
+                                        <p>Нет блогов.</p>
+                                        {% endif %}
                                 </div>
                             </div>
+ 
                             <div class="pagination style-1 color-main justify-content-center mt-60">
-                                <a href="page-blog.html#" class="active">
-                                    <span>1</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span>2</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span>3</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span>4</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span>...</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span>20</span>
-                                </a>
-                                <a href="page-blog.html#">
-                                    <span class="text text-uppercase">next <i class="la la-angle-right"></i> </span>
-                                </a>
+                                {% if blogs.has_previous %}
+                                    <a href="?page=1"><span>1</span></a>
+                                    <a href="?page={{ blogs.previous_page_number }}"><span>
+                                        Предыдущий</span></a>
+                                {% endif %}
+                
+                                {% for num in blogs.paginator.page_range %}
+                                    {% if blogs.number == num %}
+                                        <a href="?page={{ num }}" class="active"><span>{{ num }}</span></a>
+                                    {% else %}
+                                        <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                                    {% endif %}
+                                {% endfor %}
+                
+                                {% if blogs.has_next %}
+                                    <a href="?page={{ blogs.next_page_number }}"><span>Следующий</span></a>
+                                    <a href="?page={{ blogs.paginator.num_pages }}"><span>{{ blogs.paginator.num_pages }}</span></a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="widgets-sticky mt-5 mt-lg-0">
-                                <p class="color-000 text-uppercase mb-30"> Stay Connected </p>
+                                <p class="color-000 text-uppercase mb-30"> ОСТАВАЙСЯ НА СВЯЗИ  </p>
                                 <!-- widget-social -->
                                 <div class="tc-widget-social-style5 mb-40">
-                                    <a href="page-blog.html#" class="social-card">
+                                    {% if setting.facebook%}
+                                    <a href="{{setting.facebook}}" class="social-card">
                                         <div class="icon facebook-icon">
                                             <i class="lab la-facebook-f"></i>
                                         </div>
                                         <div class="cont">
-                                            <strong> <b class="counter">575,5</b>K</strong>
-                                            <span>Followers</span>
+                                            <span>Facebook</span>
                                         </div>
                                     </a>
-                                    <a href="page-blog.html#" class="social-card">
+                                    {% endif %}
+                                    {% if setting.whatsapp%}
+                                    <a href="{{setting.whatsapp}}" class="social-card">
                                         <div class="icon twitter-icon">
                                             <i class="lab la-twitter"></i>
                                         </div>
                                         <div class="cont">
-                                            <strong> <b class="counter">215,5</b>K</strong>
-                                            <span>Followers</span>
+                                            <span>Whatsapp</span>
                                         </div>
                                     </a>
-                                    <a href="page-blog.html#" class="social-card">
+                                    {% endif %}
+                                    {% if setting.instagram%}
+                                    <a href="{{setting.instagram}}" class="social-card">
                                         <div class="icon insta-icon">
                                             <i class="lab la-instagram"></i>
                                         </div>
                                         <div class="cont">
-                                            <strong> <b class="counter">98,5</b>K</strong>
-                                            <span>Followers</span>
+                                            <span>Instagram</span>
                                         </div>
                                     </a>
+                                    {% endif %}
+                                    {% if setting.youtube%}
                                     <a href="page-blog.html#" class="social-card border-0 pb-0">
                                         <div class="icon youtube-icon">
                                             <i class="lab la-youtube"></i>
                                         </div>
                                         <div class="cont">
-                                            <strong> <b class="counter">24,2</b>K</strong>
-                                            <span>Subscriber</span>
+                                            <span>Youtube</span>
                                         </div>
                                     </a>
+                                    {% endif %}
                                 </div>
 
                                 <!-- widget-trends -->
@@ -274,10 +220,7 @@
                                                     </div>
                                                 </div>
                                             {% endfor %}
-                                            <a href="#" class="fsz-13px text-capitalize color-666 mt-30 mb-20">
-                                                <span>See all posts</span>
-                                                <i class="las la-angle-right"></i>
-                                            </a>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -328,39 +271,6 @@
                                 </div>
                                 {% endif %}
                                 <!-- widget-survey -->
-                               
-                                <!-- widget webStories -->
-                                <div class="tc-widget-webStories-style5">
-                                    <p class="color-000 text-uppercase mb-30"> google web stories </p>
-                                    <div class="web-content">
-                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card pt-0"
-                                            data-fancybox="">
-                                            <div class="img img-cover">
-                                                <img src="assets/img/google-stories/1.png" alt="">
-                                            </div>
-                                            <div class="cont">
-                                                <h6>Kayak stories</h6>
-                                            </div>
-                                        </a>
-                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card seen"
-                                            data-fancybox="">
-                                            <div class="img img-cover">
-                                                <img src="assets/img/google-stories/2.png" alt="">
-                                            </div>
-                                            <div class="cont">
-                                                <h6>6 Tips Successful for Developers</h6>
-                                            </div>
-                                        </a>
-                                        <a href="https://youtu.be/pGbIOC83-So?t=21" class="story-card pb-0 border-0"
-                                            data-fancybox="">
-                                            <div class="img img-cover">
-                                                <img src="assets/img/google-stories/3.png" alt="">
-                                            </div>
-                                            <div class="cont">
-                                                <h6>PS Controller</h6>
-                                            </div>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -372,101 +282,7 @@
 
         <!-- ====== start modals ====== -->
 
-        <div class="offcanvas offcanvas-start sidebar-popup-style1" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <div class="logo">
-                    <img src="assets/img/logo_home1.png" alt="" class="dark-none">
-                    <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
-                </div>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body mt-4">
-                <h6 class="color-000 text-uppercase mb-15 ltspc-1"> about us <i class="la la-angle-right ms-1"></i>
-                </h6>
-                <div class="text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem optio tempora quia iure quae.
-                    Soluta corporis quidem aperiam amet nihil.
-                </div>
 
-                <div class="sidebar-categories mt-40">
-                    <h6 class="color-000 text-uppercase mb-30 ltspc-1"> categories <i
-                            class="la la-angle-right ms-1"></i> </h6>
-                    <a href="page-blog.html#" class="cat-card">
-                        <div class="img img-cover">
-                            <img src="assets/img/bussines/1.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h5>bussines</h5>
-                            <span class="num">12</span>
-                        </div>
-                    </a>
-                    <a href="page-blog.html#" class="cat-card">
-                        <div class="img img-cover">
-                            <img src="assets/img/trend/3.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h5>technology</h5>
-                            <span class="num">14</span>
-                        </div>
-                    </a>
-                    <a href="page-blog.html#" class="cat-card">
-                        <div class="img img-cover">
-                            <img src="assets/img/must_read/3.png" alt="">
-                        </div>
-                        <div class="info">
-                            <h5>culture</h5>
-                            <span class="num">20</span>
-                        </div>
-                    </a>
-                    <a href="page-blog.html#" class="cat-card">
-                        <div class="img img-cover">
-                            <img src="  " alt="">
-                        </div>
-                        <div class="info">
-                            <h5>videos</h5>
-                            <span class="num">14</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="sidebar-contact-info mt-50">
-                    <h6 class="color-000 text-uppercase mb-20 ltspc-1"> Contact & follow <i
-                            class="la la-angle-right ms-1"></i> </h6>
-                    <ul class="m-0">
-                        <li class="mb-3">
-                            <i class="las la-map-marker me-2 color-main fs-5"></i>
-                            <a href="page-blog.html#">streat name 12, hollywood City, USA</a>
-                        </li>
-                        <li class="mb-3">
-                            <i class="las la-envelope me-2 color-main fs-5"></i>
-                            <a href="page-blog.html#">Newzin@gmail.com</a>
-                        </li>
-                        <li class="mb-3">
-                            <i class="las la-phone-volume me-2 color-main fs-5"></i>
-                            <a href="page-blog.html#">+12 123 456 789</a>
-                        </li>
-                    </ul>
-                    <div class="social-links">
-                        <a href="page-blog.html#">
-                            <i class="la la-twitter"></i>
-                        </a>
-                        <a href="page-blog.html#">
-                            <i class="la la-facebook-f"></i>
-                        </a>
-                        <a href="page-blog.html#">
-                            <i class="la la-instagram"></i>
-                        </a>
-                        <a href="page-blog.html#">
-                            <i class="la la-youtube"></i>
-                        </a>
-                        <a href="page-blog.html#">
-                            <i class="la la-spotify"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- ====== end modals ====== -->
 
     </main>

@@ -79,172 +79,52 @@
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <div class="title">Business</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Startup</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Business Trends</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Work Culture</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Personal Finance</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Leaders</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Stocks Market</a>
-                                </li>
-                            </ul>
+                            <a href {% url 'blog' %} class="title">Рекламадателям</a>
                         </div>
-                        <div class="link-group">
-                            <div class="title">Politics</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Capital Journal</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">National Security</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Politics Video</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <div class="title">Technology</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Personal Technology</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Product Reviews</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Video Games</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Discover</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Knowledge</a>
-                                </li>
-                            </ul>
+                            <a href {% url 'blog' %} class="title">Новости</a>
+                            
                         </div>
-                        <div class="link-group">
-                            <div class="title">Lifestyle</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Lifestyle Trends</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Family</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Psychology</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Foods</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Culture</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <div class="title">Entertainment</div>
+                            <div class="title">Страницы</div>
                             <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Music & Podcasts</a>
+                                 <li>
+                                    <a href="{% url 'team' %}" class="f-link">Наша команда</a>
                                 </li>
                                 <li>
-                                    <a href="home-default.html#" class="f-link">Art & Design</a>
+                                    <a href="{% url 'about' %}" class="f-link">О нас</a>
                                 </li>
                                 <li>
-                                    <a href="home-default.html#" class="f-link">Movies</a>
+                                    <a href="{% url 'contact' %}" class="f-link">Контакты </a>
                                 </li>
-                            </ul>
-                        </div>
-                        <div class="link-group">
-                            <div class="title">Sport</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Football</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Tennis</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">F-1 Racing Tour</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">NBA</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Basketball</a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    {% comment %} <div class="col-lg-2">
                         <div class="link-group">
-                            <div class="title">Travel</div>
+                            <div class="title">Категории</div>
                             <ul>
+                                {% for category in category %}
                                 <li>
-                                    <a href="home-default.html#" class="f-link">Discovery</a>
+                                    <a href="home-default.html#" class="f-link">{{category.title}}</a>
                                 </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Flight Tickets & Hotel</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Tour</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Destination</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Experience & Reviews</a>
-                                </li>
+                               {% endfor %}
                             </ul>
                         </div>
-                        <div class="link-group">
-                            <div class="title">Help Center</div>
-                            <ul>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Partners Programe</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href="home-default.html#" class="f-link">Term & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                      
+                    </div> {% endcomment %}
                 </div>
             </div>
 
             <div class="foot text-center py-4 border-1 border-top brd-gray">
-                <p class="fsz-13px color-666">© 2023 Copyrights by <a href="home-default.html#" class="color-000">Newzin</a>. All Rights
-                    Reserved. Developed by <a href="home-default.html#" class="color-000 text-decoration-underline">ThemesCamp</a></p>
+                <p class="fsz-13px color-666">© 2023 Copyrights by <a href="https://codexstudio.site/" class="color-000">CodexStudio</a>
             </div>
         </div>
         <!-- ====== start to top button ====== -->

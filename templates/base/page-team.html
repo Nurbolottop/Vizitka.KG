@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <!-- Metas -->
@@ -11,36 +12,35 @@
     <meta name="author" content="" />
 
     <!-- Title  -->
-    <title>Newzin</title>
+    <title>{{setting.title}}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/img/fav.png" title="Favicon" sizes="16x16" />
+    <link rel="shortcut icon" href="{% static 'assets/img/v.png' %}" title="Favicon" sizes="16x16" />
 
     <!-- bootstrap 5 -->
-    <link rel="stylesheet" href="assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/lib/bootstrap.min.css' %}">
 
     <!-- font family -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- ionicons icons  -->
-    <link rel="stylesheet" href="assets/css/lib/ionicons.css">
+    <link rel="stylesheet" href="{% static 'assets/css/lib/ionicons.css' %}">
     <!-- line-awesome icons  -->
-    <link rel="stylesheet" href="assets/css/lib/line-awesome.css">
+    <link rel="stylesheet" href="{% static 'assets/css/lib/line-awesome.css' %}">
     <!-- animate css  -->
-    <link rel="stylesheet" href="assets/css/lib/animate.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/lib/animate.css' %}" />
     <!-- fancybox popup  -->
-    <link rel="stylesheet" href="assets/css/lib/jquery.fancybox.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/lib/jquery.fancybox.css' %}" />
     <!-- lity popup  -->
-    <link rel="stylesheet" href="assets/css/lib/lity.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/lib/lity.css' %}" />
     <!-- swiper slider  -->
-    <link rel="stylesheet" href="assets/css/lib/swiper.min.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/lib/swiper.min.css' %}" />
 
     <!-- ====== main style ====== -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title> Newzin </title>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <title> {{setting.title}} </title>
 </head>
-
 <body class="home-style1 tc-team-page">
 
     <!-- ====== start loading page ====== -->
@@ -49,207 +49,7 @@
     <!-- ====== end loading page ====== -->
 
     <!-- ====== start navbar-container ====== -->
-    <div class="navbar-container">
-        <div class="container">
-            <!-- ====== start top navbar ====== -->
-            <div class="top-navbar style-1">
-                <div class="container p-0">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4">
-                            <div class="date-weather mb-3 mb-lg-0">
-                                <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <div class="item">
-                                            <div class="icon me-3 pt-1">
-                                                <i class="la la-calendar"></i>
-                                            </div>
-                                            <div class="inf">
-                                                <strong>Monday</strong>
-                                                <p>Nov 25, 2023</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="item">
-                                            <div class="icon me-3 pt-1">
-                                                <i class="la la-cloud-sun"></i>
-                                            </div>
-                                            <div class="inf">
-                                                <strong>32oC, Cloudy</strong>
-                                                <p>New York</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <a href="page-team.html#" class="logo-brand d-none d-lg-block">
-                                <img src="assets/img/logo_home1.png" alt="" class="dark-none">
-                                <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
-                            </a>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="sub-darkLight">
-                                <div class="row text-end align-items-center">
-                                    <div class="col-6">
-                                        <a href="page-team.html#" class="text-uppercase fs-6 border-bottom border-1 border-dark">
-                                            <i class="la la-envelope fs-5 me-1"></i>
-                                            Subscribe
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="darkLight-btn">
-                                            <span class="icon active" id="light-icon">
-                                                <i class="la la-sun"></i>
-                                            </span>
-                                            <span class="icon" id="dark-icon">
-                                                <i class="la la-moon"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ====== end top navbar ====== -->
-
-            <!-- ====== start navbar ====== -->
-            <nav class="navbar navbar-expand-lg navbar-light style-1">
-                <div class="container p-0">
-                    <div class="mob-nav-toggles d-flex align-items-center justify-content-between">
-                        <button class="navbarList-icon me-lg-5" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                        aria-controls="offcanvasExample">
-                            <span></span>
-                            <span></span>
-                        </button>
-                        <a href="page-team.html#" class="logo-brand d-block d-lg-none w-50 my-4">
-                            <img src="assets/img/logo_home1.png" alt="" class="dark-none">
-                            <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="page-team.html#" id="navbarDropdown1" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    homes
-                                </a>
-                                <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                    <li><a class="dropdown-item" href="home-default.html">home default</a></li>
-                                    <li><a class="dropdown-item" href="home-technology.html">home techonology</a></li>
-                                    <li><a class="dropdown-item" href="home-gaming.html">home gaming</a></li>
-                                    <li><a class="dropdown-item" href="home-food.html">home food</a></li>
-                                    <li><a class="dropdown-item" href="home-bussiness.html">home bussiness</a></li>
-                                    <li><a class="dropdown-item" href="home-politic.html">home politic</a></li>
-                                    <li><a class="dropdown-item" href="home-nft.html">home NFT</a></li>
-                                    <li><a class="dropdown-item" href="home-sport.html">home sport</a></li>
-                                    <li><a class="dropdown-item" href="home-cars.html">home cars</a></li>
-                                    <li><a class="dropdown-item" href="home-10.html">original</a></li>
-                                    <li><a class="dropdown-item" href="rtl-home-sport.html">home sport RTL</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="page-team.html#" id="navbarDropdown1" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Blog
-                                </a>
-                                <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                    <li><a class="dropdown-item" href="page-blog.html">Blog</a></li>
-                                    <li><a class="dropdown-item" href="page-author.html">authors</a></li>
-                                    <li><a class="dropdown-item" href="page-author-details.html">author details</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="page-team.html#" id="navbarDropdown1" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Single posts
-                                </a>
-                                <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                    <li><a class="dropdown-item" href="page-single-post-creative.html">single post
-                                            creative</a></li>
-                                    <li><a class="dropdown-item" href="page-single-post-creative.html">single post
-                                            features</a></li>
-                                    <li><a class="dropdown-item" href="rtl-page-single-post-creative.html">single post
-                                            creative RTL</a></li>
-                                    <li><a class="dropdown-item" href="rtl-page-single-post-features.html">single post
-                                            features RTL</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="page-team.html#" id="navbarDropdown1" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Pages
-                                </a>
-                                <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                    <li><a class="dropdown-item" href="page-about.html">About</a></li>
-                                    <li><a class="dropdown-item" href="page-team.html">Team</a></li>
-                                    <li><a class="dropdown-item" href="page-product.html">Product</a></li>
-                                    <li><a class="dropdown-item" href="page-404.html">404 page</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="page-contact.html">
-                                    contact
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="page-shop.html">
-                                    shop
-                                    <small class="hot">hot</small>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="nav-side">
-                            <a href="page-team.html#" class="icon-link">
-                                <i class="la la-user fs-4"></i>
-                            </a>
-                            <a href="page-team.html#" class="icon-link noti-dot">
-                                <i class="la la-shopping-bag fs-4"></i>
-                            </a>
-                            <a href="page-team.html#" class="icon-link search-btn-style1">
-                                <i class="la la-search fs-4 sOpen-btn"></i>
-                                <i class="la la-close fs-4 sClose-btn"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <!-- ====== end navbar ====== -->
-
-            <!-- ====== start nav-search ====== -->
-            <div class="nav-search-style1">
-                <div class="row justify-content-center align-items-center gx-lg-5">
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <h5> you can search by category <br> or news title </h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form class="form">
-                            <span class="color-777 fst-italic text-capitalize mb-2 fsz-13px">Enter Keyword</span>
-                            <div class="form-group">
-                                <span class="icon">
-                                    <i class="la la-search"></i>
-                                </span>
-                                <input type="text" class="form-control" placeholder="Elon Musk ... ">
-                                <button type="submit">search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- ====== end nav-search ====== -->
-        </div>
-    </div>
+    {% include 'include/header.html' %}
     <!-- ====== start navbar-container ====== -->
 
     <!--Contents-->
@@ -384,8 +184,8 @@
             aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <div class="logo">
-                    <img src="assets/img/logo_home1.png" alt="" class="dark-none">
-                    <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
+                    <img src="{% static 'assets/img/logo_home1.png' %}" alt="" class="dark-none">
+                    <img src="{% static 'assets/img/logo_home1_lt.png' %}" alt="" class="light-none">
                 </div>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
@@ -400,7 +200,7 @@
                     <h6 class="color-000 text-uppercase mb-30 ltspc-1"> categories <i class="la la-angle-right ms-1"></i> </h6>
                     <a href="page-team.html#" class="cat-card">
                         <div class="img img-cover">
-                            <img src="assets/img/bussines/1.png" alt="">
+                            <img src="{% static 'assets/img/bussines/1.png' %}" alt="">
                         </div>
                         <div class="info">
                             <h5>bussines</h5>
@@ -409,7 +209,7 @@
                     </a>
                     <a href="page-team.html#" class="cat-card">
                         <div class="img img-cover">
-                            <img src="assets/img/trend/3.png" alt="">
+                            <img src="{% static 'assets/img/trend/3.png' %}" alt="">
                         </div>
                         <div class="info">
                             <h5>technology</h5>
@@ -418,7 +218,7 @@
                     </a>
                     <a href="page-team.html#" class="cat-card">
                         <div class="img img-cover">
-                            <img src="assets/img/must_read/3.png" alt="">
+                            <img src="{% static 'assets/img/must_read/3.png' %}" alt="">
                         </div>
                         <div class="info">
                             <h5>culture</h5>
@@ -427,7 +227,7 @@
                     </a>
                     <a href="page-team.html#" class="cat-card">
                         <div class="img img-cover">
-                            <img src="assets/img/videos/1.png" alt="">
+                            <img src="{% static 'assets/img/videos/1.png' %}" alt="">
                         </div>
                         <div class="info">
                             <h5>videos</h5>
@@ -507,8 +307,8 @@
                     <div class="col-lg-4">
                         <div class="info">
                             <div class="foot-logo">
-                                <img src="assets/img/logo_home1.png" alt="" class="dark-none">
-                                <img src="assets/img/logo_home1_lt.png" alt="" class="light-none">
+                                <img src="{% static 'assets/img/logo_home1.png' %}" alt="" class="dark-none">
+                                <img src="{% static 'assets/img/logo_home1_lt.png' %}" alt="" class="light-none">
                             </div>
                             <div class="data-info">
                                 <p>
@@ -735,19 +535,19 @@
     <!-- ====== end to top button ====== -->
 
     <!-- ====== request ====== -->
-    <script src="assets/js/lib/jquery-3.0.0.min.js"></script>
-    <script src="assets/js/lib/jquery-migrate-3.0.0.min.js"></script>
-    <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/lib/wow.min.js"></script>
-    <script src="assets/js/lib/jquery.fancybox.js"></script>
-    <script src="assets/js/lib/lity.js"></script>
-    <script src="assets/js/lib/swiper.min.js"></script>
-    <script src="assets/js/lib/jquery.waypoints.min.js"></script>
-    <script src="assets/js/lib/jquery.counterup.js"></script>
-    <script src="https://newzin-html.themescamp.com/assets/js/lib/pace.js"></script>
-    <script src="assets/js/lib/back-to-top.js"></script>
-    <script src="assets/js/lib/parallaxie.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{% static 'assets/js/lib/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery-migrate-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.fancybox.js' %}"></script>
+    <script src="{% static 'assets/js/lib/lity.js' %}"></script>
+    <script src="{% static 'assets/js/lib/swiper.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.counterup.js' %}"></script>
+    <script src="https://newzin-html.themescamp.com/assets/js/lib/pace.js' %}"></script>
+    <script src="{% static 'assets/js/lib/back-to-top.js' %}"></script>
+    <script src="{% static 'assets/js/lib/parallaxie.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
 
 </body>

@@ -1,0 +1,72 @@
+{% load static %}
+<div class="offcanvas-header">
+    <div class="logo">
+        <img src="{{setting.logo.url}} " alt="" class="dark-none">
+        <img src="{{setting.logo.url}} " alt="" class="light-none">
+    </div>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
+</div>
+<div class="offcanvas-body mt-4">
+    <h6 class="color-000 text-uppercase mb-15 ltspc-1"> О нас <i class="la la-angle-right ms-1"></i>
+    </h6>
+    <div class="text">
+        {{about.descriptions}}
+    </div>
+
+    <div class="sidebar-categories mt-40">
+        <h6 class="color-000 text-uppercase mb-30 ltspc-1"> Категории <i
+                class="la la-angle-right ms-1"></i> </h6>
+                {% for category in categories  %}
+                <a href="{% url 'category' category.id %}" class="cat-card">
+                    <div class="img img-cover">
+                        <img src="{% static 'assets/img/vizitka_log.png' %} " alt="">
+                    </div>
+                    <div class="info">
+                        <h5>{{ category.title }}</h5>
+                        <span class="num">{{ category.num_posts }}</span>
+                    </div>
+                </a>
+            {% endfor %}
+    </div>
+    <div class="sidebar-contact-info mt-50">
+        <h6 class="color-000 text-uppercase mb-20 ltspc-1"> КОНТАКТ И ПОДПИСКА <i
+                class="la la-angle-right ms-1"></i> </h6>
+        <ul class="m-0">
+            <li class="mb-3">
+                <i class="las la-map-marker me-2 color-main fs-5"></i>
+                <a href="#">{{setting.location}}</a>
+            </li>
+            <li class="mb-3">
+                <i class="las la-envelope me-2 color-main fs-5"></i>
+                <a href="#">{{setting.email}}</a>
+            </li>
+            <li class="mb-3">
+                <i class="las la-phone-volume me-2 color-main fs-5"></i>
+                <a href="#">{{setting.phone}}</a>
+            </li>
+        </ul>
+        <div class="social-links">
+            {% if  setting.whatsapp%}
+            <a href="{{setting.whatsapp}}">
+                <i class="la la-whatsapp"></i>
+            </a>
+            {% endif %}
+            {% if setting.facebook%}
+            <a href="{{setting.facebook}}">
+                <i class="la la-facebook-f"></i>
+            </a>
+            {% endif %}
+            {% if setting.instagram%}
+            <a href="{{setting.instagram}}">
+                <i class="la la-instagram"></i>
+            </a>
+            {% endif %}
+            {% if setting.youtube%}
+            <a href="{{setting.youtube}}">
+                <i class="la la-youtube"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

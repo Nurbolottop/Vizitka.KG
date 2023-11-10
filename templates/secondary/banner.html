@@ -1,0 +1,78 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+
+    <!-- ====== start navbar-container ====== -->
+
+
+    <!--Contents-->
+    <main>
+
+        <!-- ====== start tc-main-post-style1 ====== -->
+        <section class="tc-main-post-style1 pb-60">
+            <div class="container">
+                <div class="tc-main-post-content color-000">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <p class="info-text sm-content-width mt-40">
+                                {{banner.title|safe}}</p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== start another posts ====== -->
+        <h2 class="element-big-content-title">Журнал <strong></strong></h2>
+        <ul class="restaurant-menu-list">
+            <li>
+                <div class="restaurant-menu-title">
+                    <div class="restaurant-menu-name">
+                        <span>SpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecial Spaghetti</span>
+                    </div>
+                    <div class="restaurant-menu-dots"></div>
+                    <div class="restaurant-menu-price">$18</div>
+                </div>
+                <div class="restaurant-menu-description">
+                </div>
+            </li>	
+        </ul>
+        <br>
+        <h2 class="element-big-content-title">Сайт <strong></strong></h2>
+        <ul class="restaurant-menu-list">
+            <li>
+                <div class="restaurant-menu-title">
+                    <div class="restaurant-menu-name">
+                        <span>SpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecial Spaghetti</span>
+                    </div>
+                    <div class="restaurant-menu-dots"></div>
+                    <div class="restaurant-menu-price">$18</div>
+                </div>
+                <div class="restaurant-menu-description">
+                </div>
+            </li>	
+        </ul>
+        {% comment %} <section class="another-news">
+            <div class="container">
+                
+            </div>
+        </section> {% endcomment %}
+
+        
+        <!-- ====== end modals ====== -->
+
+    </main>
+    <!--End-Contents-->
+
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}

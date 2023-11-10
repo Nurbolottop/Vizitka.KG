@@ -1,5 +1,7 @@
 {% load static %}
 {% load socialaccount %}    
+{% providers_media_js %}
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -81,9 +83,9 @@
                             </div>
                             <ul class="social-list clearfix">
                                 <li><a href="{% provider_login_url 'telegram' %}" class="facebook-bg"><i class="fa fa-telegram"></i></a></li>
-                                <li><a href="{% provider_login_url 'instagram' %}" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="{% provider_login_url 'google'%}" class="google-bg"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="{% provider_login_url 'google' %}" class="google-bg"><i class="fa fa-google"></i></a></li>
+                                <li><a href="{% provider_login_url "facebook" %}" class="linkedin-bg"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                         </div>
                     </div>

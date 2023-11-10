@@ -2,7 +2,6 @@ from django.db import models
 from django_resized.forms import ResizedImageField 
 from ckeditor.fields import RichTextField
 # Create your models here.
-
 # Category - Категории
 class Category(models.Model):
     title = models.CharField(
@@ -67,64 +66,109 @@ class Blog(models.Model):
         verbose_name_plural = "Новости"
 
 
-class Stories(models.Model):
+        
+# Adverts
+class BigAdvert(models.Model):
     image = ResizedImageField(
         force_format="WEBP", 
         quality=100, 
-        upload_to='stories_image/',
+        upload_to='bigadvert_image/',
         verbose_name="Фотография",
         blank = True, null = True
     )
     title = models.CharField(
         max_length=255,
-        verbose_name="Название",
-        blank=True, null=True
-        )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        blank=True,null=True
-        )
+        verbose_name="Заголовок",
+        blank = True, null = True
+        
+    )
+    sub_title = models.CharField(
+        max_length=255,
+        verbose_name="Подзаголовок",
+        blank = True, null = True
+        
+    )
+    url_booking = models.URLField(
+        verbose_name="Ссылка",
+        blank = True, null = True
+        
+    )
     
     def __str__(self):
-        return self.title
+        return f"{self.title} - {self.sub_title}"
     
     class Meta:
-        verbose_name = "Сторис"
-        verbose_name_plural = "Сторисы"
+        verbose_name = "Добавить рекламу большого масштаба"
+        verbose_name_plural = "Добавить рекламу большого масштаба"
+
         
         
-class FirstBlogDetail(models.Model):
-    first = models.ForeignKey(
-        Category,on_delete=models.CASCADE,
-        related_name="first_title_detail",
-        verbose_name="Категория которую будете отображать",
-        blank=True,null=True
+class NormalAdvert(models.Model):
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='normadvert_image/',
+        verbose_name="Баннер в размере 970х90 - 1200х120",
+        blank = True, null = True
+    )
+    url_booking = models.URLField(
+        verbose_name="Ссылка",
+        blank = True, null = True
+        
     )
     
     class Meta:
-        verbose_name = "Первый блог в детальном просмотере"
-        verbose_name_plural = "Первые блоги в детальном просмотере"
-        
-class SecondBlogDetail(models.Model):
-    second = models.ForeignKey(
-        Category,on_delete=models.CASCADE,
-        related_name="second_title_detail",
-        verbose_name="Категория которую будете отображать",
-        blank=True,null=True
+        verbose_name = "Добавить рекламу среднего масштаба "
+        verbose_name_plural = "Добавить рекламу среднего масштаба"
+
+class SmallAdvert(models.Model):
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='smalladvert_image/',
+        verbose_name="Баннер в размере 250x250",
+        blank = True, null = True
     )
-    class Meta:
-        verbose_name = "Второй блог в детальном просмотере"
-        verbose_name_plural = "Вторые блоги в детальном просмотере"
+    url_booking = models.URLField(
+        verbose_name="Ссылка",
+        blank = True, null = True
         
-       
-class ThirdBlogDetail(models.Model):
-    third = models.ForeignKey(
-        Category,on_delete=models.CASCADE,
-        related_name="third_title_detail",
-        verbose_name="Категория которую будете отображать",
-        blank=True,null=True
     )
     
     class Meta:
-        verbose_name = "Третий блог в детальном просмотере"
-        verbose_name_plural = "Третие блоги в детальном просмотере"
+        verbose_name = "Добавить рекламу маленького масштаба"
+        verbose_name_plural = "Добавить рекламу маленького масштаба"
+
+class Magazine(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name='Название услуги'
+    )        
+    price = models.CharField(
+        max_length=255,
+        verbose_name="Цена"
+    )
+
+    def __str__(self):
+        return f"{self.title} - {self.price}"
+    
+    class Meta:
+        verbose_name = "Журнал"
+        verbose_name_plural = "Журналы"
+        
+class Site(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name='Название услуги'
+    )        
+    price = models.CharField(
+        max_length=255,
+        verbose_name="Цена"
+    )
+    
+    def __str__(self):
+        return f"{self.title} - {self.price}"
+    
+    class Meta:
+        verbose_name = "Сайт"
+        verbose_name_plural = "Сайты"

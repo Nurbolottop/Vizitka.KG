@@ -1430,3 +1430,4 @@ if ($(window).width() > 1200) {
     $('.parallaxie').parallaxie({
     });
 }
+

@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 from django_resized.forms import ResizedImageField 
 
 # Create your models here.
@@ -7,8 +8,9 @@ class Settings(models.Model):
         max_length=255,
         verbose_name="Название сайта"
     )
-    descriptions = models.TextField(
-        verbose_name="Описание сайта",
+    descriptions = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
     )
     logo = models.ImageField(
         upload_to="logo/",
@@ -49,26 +51,44 @@ class Settings(models.Model):
             verbose_name = "Основная настройка"
             verbose_name_plural = "Основные настройки"
             
-class Team(models.Model):
-    image  = ResizedImageField(
+
+class About(models.Model):
+    image = ResizedImageField(
         force_format="WEBP", 
         quality=100, 
-        upload_to='team_image/',
+        upload_to='about_image/',
         verbose_name="Фотография",
         blank = True, null = True
     )
-    name = models.CharField(
+    title = models.CharField(
         max_length=255,
-        verbose_name="ФИО"
+        verbose_name="Название"
     )
-    work = models.CharField(
+    date = models.CharField(
         max_length=255,
-        verbose_name="Профессия"
+        verbose_name="С какого года начали работать ?"
+    )
+    descriptions = models.TextField(
+        verbose_name="Описание"
     )
     
     def __str__(self):
-        return f"{self.name} - {self.work}"
+        return self.title
     
     class Meta:
-        verbose_name = "Наша комманда"
-        verbose_name_plural = "Наша комманда"
+        verbose_name = "Добавить о нас"
+        verbose_name_plural = "Добавить о нас"
+        
+class Banner(models.Model):
+    title = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    
+    def __str__(self):
+        return self.title 
+    
+    class Meta:
+        verbose_name = "Рекламодателям"
+        verbose_name_plural = "Рекламодателям"
+        

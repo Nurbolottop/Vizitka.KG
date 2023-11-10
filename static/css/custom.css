@@ -1,0 +1,41 @@
+.card {
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #007BFF, #00C6FF);
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+    height: 150px;
+}
+
+.card:hover {
+    background: linear-gradient(to right, #0056b3, #0093E9);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+}
+
+.card-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.card-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bottom-right-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}

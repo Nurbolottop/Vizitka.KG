@@ -84,16 +84,22 @@
             </div>
         </div>
         <!-- ====== end top navbar ====== -->
-
+        <nav class="c-header-nav">
+            <div class="c-layout c-nav-layout">
+                <div class="c-header-nav-logo">
+                </div>
+                <ul class="c-menu c-menu-nav">
+                    {% for category in category%}
+                    <li><a href="{% url 'category' category.id %}" class="">{{category.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
         <!-- ====== start navbar ====== -->
         <nav class="navbar navbar-expand-lg navbar-light style-1">
             <div class="container p-0">
                 <div class="mob-nav-toggles d-flex align-items-center justify-content-between">
-                    <button class="navbarList-icon me-lg-5" data-bs-toggle="offcanvas" href="#offcanvasExample"
-                        role="button" aria-controls="offcanvasExample">
-                        <span></span>
-                        <span></span>
-                    </button>
+
                     <a href="home-default.html#" class="logo-brand d-block d-lg-none w-50 my-4">
                         <img src="{% static 'assets/img/logo_home1.png' %} " alt="" class="dark-none">
                         <img src="{% static 'assets/img/logo_home1_lt.png' %} " alt="" class="light-none">
@@ -119,37 +125,24 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Single posts
+                                Страницы
                             </a>
                             <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="page-single-post-creative.html">single post
-                                        creative</a></li>
-                                <li><a class="dropdown-item" href="page-single-post-creative.html">single post
-                                        features</a></li>
-                                <li><a class="dropdown-item" href="rtl-page-single-post-creative.html">single post
-                                        creative RTL</a></li>
-                                <li><a class="dropdown-item" href="rtl-page-single-post-features.html">single post
-                                        features RTL</a></li>
+                                <li><a class="dropdown-item" href="{% url 'about'  %}">О нас</a></li>
+                                <li><a class="dropdown-item" href="{% url 'team'  %}">Наша команда</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Pages
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'banner' %}">
+                                Рекламодателям
                             </a>
-                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="page-about.html">About</a></li>
-                                <li><a class="dropdown-item" href="page-team.html">Team</a></li>
-                                <li><a class="dropdown-item" href="page-product.html">Product</a></li>
-                                <li><a class="dropdown-item" href="page-404.html">404 page</a></li>
-                            </ul>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contact' %}">
                                 Контакты
                             </a>
                         </li>
+                        
                         
                     </ul>
                     <div class="nav-side">
@@ -179,9 +172,7 @@
                                     </ul>
                                 </li>
                             {% endif %}
-                            <a href="home-default.html#" class="icon-link noti-dot">
-                                <i class="la la-shopping-bag fs-4"></i>
-                            </a>
+                           
                             
                         <a href="#" class="icon-link search-btn-style1">
                             <i class="la la-search fs-4 sOpen-btn"></i>
@@ -202,7 +193,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <form class="form" action="{% url 'search' %}" method = "POST">
+                    <form class="form" action="{% url 'search' %}" method = "GET">
                         {% csrf_token %}
                         <span class="color-777 fst-italic text-capitalize mb-2 fsz-13px">Введите Ключевое Слово</span>
                         <div class="form-group">
@@ -220,7 +211,7 @@
             </div>
         </nav>
         <!-- ====== end navbar ====== -->
-
+        
         <!-- ====== start nav-search ====== -->
         <div class="nav-search-style1">
             <div class="row justify-content-center align-items-center gx-lg-5">

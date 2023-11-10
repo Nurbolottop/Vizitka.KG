@@ -2254,7 +2254,7 @@ small.text {
 .navbar.style-1 .navbar-nav .nav-item .nav-link.active, .navbar.style-1 .navbar-nav .nav-item .nav-link:hover {
   color: var(--color-main);
 }
-.navbar.style-1 .navbar-nav .nav-item .nav-link .hot {
+.navbar.style-2 .navbar-nav .nav-item .nav-link .hot .nav-side {
   position: absolute;
   font-size: 8px;
   padding: 2px 3px;
@@ -2263,8 +2263,9 @@ small.text {
   right: -10px;
   text-transform: uppercase;
   color: #fff;
-  background-color: var(--color-main);
+  background-color: var(--color-blue1);
 }
+.navbar
 .nav-side{
   list-style: none;
   display: flex;
@@ -2923,7 +2924,7 @@ small.text {
   bottom: -9px;
   width: 0%;
   height: 2px;
-  background-color: #000;
+  background-color: #ff0000;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -15746,3 +15747,130 @@ align-items: center;
 justify-content: center;
 }
 
+.c-header-nav {
+  background-color: #696969; /* черный фон */
+  padding: 5px 0; /* уменьшенная высота */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.c-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0px 47px;
+}
+
+.c-header-nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.c-header-nav-logo a {
+  display: block;
+}
+
+.c-header-nav-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.c-menu {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.c-menu-nav li {
+  margin-right: 20px;
+}
+
+.c-menu-nav li:last-child {
+  margin-right: 0;
+}
+
+.c-menu-nav a {
+  color: #f4f4f4;
+  text-decoration: none;
+  font-size: 11px;
+}
+.c-menu-nav a:hover {
+  color: #ff0000; /* красный цвет */
+}
+.c-header-search {
+  display: flex;
+  align-items: center;
+}
+
+.c-header-hamburger {
+  display: none; /* Скрыт по умолчанию, показывается на мобильных устройствах */
+}
+
+.m-visible {
+  display: block; /* Показывается на мобильных устройствах */
+}
+.restaurant-menu-price {
+  display: table-cell;
+  width: 1%;
+  padding-left: 4px;
+  white-space: nowrap;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: Montserrat,sans-serif;
+  color: #7b5b4b;
+}
+
+.element-big-content-title strong {
+  color: #7b5b4b;
+}
+
+.element-big-content-title {
+  margin-bottom: 30px;
+  font-size: 32px;
+  letter-spacing: -2px;
+  font-family: 'Playfair Display',serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.restaurant-menu-name {
+  display: table-cell;
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 4px;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.restaurant-menu-dots {
+  height: 2px;
+  background: radial-gradient(circle closest-side,#b3b3b3 99%,transparent 100%);
+  background-position: 50% 77%;
+  background-size: 4px 2px;
+  background-repeat: repeat-x;
+  display: table-cell;
+  width: 98%;
+  z-index: 1;
+  position: relative;
+}
+
+.restaurant-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.restaurant-menu-description {
+  margin-bottom: 30px;
+}
+
+body {
+padding: 50px
+}

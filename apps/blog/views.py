@@ -2,14 +2,12 @@ from django.shortcuts import render,redirect
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+from django.core.paginator import Paginator
 # my imports
 from apps.users.models import Subscriber
 from apps.index import models
-from apps.blog.models import Blog
-from apps.advert.models import BigAdvert,NormalAdvert,SmallAdvert
-from apps.category_blog import blogs
-from apps.blog import blogs_detail
-from apps.index import blogs 
+from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category
+from apps.all_categories import blogs_detail
 
 # Create your views here.
 # def get_weather_data():
@@ -29,22 +27,23 @@ from apps.index import blogs
 
 
 def blog(request):
-    blog = Blog.objects.all().order_by('-views')  
+    blog = Blog.objects.all().order_by('?')  
     current_date = datetime.now()
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('-views')[:5]
-    popular_post = Blog.objects.order_by('-views')[:1]
     # < start advert >
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
+    stories = models.Stories.objects.all()
+    category = Category.objects.all().order_by("?")[:]
+    
     # < end advert >
-    # < start category >
-    firstnews1 = blogs.firstnewsblog1_mtehod()
-    firstnews3 = blogs.firstnewsblog3_mtehod()
-    # < start temperature>
     # temperature, weather_condition = get_weather_data()
     # < end temperature>
+    paginator = Paginator(blog, 5)  # Показывать по 5 блогов на каждой странице
+    page = request.GET.get('page')
+    blogs = paginator.get_page(page)
     if request.method == 'POST':
         email = request.POST.get('email')  # Получаем email из request.POST
 
@@ -68,11 +67,11 @@ def blog_detail(request, id):
     popular_posts = Blog.objects.order_by('-views')[:5]
     current_date = datetime.now()
     # temperature, weather_condition = get_weather_data()
-    
+    category = Category.objects.all().order_by("?")[:]
     # category in blog detail
-    categoryblogdetail1 = blogs.firstblog1_mtehod()
-    categoryblogdetail2 = blogs_detail.firstnewsblogdetail2_mtehod()
-    categoryblogdetail3 = blogs_detail.firstnewsblogdetail3_mtehod()
+    d1 = blogs_detail.d1_method()
+    d2 = blogs_detail.d2_method()
+    d3 = blogs_detail.d3_method()
     
     if request.method == 'POST':
         email = request.POST.get('email')  # Получаем email из request.POST
@@ -90,4 +89,6 @@ def blog_detail(request, id):
             # Подписчик с таким email уже существует
                 return redirect( 'subscribe_nodone')
     return render(request, 'detail/page-single-post-creative.html', locals())
+
+
         

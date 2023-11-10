@@ -9,7 +9,6 @@ from apps.index.models import Settings
 def register(request):
     current_date = datetime.now()
     setting = Settings.objects.latest('id')
-    # temperature, weather_condition = get_weather_data()
 
     if request.method == "POST":
         username = request.POST.get("username")
@@ -18,20 +17,29 @@ def register(request):
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
         agree = request.POST.get('agree')
-        if agree:
-            if password == confirm_password and username and password and email and phone:
-                # Создайте пользователя и установите его атрибуты
-                user = models.User.objects.create_user(username=username, email=email, password=password)
-                user.phone = phone
-                user.save()
 
-                # Аутентифицируйте пользователя и выполните вход
-                user = authenticate(request=request, username=username, password=password)
-                if user:
-                    login(request, user)
-                    return redirect('profile', user.id)  # Перенаправьте на профиль пользователя
-        else:
-            return HttpResponse("Вы должны согласиться с условиями предоставления услуг.")
+        if not agree:
+            messages.error(request, "Вы должны согласиться с условиями предоставления услуг.")
+            return render(request, 'users/register-32.html', locals())
+        
+        if password != confirm_password:
+            messages.error(request, "Пароли не совпадают.")
+            return render(request, 'users/register-32.html', locals())
+
+        if not all([username, password, email, phone]):
+            messages.error(request, "Пожалуйста, заполните все поля.")
+            return render(request, 'users/register-32.html', locals())
+
+        # Создайте пользователя и установите его атрибуты
+        user = models.User.objects.create_user(username=username, email=email, password=password)
+        user.phone = phone
+        user.save()
+
+        # Аутентифицируйте пользователя и выполните вход
+        user = authenticate(request=request, username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect('profile', user.id)  # Перенаправьте на профиль пользователя
 
     return render(request, 'users/register-32.html', locals())
 
@@ -115,3 +123,5 @@ def user_login(request):
             return redirect('login')
     
     return render(request, 'users/login-32.html', locals())
+
+

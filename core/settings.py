@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    'adminlte3',
+    'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,10 +46,10 @@ INSTALLED_APPS = [
     #apps
     'apps.index',
     'apps.blog',
-    'apps.advert',
-    'apps.category',
-    'apps.category_blog',
     'apps.users',
+    'apps.secondary',
+    'apps.all_categories',
+    
     
     
     # Google
@@ -57,7 +58,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount', 
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.telegram',
-    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.facebook',
+    
 ]
 
 
@@ -140,6 +142,7 @@ USE_TZ = config.USE_TZ
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = BASE_DIR /'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/ 'media'
@@ -148,14 +151,13 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # Настройки o
-JAZZMIN_SETTINGS = {
-    "site_title": "Vizitka.KG",  # Заголовок админ-панели
-    "site_header": "Vizitka.KG",  # Заголовок на экране входа
-    "site_brand": "Vizitka.KG",  # Бренд в верхней части админ-панели
-    "welcome_sign": "Добро пожаловать в Vizitka.KG",  # Приветственное сообщение
-    "search_model": ["auth.User", "blog.Post"],  # Модели, доступные для поиска
+ADMINLTE3_SETTINGS = {
+    "site_title": "Vizitka.KG",
+    "site_header": "Vizitka.KG",
+    "site_brand": "Vizitka.KG",
+    "welcome_sign": "Добро пожаловать в Vizitka.KG",
+    "search_model": ["auth.User", "blog.Post"],
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "Support", "url": "https://t.me/geeksosh", "new_window": True},
@@ -163,30 +165,12 @@ JAZZMIN_SETTINGS = {
         {"app": "blog"},
     ],
     "show_sidebar": True,
-    "changeform_format": "horizontal_tabs",
-    "show_language_chooser": True,  # Включить выбор языка в админ-панели
-    "custom_css": None,  # Путь к пользовательскому CSS-файлу (если нужен)
-    "show_ui_builder": True,  # Показать UI Builder
-    "menu": [
-        {
-            "app": "index",  # Имя вашего приложения Django
-            "name": "Основные параметры",  # Имя модели
-            "icon": "fa fa-cogs",  # Иконка для меню
-            "models": [
-                {
-                    "name": "Первая модель",  # Имя вашей модели
-                    "icon": "fa fa-cog",  # Иконка для модели
-                    "model": "index.Settings",  # Имя модели в формате "app_label.model_name"
-                },
-                # Добавьте другие модели, если необходимо
-            ],
-        },
-        # Добавьте другие приложения и модели, если необходимо
-    ],
-    
+    "show_ui_builder": True,
+    "navigation_expanded": True,
+    "css": {
+        "extra": ["css/custom.css"],  # замените на путь к вашему CSS-файлу
+    },
 }
-
-
 #Ckeditor
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'  # URL to jQuery
@@ -208,10 +192,10 @@ EMAIL_HOST_PASSWORD = 'zlrwdyljhsupxnfo'
 
 
 #Google
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
+AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
-]
+    'django.contrib.auth.backends.ModelBackend',
+)
     
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -220,35 +204,56 @@ SOCIALACCOUNT_PROVIDERS = {
     },
     'telegram': {
         'APP': {
-            'client_id': '6583749734',
-            'secret': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",
+            'client_id': '6583749734',  # Замените на свой client_id
+            'secret': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",  # Замените на свой secret
         },
         'AUTH_PARAMS': {'auth_date_validity': 30},
     },
-    'instagram': {
-        'SCOPE': ['basic'],
+    'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email','public_profile', 'user_friends'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'METHOD': 'oauth2',
-        'VERIFIED_EMAIL': False
-    }
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'kr_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'}
+    
+
 }
+SOCIAL_AUTH_FACEBOOK_KEY = 'secret!'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET ='secret!' #app key
+
+LOGIN_REDIRECT_URL = "/" 
+#если вам удастся войти в систему, вы будете перенаправлены на главную страницу.
+
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
 AUTH_USER_MODEL = 'users.User'
 # LOGIN_URL = '/users/login/'
 SITE_ID = 1
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/' 
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_USERNAME_REQURIED=True
 ACCOUNT_LOGOUT_ON_GET= True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
-# telegram
-
+#Admin Panel
