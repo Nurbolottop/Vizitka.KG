@@ -10,7 +10,7 @@ from apps.index import models
 # Classes
 from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine
 from apps.users.models import Subscriber,Contact
-from apps.secondary.models import Team,History
+from apps.secondary.models import Team,History,Stories
 
 # Functions
 # from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
@@ -28,7 +28,7 @@ def index(request):
     category = Category.objects.all().order_by("?")[:]
     
     team = Team.objects.all()
-    stories = models.Stories.objects.all()
+    stories = Stories.objects.all()
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
@@ -77,7 +77,7 @@ def category_view(request, category_id):
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
-    stories = models.Stories.objects.all()
+    stories = Stories.objects.all()
     
     categorys = Category.objects.get(id=category_id)
     popular_posts = Blog.objects.order_by('-views')[:5]
@@ -92,8 +92,8 @@ def storie(request,id):
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
     
-    stories_all = models.Stories.objects.exclude(id=id)
-    stories = models.Stories.objects.get(id=id)
+    stories_all = Stories.objects.exclude(id=id)
+    stories = Stories.objects.get(id=id)
     return render(request, 'base/stories.html', locals())
 
 def contact(request):
