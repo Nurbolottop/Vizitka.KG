@@ -29,35 +29,44 @@
             </div>
         </section>
         <!-- ====== start another posts ====== -->
+        {% if magazine %}
         <h2 class="element-big-content-title">Журнал <strong></strong></h2>
         <ul class="restaurant-menu-list">
+            {% for magazine in magazine %}
             <li>
                 <div class="restaurant-menu-title">
                     <div class="restaurant-menu-name">
-                        <span>SpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecial Spaghetti</span>
+                        <span>{{magazine.title}}</span>
                     </div>
                     <div class="restaurant-menu-dots"></div>
-                    <div class="restaurant-menu-price">$18</div>
+                    <div class="restaurant-menu-price">{{magazine.price}}</div>
                 </div>
                 <div class="restaurant-menu-description">
                 </div>
             </li>	
+            {% endfor %}
         </ul>
         <br>
+        {% endif %}
+        {% if site %}
         <h2 class="element-big-content-title">Сайт <strong></strong></h2>
         <ul class="restaurant-menu-list">
+            {% for site in site %}
             <li>
                 <div class="restaurant-menu-title">
                     <div class="restaurant-menu-name">
-                        <span>SpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecialSpecial Spaghetti</span>
+                        <span>{{site.title}}</span>
                     </div>
                     <div class="restaurant-menu-dots"></div>
-                    <div class="restaurant-menu-price">$18</div>
+                    <div class="restaurant-menu-price">{{site.price}}</div>
                 </div>
                 <div class="restaurant-menu-description">
                 </div>
             </li>	
+            {% endfor %}
         </ul>
+        <br>
+        {% endif %}
         {% comment %} <section class="another-news">
             <div class="container">
                 
