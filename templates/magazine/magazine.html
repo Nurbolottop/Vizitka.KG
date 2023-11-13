@@ -1,0 +1,242 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+    <!-- ====== start navbar-container ====== -->
+
+    <!-- ====== start nav search ====== -->
+    <div class="tc-blog-nav-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="info">
+                        <h2>Журанлы</h2>
+                        {% comment %} <div class="links">
+                            <a href="page-blog.html#">NFL</a>
+                            <a href="page-blog.html#">NBA</a>
+                            <a href="page-blog.html#">CFB</a>
+                            <a href="page-blog.html#">WNBA</a>
+                            <a href="page-blog.html#">MLB</a>
+                            <a href="page-blog.html#">soccer</a>
+                            <a href="page-blog.html#">UFC</a>
+                            <a href="page-blog.html#">auto racing</a>
+                            <a href="page-blog.html#">golf</a>
+                            <a href="page-blog.html#">other</a>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- ====== end nav search ====== -->
+
+    <!--Contents-->
+    <main>
+
+        <section class="tc-popular-posts-blog">
+            <div class="container">
+                <div class="content-widgets pt-50 pb-50">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="tc-post-list-style3">
+                                <div class="items">
+                                    {% if magazine %}
+                                        {% for magazine in magazine %}
+                                        <div class="item">
+                                            <div class="row">
+                                               
+                                                <div class="col-lg-7">
+                                                    <div class="content mt-20 mt-lg-0">
+                                                       
+                                                        <h4 class="title mb-15"> 
+                                                            <a href="{{magazine.document.url}}">{{magazine.title}}</a>
+                                                        </h4>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% else %}
+                                        <p>Нет блогов.</p>
+                                        {% endif %}
+                                </div>
+                            </div>
+ 
+                            <div class="pagination style-1 color-main justify-content-center mt-60">
+                                {% if blogs.has_previous %}
+                                    <a href="?page=1"><span>1</span></a>
+                                    <a href="?page={{ blogs.previous_page_number }}"><span>
+                                        Предыдущий</span></a>
+                                {% endif %}
+                
+                                {% for num in blogs.paginator.page_range %}
+                                    {% if blogs.number == num %}
+                                        <a href="?page={{ num }}" class="active"><span>{{ num }}</span></a>
+                                    {% else %}
+                                        <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                                    {% endif %}
+                                {% endfor %}
+                
+                                {% if blogs.has_next %}
+                                    <a href="?page={{ blogs.next_page_number }}"><span>Следующий</span></a>
+                                    <a href="?page={{ blogs.paginator.num_pages }}"><span>{{ blogs.paginator.num_pages }}</span></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="widgets-sticky mt-5 mt-lg-0">
+                                <p class="color-000 text-uppercase mb-30"> ОСТАВАЙСЯ НА СВЯЗИ  </p>
+                                <!-- widget-social -->
+                                <div class="tc-widget-social-style5 mb-40">
+                                    {% if setting.facebook%}
+                                    <a href="{{setting.facebook}}" class="social-card">
+                                        <div class="icon facebook-icon">
+                                            <i class="lab la-facebook-f"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <span>Facebook</span>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                    {% if setting.whatsapp%}
+                                    <a href="{{setting.whatsapp}}" class="social-card">
+                                        <div class="icon twitter-icon">
+                                            <i class="lab la-twitter"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <span>Whatsapp</span>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                    {% if setting.instagram%}
+                                    <a href="{{setting.instagram}}" class="social-card">
+                                        <div class="icon insta-icon">
+                                            <i class="lab la-instagram"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <span>Instagram</span>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                    {% if setting.youtube%}
+                                    <a href="page-blog.html#" class="social-card border-0 pb-0">
+                                        <div class="icon youtube-icon">
+                                            <i class="lab la-youtube"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <span>Youtube</span>
+                                        </div>
+                                    </a>
+                                    {% endif %}
+                                </div>
+
+                                <!-- widget-trends -->
+                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40">
+                                    <p class="color-000 text-uppercase p-15">Популярные Новости</p>
+                                    <div class="tc-post-list-style1">
+                                        {% for blog in popular_post%}
+                                            <div class="tc-post-overlay-default">
+                                                <div class="img th-200 img-cover">
+                                                    <img src="{{blog.image.url}}" alt="">
+                                                </div>
+                                                <div class="content ps-20 pe-20 pb-20 text-white">
+                                                    <a href="{% url 'blog_detail' blog.id%}" class="text-uppercase fsz-13px mb-1">{{blog.category}}</a>
+                                                    <h4 class="title">
+                                                        <a href="{% url 'blog_detail' blog.id%}">{{blog.title}}</a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <div class="items px-4 py-2">
+                                            {% for blog in popular_posts%}
+                                                <div class="item">
+                                                    
+                                                    <div class="content">
+                                                        <a href="{% url 'blog_detail' blog.id%}" class="color-999 fsz-12px text-uppercase mb-1">{{blog.category}}</a>
+                                                        <h6 class="title fsz-16px fw-bold ltspc--1 hover-main">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="">{{blog.title}}</a>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- widget-sponsored -->
+                                {% comment %} <div class="tc-widget-sponsored-style1">
+                                    <div class="img img-cover">
+                                        <img src="assets/img/sponsored/1.png" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <div class="spon-cat text-uppercase mt-20"> Sponsored Content </div>
+                                        <h6 class="title">
+                                            <a href="page-blog.html#">
+                                                Dile &amp; Kamine Soap from pure natura 100%
+                                            </a>
+                                        </h6>
+                                        <a href="page-blog.html#">
+                                            <small>dileandkamina.com <i
+                                                    class="las la-external-link-square-alt ms-2"></i></small>
+                                        </a>
+                                    </div>
+                                </div> {% endcomment %}
+
+                                {% comment %} <!-- widget tags -->
+                                <div class="tc-widget-tags-style5 mb-40">
+                                    <p class="color-000 text-uppercase mb-30"> Hot Tags Today </p>
+                                    <div class="tags-content">
+                                        <a href="page-blog.html#">Covid-19</a>
+                                        <a href="page-blog.html#">Bitcoin</a>
+                                        <a href="page-blog.html#">NFT</a>
+                                        <a href="page-blog.html#">Elon Musk</a>
+                                        <a href="page-blog.html#">Google Cloud</a>
+                                        <a href="page-blog.html#">Crypto</a>
+                                        <a href="page-blog.html#">Marketplace</a>
+                                        <a href="page-blog.html#">Game Consoles</a>
+                                        <a href="page-blog.html#">Robotics</a>
+                                        <a href="page-blog.html#">Hackers</a>
+                                    </div>
+                                </div>
+                                <!-- end widget tags --> {% endcomment %}
+
+                                <!-- widget-adbox -->
+                                {% if small_advert%}
+                                <div class="tc-widget-adbox-style1">
+                                    <a href="{{small_advert.url_booking}}" class="img">
+                                        <img src="{{small_advert.image.url}}" alt="" class="">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <!-- widget-survey -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== end popular posts ====== -->
+
+        <!-- ====== start modals ====== -->
+
+
+        <!-- ====== end modals ====== -->
+
+    </main>
+    <!--End-Contents-->
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}

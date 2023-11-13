@@ -8,6 +8,7 @@ from apps.users.models import Subscriber
 from apps.index import models
 from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category
 from apps.all_categories import blogs_detail
+from apps.secondary.models import Stories
 
 # Create your views here.
 # def get_weather_data():
@@ -35,7 +36,7 @@ def blog(request):
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
-    stories = models.Stories.objects.all()
+    stories = Stories.objects.all()
     category = Category.objects.all().order_by("?")[:]
     
     # < end advert >

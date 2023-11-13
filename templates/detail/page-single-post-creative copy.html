@@ -1,0 +1,206 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+
+    <!-- ====== start navbar-container ====== -->
+
+
+    <!--Contents-->
+    <main>
+
+        <!-- ====== start tc-main-post-style1 ====== -->
+        <section class="tc-main-post-style1 pb-60">
+            <div class="container">
+                <div class="tc-main-post-title pt-40 pb-40">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <p class="text-uppercase mb-15">{{blog.category}}</p>
+                            <h2 class="title">{{blog.title}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="meta-nav pt-30 pb-30 border-top border-1 brd-gray">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="author-side color-666 fsz-13px">
+                                
+                                <span class="me-40">
+                                    <a href="page-single-post-creative.html#"><i class="la la-calendar me-1"></i>{{blog.created_at}}</a>
+                                </span>
+                                {% comment %} <span class="">
+                                    <a href="page-single-post-creative.html#"><i class="la la-comment me-1"></i> 55 Comments</a>
+                                </span> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-lg-end">
+                            <div class="links-side color-000 fsz-13px">
+                                <a href="#" class="copy-link-btn me-40" onclick="copyLink(event)"><i class="la la-link me-1"></i> Копировать ссылку</a>
+                                <script>
+                                    // Находим кнопку "Copy Link"
+                                    var copyLinkBtn = document.querySelector('.copy-link-btn');
+                                  
+                                    // Добавляем обработчик события клика на кнопку
+                                    copyLinkBtn.addEventListener('click', function(event) {
+                                      // Отменяем стандартное действие ссылки
+                                      event.preventDefault();
+                                  
+                                      // Копируем текущий URL в буфер обмена
+                                      var currentUrl = window.location.href;
+                                      navigator.clipboard.writeText(currentUrl);
+                                    });
+                                  </script>
+                                <a href="page-single-post-creative.html#" class="me-40"><i class="la la-bookmark me-1"></i> Сохранить</a>
+                                <a href="page-single-post-creative.html#"><i class="la la-exclamation-triangle me-1"></i> Пожаловаться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tc-main-post-img img-cover mb-50">
+                    <img src="{{blog.image.url}}" alt="">
+                </div>
+                <div class="tc-main-post-content color-000">
+                    <div class="row">
+                        
+                        <div class="col-lg-10">
+                            <h4 class="sub-title sm-content-width">
+                                {{blog.sub_title}}
+                            </h4>
+                            <p class="info-text sm-content-width mt-40">
+                                {{blog.info_text|safe}}</p> 
+                        <h4>По вопросам сотрудничества:<br>
+                            What'sApp: +996701204000<br>
+                            Instagram: vizitka_kg<br>
+                            facebook: vizitka_kg<br>
+                            <br>
+                            ТВОЯ ВИЗИТКА В МИРЕ БИЗНЕСА! </h4>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- ====== start another posts ====== -->
+        <section class="another-news">
+            <div class="container">
+                <div class="content pt-50 pb-50 border-1 border-top border-dark">
+                    <div class="row">
+                        {% if d1 %}
+                        <div class="col-lg-4 mb-5 mb-lg-0">
+                            <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">D1</a>
+                            <div class="row">
+                                {% for blog in d1 %}
+                                <div class="col-12 border-1 border-end brd-gray">
+                                    <div class="tc-post-grid-default">
+                                        <div class="item">
+                                            <div class="content pt-20">
+                                                <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{ blog.category}}</a>
+                                                <h4 class="title ltspc--1 mb-10">
+                                                    <a href="page-single-post-creative.html">
+                                                        {{blog.title|truncatechars:50}}
+                                                    </a>
+                                                </h4>
+                                                <div class="meta-bot lh-1 mt-20">
+                                                    <ul class="d-flex">
+                                                        <li class="date me-5">
+                                                            <a href="page-single-post-creative.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a><br>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if d2 %}
+                        <div class="col-lg-4 mb-5 mb-lg-0">
+                            <div class="row">
+                            <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">D2</a>
+                                {% for blog in d2 %}
+                                <div class="col-12 border-1 border-end brd-gray">
+                                    <div class="tc-post-grid-default">
+                                        <div class="item">
+                                            <div class="content pt-20">
+                                                <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
+                                                <h4 class="title ltspc--1 mb-10">
+                                                    <a href="page-single-post-creative.html">
+                                                       {{blog.title|truncatechars:50}}
+                                                    </a>
+                                                </h4>
+                                                
+                                                <div class="meta-bot lh-1 mt-20">
+                                                    <ul class="d-flex">
+                                                        <li class="date me-5">
+                                                            <a href="page-single-post-creative.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
+                                                        </li>
+                                                      
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if d3 %}
+                        <div class="col-lg-4">
+                            <div class="row">
+                            <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">D3</a>
+                                {% for blog in d3 %}
+                                <div class="col-12">
+                                    <div class="tc-post-grid-default">
+                                        <div class="item">
+                                            <div class="content pt-20">
+                                                <a href="page-single-post-creative.html#" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
+                                                <h4 class="title ltspc--1 mb-10">
+                                                    <a href="page-single-post-creative.html">
+                                                        {{blog.title|truncatechars:50}}
+                                                    </a>
+                                                </h4>
+                                               
+                                                <div class="meta-bot lh-1 mt-20">
+                                                    <ul class="d-flex">
+                                                        <li class="date me-5">
+                                                            <a href="page-single-post-creative.html#"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- ====== end modals ====== -->
+
+    </main>
+    <!--End-Contents-->
+
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}

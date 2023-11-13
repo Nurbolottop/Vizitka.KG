@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.secondary',
     'apps.all_categories',
+    'apps.magazine',
     
     
     
