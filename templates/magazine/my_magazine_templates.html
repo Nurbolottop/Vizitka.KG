@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Magazine</title>
+    <link rel="stylesheet" href="{% static 'magazines/css/magazine_style.css' %}">
+    <script src="{% static 'magazines/js/jquery.min.js' %}"></script>
+    <script src="{% static 'magazines/js/turn.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+
+<div id="container">
+    <a href="{% url 'magazine' %}" class="close-button">&#10005;</a>
+    <div id="flipbook">
+        {% for image_url in image_urls %}
+        <div style="background-image: url('{{ image_url }}');"></div>
+        {% endfor %}
+    </div>
+    <div class="navigation-panel">
+        <button class="nav-button" id="nav-first"><i class="fas fa-fast-backward"></i></button>
+        <button class="nav-button" id="nav-prev"><i class="fas fa-step-backward"></i></button>
+        <span class="page-indicator" id="page-indicator">1/8</span>
+        <button class="nav-button" id="nav-next"><i class="fas fa-step-forward"></i></button>
+        <button class="nav-button" id="nav-last"><i class="fas fa-fast-forward"></i></button>
+      </div>
+</div>
+
+  
+<script src="{% static 'magazines/js/your-script.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#flipbook").turn({
+            width: 1300,
+            height: 1000,
+            autoCenter: true
+        });
+    });
+</script>
+
+</body>
+</html>

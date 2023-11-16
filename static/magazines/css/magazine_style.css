@@ -1,0 +1,97 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #ccc;
+    height: 100%; /* Добавлено для обеспечения полной высоты */
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Используем 100vh для полной высоты экрана */
+    overflow: hidden; /* Добавлено для предотвращения прокрутки */
+}
+
+#flipbook {
+    width: 800px; /* Желаемая ширина */
+    height: 600px; /* Желаемая высота */
+}   
+
+#flipbook .page {
+    width: 800px; /* или любая другая фиксированная ширина, которую вы хотите использовать */
+    height: 600px; /* или любая другая фиксированная высота */
+    background-size: contain; /* Масштабирует изображение */
+    background-repeat: no-repeat; /* Предотвращает повторение изображения */
+    background-position: center center; /* Центрирует изображение */
+}
+
+.turn-page img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Убедитесь, что весь образ помещается в контейнер */
+}
+
+.close-button {
+    cursor: pointer;
+    position: absolute;
+    top: 50px; /* Уменьшено с 10px до 5px */
+    right: 500px; /* Уменьшено с 10px до 5px */
+    cursor: pointer;
+    position: absolute;
+    padding: 5px;
+    background-color: #fff; /* Белый фон */
+    border: none;
+    border-radius: 50%; /* Круглая форма */
+    width: 32px;  /* Ширина кнопки */
+    height: 32px; /* Высота кнопки */
+    font-size: 24px; /* Размер символа 'X' */
+    text-align: center;
+    line-height: 32px; /* Центровка символа 'X' по вертикали */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень для кнопки */
+    z-index: 1000; /* Убедитесь, что кнопка находится поверх других элементов */
+}
+.navigation-panel {
+  width: 80%;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-button {
+  background: #f9f9f9; /* Легкий фон для контраста */
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-button:hover, .nav-button:focus {
+  background-color: #e1e1e1; /* Цвет при наведении */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+.page-indicator {
+  display: inline-block;
+  margin: 0 10px;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
