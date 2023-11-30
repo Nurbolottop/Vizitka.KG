@@ -10,20 +10,20 @@ from apps.index import models
 # Classes
 from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine
 from apps.users.models import Subscriber,Contact
-from apps.secondary.models import Team,History,Stories
+from apps.secondary.models import Team,History,Stories,Partners
 
 # Functions
-# from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
+from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
 from apps.blog import blogs 
 
 # Create your views here.
 def index(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
-    # dollar = dollar_pars()
-    # euro = euro_pars()
-    # rub = rub_pars()
-    # tenge = tenge_pars()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
+    dollar = dollar_pars()
+    euro = euro_pars()
+    rub = rub_pars()
+    tenge = tenge_pars()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -128,6 +128,7 @@ def about(request):
     about = models.About.objects.latest('id')
     history = History.objects.all()
     team = Team.objects.all()
+    partner = Partners.objects.all()
     category = Category.objects.all().order_by("?")[:]
     return render(request,'base/page-about.html', locals())
 

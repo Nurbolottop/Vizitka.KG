@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <img src="https://newzin-html.themescamp.com/assets/img/about_page/pattern_1.png' %}" alt="" class="pattern">
+            <a href = '{% url "index" %}'> <img src="https://newzin-html.themescamp.com/assets/img/about_page/pattern_1.png' %}" alt="" class="pattern">
         </section> {% endcomment %}
         <!-- ====== end about-vision ====== -->
 
@@ -180,6 +180,22 @@
         <!-- ====== end about-team ====== -->
 {% endif %}
 
+
+<!-- partial:index.partial.html -->
+<br>
+<div class="title text-center mb-30">
+    <h2 class="fsz-30px"> Наши партнеры  </h2>
+</div>
+<div class="slider">
+	<div class="slide-track">
+        {% for partner in partner%}
+		<div class="slide">
+			<a href = '{{partner.url}}'> <img src="{{partner.image.url}}" height="100" width="250" alt="" /></a>
+		</div>
+		{%endfor%}
+	</div>
+</div>
+<br>
         <!-- ====== start about-history ====== -->
         {% if history%}
         <section class="tc-about-history">

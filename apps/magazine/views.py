@@ -21,6 +21,7 @@ def magazine(request):
     stories = Stories.objects.all()
     category = Category.objects.all().order_by("?")[:]
     magazine = Magazine.objects.all()
+    
     return render(request,"magazine/magazine.html",locals())
 
 

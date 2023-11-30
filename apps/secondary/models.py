@@ -73,3 +73,22 @@ class Stories(models.Model):
     class Meta:
         verbose_name = "Сторис"
         verbose_name_plural = "Сторисы"
+
+class Partners(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название"
+    )
+    image = models.ImageField(
+        upload_to="partners_image",
+        verbose_name="Фотография"
+    )
+    url = models.URLField(
+        verbose_name="Ссылка"
+    )
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Партнер"
+        verbose_name_plural = "Партнеры"

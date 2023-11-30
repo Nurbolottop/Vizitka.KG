@@ -2,7 +2,8 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: #ccc;
+    background: 
+    #eee7e7;
     height: 100%; /* Добавлено для обеспечения полной высоты */
 }
 

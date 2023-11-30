@@ -18,7 +18,15 @@ class StoriesFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )
     list_display = ('title',)
     search_fields = ('title',)
+
+class PartnersFilterAdmin(admin.ModelAdmin):
+    verbose_name_plural = 'Партнеры'
+    list_filter = ('title', )
+    list_display = ('title',)
+    search_fields = ('title',)
     
 admin.site.register(models.Team, TeamFilterAdmin)
 admin.site.register(models.History, HistoryFilterAdmin)
 admin.site.register(models.Stories, StoriesFilterAdmin)
+admin.site.register(models.Partners, PartnersFilterAdmin)
+
