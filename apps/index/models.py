@@ -14,7 +14,11 @@ class Settings(models.Model):
     )
     logo = models.ImageField(
         upload_to="logo/",
-        verbose_name="Логотип"
+        verbose_name="Логотип для темного фона"
+    )
+    logo_white = models.ImageField(
+        upload_to="logo/",
+        verbose_name="Логотип для темного фона"
     )
     phone = models.CharField(
         max_length=255,

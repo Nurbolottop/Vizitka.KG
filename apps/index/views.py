@@ -8,11 +8,11 @@ from django.core.mail import send_mail
 from apps.index import models
 
 # Classes
-from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine
+from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine,Banner
 from apps.users.models import Subscriber,Contact
 from apps.secondary.models import Team,History,Stories,Partners
-
 # Functions
+
 from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
 from apps.blog import blogs 
 
@@ -32,6 +32,7 @@ def index(request):
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
+    banner = Banner.objects.all()
 
     blog = Blog.objects.all().order_by("?")[:]
     latest_news = Blog.objects.order_by('-created_at')[:5]

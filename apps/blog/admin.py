@@ -40,7 +40,12 @@ class SiteFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )
     list_display = ('title', 'price')
     search_fields = ('title', 'price')
-    
+
+class BannerFilterAdmin(admin.ModelAdmin):
+    list_filter = ('title', )
+    list_display = ('title',)
+    search_fields = ('title',)
+
 admin.site.register(models.Category, CategoryFilterAdmin)
 admin.site.register(models.Blog, BlogFilterAdmin)
 admin.site.register(models.BigAdvert, BigAdvertFilterAdmin)
@@ -48,4 +53,6 @@ admin.site.register(models.NormalAdvert, NormalAdvertFilterAdmin)
 admin.site.register(models.SmallAdvert, SmallAdvertFilterAdmin)
 admin.site.register(models.Magazine, MagazineFilterAdmin)
 admin.site.register(models.Site, SiteFilterAdmin)
+admin.site.register(models.Banner, BannerFilterAdmin)
+
 

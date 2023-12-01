@@ -172,3 +172,22 @@ class Site(models.Model):
     class Meta:
         verbose_name = "Сайт"
         verbose_name_plural = "Сайты"
+
+class Banner(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название"
+    )
+    image = models.ImageField(
+        max_length=255,
+        verbose_name="Фотография"
+    )
+    url = models.URLField(
+        verbose_name="Ccылка"
+    )
+    def __str__(self):
+        return f"{self.title}"
+    
+    class Meta:
+        verbose_name = "Баннер на главной странице"
+        verbose_name_plural = "Баннеры на главной странице"

@@ -36,7 +36,7 @@
                     <div class="col-lg-4">
                         <a href="{% url 'index' %}" class="logo-brand d-none d-lg-block">
                             <img src="{{setting.logo.url}}" alt="" class="dark-none">
-                            <img src="{{setting.logo.url}}" alt="" class="light-none">
+                            <img src="{{setting.logo_white.url}}" alt="" class="light-none">
                         </a>
                     </div>
                     <div class="col-lg-4">
@@ -101,8 +101,8 @@
                 <div class="mob-nav-toggles d-flex align-items-center justify-content-between">
 
                     <a href="home-default.html#" class="logo-brand d-block d-lg-none w-50 my-4">
-                        <img src="{% static 'assets/img/logo_home1.png' %} " alt="" class="dark-none">
-                        <img src="{% static 'assets/img/logo_home1_lt.png' %} " alt="" class="light-none">
+                        <img src="{{setting.logo.url}}" alt="" class="dark-none">
+                        <img src="{{setting.logo_white.url}}" alt="" class="light-none">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

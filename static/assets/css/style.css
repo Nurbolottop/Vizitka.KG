@@ -2158,7 +2158,6 @@ small.text {
 ================================================================*/
 /* --------------- navbar style --------------- */
 .navbar-container {
-  position: relative;
   z-index: 999;
 }
 
@@ -15926,12 +15925,17 @@ justify-content: center;
   align-items: center;
 }
 
-.c-header-hamburger {
-  display: none; /* Скрыт по умолчанию, показывается на мобильных устройствах */
-}
+@media only screen and (max-width: 768px) {
+  .c-menu {
+      display: none;
+  }
+  .c-header-hamburger {
+      display: block; /* This will show the hamburger menu icon */
+  }
+  .c-header-nav {
+    display: none;
 
-.m-visible {
-  display: block; /* Показывается на мобильных устройствах */
+  }
 }
 .restaurant-menu-price {
   display: table-cell;
@@ -15995,3 +15999,30 @@ body {
 padding: 50px
 }
 
+/* Ensure the styles have higher specificity by including parent class */
+.navbar-container .top-navbar.style-1 {
+  padding: 20px 0; /* Adjust padding to increase overall height */
+}
+
+/* Increase the font size of the date, weather information, and the subscribe link */
+.navbar-container .top-navbar.style-1 .date-weather .item .inf,
+.navbar-container .top-navbar.style-1 .sub-darkLight .subs {
+  font-size: 18px; /* Increase font size */
+  line-height: 1.5; /* Adjust line height as needed */
+}
+
+/* Ensure logo image scales properly */
+.navbar-container .top-navbar.style-1 .logo-brand img {
+  height: auto; /* Keep height auto to maintain aspect ratio */
+  max-width: 200px; /* Adjust max width as needed */
+}
+
+/* Modify padding and font size of subscription link for larger clickable area */
+.navbar-container .top-navbar.style-1 .sub-darkLight .subs {
+  padding: 15px; /* Add padding */
+}
+
+/* Increase the font size of the icons */
+.navbar-container .top-navbar.style-1 .icon {
+  font-size: 24px; /* Larger font size for icons */
+}

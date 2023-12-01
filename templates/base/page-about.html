@@ -80,7 +80,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-6">
                         <div class="img img-cover">
-                            <img src="{{about.image.url}}" alt="">templates/detail/page-single-post-creative.html
+                            <img src="{{about.image.url}}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-5">
@@ -181,21 +181,35 @@
 {% endif %}
 
 
-<!-- partial:index.partial.html -->
-<br>
-<div class="title text-center mb-30">
-    <h2 class="fsz-30px"> Наши партнеры  </h2>
-</div>
-<div class="slider">
-	<div class="slide-track">
-        {% for partner in partner%}
-		<div class="slide">
-			<a href = '{{partner.url}}'> <img src="{{partner.image.url}}" height="100" width="250" alt="" /></a>
-		</div>
-		{%endfor%}
-	</div>
-</div>
-<br>
+<section class="tc-popular-categories-style3">
+    <div class="container">
+        <div class="section-title-style2 mb-30">
+            <h3 class="color-000">Наши партнеры</h3>
+        </div>
+        <div class="tc-popular-categories-slider3 tc-slider-style1 slider-color-orange1">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for partner in partner%}
+                        <div class="swiper-slide">
+                            <a href="{{partner.url}}" class="category-card">
+                                <div class="icon">
+                                  <img src="{{partner.image.url}}" alt="">
+                                    {% comment %} <i class="lab la-playstation"></i> {% endcomment %}
+                                </div>
+                                <h6 class="title">
+                                    {{partner.title}}
+                                </h6>
+                            </a>
+                        </div>
+		            {%endfor%}
+                </div>
+            </div>
+            <!-- arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
         <!-- ====== start about-history ====== -->
         {% if history%}
         <section class="tc-about-history">
