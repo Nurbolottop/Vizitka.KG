@@ -13,7 +13,7 @@ from apps.users.models import Subscriber,Contact
 from apps.secondary.models import Team,History,Stories,Partners
 # Functions
 
-from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data,get_followers_count
+from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data
 from apps.blog import blogs 
 
 # Create your views here.
@@ -69,8 +69,8 @@ def index(request):
     return render(request, 'base/home-default.html', locals())
 
 def category_view(request, category_id):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -98,8 +98,8 @@ def storie(request,id):
     return render(request, 'base/stories.html', locals())
 
 def contact(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -122,8 +122,8 @@ def contact(request):
     return render(request, 'base/page-contact.html', locals())
 
 def about(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     
     setting = models.Settings.objects.latest('id')
     about = models.About.objects.latest('id')
@@ -134,8 +134,8 @@ def about(request):
     return render(request,'base/page-about.html', locals())
 
 def search(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")
     
@@ -155,16 +155,16 @@ def search(request):
     return render(request, 'secondary/search_result.html', locals())
 
 def subscribe_done(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
     
     return render(request, 'subscribe/subscribe_done.html', locals())
 
 def subscribe_nodone(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
     
@@ -181,8 +181,8 @@ def team(request):
     return render(request,'base/page-team.html', locals())
 
 def banner(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weather_data()
+    current_date = datetime.now()
+    temperature, weather_condition = get_weather_data()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     

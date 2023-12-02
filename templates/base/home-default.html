@@ -16,40 +16,7 @@
         <!-- ====== end breaking news ====== -->
 
         <!-- ====== start trends news ====== -->
-        <header class="tc-header-style3">
-            <div class="tc-header-slider-style3">
-                <div class="swiper-container">
-                    {% for banner in banner%}
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="slider-card">
-                                <a href="{{banner.url}}"><img src="{{banner.image.url}}" alt="" class="img-back"></a>
-                                {% comment %} <div class="container">
-                                    <div class="info">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-6">
-                                                <div class="tags">
-                                                    <a href="home-gaming.html#" class="bg-orange1 text-white py-1 px-3 rounded-pill fsz-13px text-uppercase mb-20">reviews</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> {% endcomment %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
 
-                </div>
-    
-                <!-- pagination -->
-                <div class="swiper-pagination"></div>
-    
-                <!-- arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </header>
         <section class="tc-trends-news-style1 pt-50 pb-50 bg-gray1">
             <div class="container">
                 
@@ -187,7 +154,41 @@
             </div>
         </section>
         <!-- ====== end trends news ====== -->
+        <header class="tc-header-style3">
+            <div class="tc-header-slider-style3">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                    {% for banner in banner%}
+                        <div class="swiper-slide">
+                            <div class="slider-card">
+                                <a href="{{banner.url}}"><img src="{{banner.image.url}}" alt="" class="img-back"></a>
+                                {% comment %} <div class="container">
+                                    <div class="info">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div class="tags">
+                                                    <a href="home-gaming.html#" class="bg-orange1 text-white py-1 px-3 rounded-pill fsz-13px text-uppercase mb-20">reviews</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> {% endcomment %}
+                            </div>
+                        </div>
+                    {% endfor %}
 
+                    </div>
+
+                </div>
+    
+                <!-- pagination -->
+                <div class="swiper-pagination"></div>
+    
+                <!-- arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </header>
         <!-- ====== start google web stories ====== -->
         {% if stories %}
         <section class="tc-google-stories-style1">

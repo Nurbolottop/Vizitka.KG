@@ -14,8 +14,8 @@
                                             <i class="la la-calendar"></i>
                                         </div>
                                         <div class="inf">
-                                            {% comment %} <strong>{{ current_date|date:"l" }}</strong>
-                                            <p>{{ current_date|date:"Y-m-d" }}</p> {% endcomment %}
+                                          <strong>{{ current_date|date:"l" }}</strong>
+                                            <p>{{ current_date|date:"Y-m-d" }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -42,24 +42,24 @@
                     <div class="col-lg-4">
                         <div class="sub-darkLight">
                             <div class="row text-end align-items-center">
-                                <div class="col-6">
-                                    <a href="#"
-                                        class="text-uppercase fs-6 border-bottom border-1 border-dark subs">
-                                        <i class="la la-envelope fs-5 me-1"></i>
-                                        ПОДПИСАТЬСЯ
-                                    </a>
-                                </div>
-                                <div class="col-6">
-                                    <div class="darkLight-btn">
-                                        <span class="icon active" id="light-icon">
-                                            <i class="la la-sun"></i>
-                                        </span>
-                                        <span class="icon" id="dark-icon">
-                                            <i class="la la-moon"></i>
-                                        </span>
+                                    <div class="col-6">
+                                        <a href="#"
+                                            class="text-uppercase fs-6 border-bottom border-1 border-dark subs">
+                                            <i class="la la-envelope fs-5 me-1"></i>
+                                            Подписаться
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="darkLight-btn">
+                                            <span class="icon active" id="light-icon">
+                                                <i class="la la-sun"></i>
+                                            </span>
+                                            <span class="icon" id="dark-icon">
+                                                <i class="la la-moon"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="nav-subs-card">
                                 <form method="post">
                                     {% csrf_token %}
@@ -127,7 +127,12 @@
                                 Журналы
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">
+                                О нас
+                            </a>
+                        </li>
+                        {% comment %} <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Страницы
@@ -136,7 +141,7 @@
                                 <li><a class="dropdown-item" href="{% url 'about'  %}">О нас</a></li>
                                 <li><a class="dropdown-item" href="{% url 'team'  %}">Наша команда</a></li>
                             </ul>
-                        </li>
+                        </li> {% endcomment %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'banner' %}">
                                 Рекламодателям

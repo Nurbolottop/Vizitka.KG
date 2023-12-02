@@ -8,7 +8,7 @@ class Settings(models.Model):
         max_length=255,
         verbose_name="Название сайта"
     )
-    descriptions = RichTextField(
+    descriptions = models.TextField(
         verbose_name="Информационный текст",
         blank=True,null=True
     )

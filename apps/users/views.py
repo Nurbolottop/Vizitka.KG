@@ -3,12 +3,14 @@ from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.contrib import messages
 from django.http import HttpResponse
+from apps.blog.views import get_weather_data
 
 from . import models  # Подключите вашу модель Settings и User
 from apps.index.models import Settings
 def register(request):
     current_date = datetime.now()
     setting = Settings.objects.latest('id')
+    temperature, weather_condition = get_weather_data()
 
     if request.method == "POST":
         username = request.POST.get("username")

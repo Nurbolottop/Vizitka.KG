@@ -7,13 +7,15 @@ from apps.magazine.models import Magazine
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core.cache import cache
-
+from apps.index.parsing import get_weather_data
 # Create your views here.
 def magazine(request):
     blog = Blog.objects.all().order_by('?')  
     current_date = datetime.now()
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('views')[:5]
+    temperature, weather_condition = get_weather_data()
+
     # < start advert >
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()

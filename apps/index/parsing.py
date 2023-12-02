@@ -75,12 +75,3 @@ def get_weather_data():
     return temperature, weather_condition
 
 
-import instaloader
-
-def get_followers_count(username = "vizitka_kg"):
-    L = instaloader.Instaloader()
-    try:
-        profile = instaloader.Profile.from_username(L.context, username)
-        return profile.followers
-    except Exception as e:
-        return None
