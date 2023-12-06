@@ -140,6 +140,10 @@ class SmallAdvert(models.Model):
         verbose_name_plural = "Добавить рекламу маленького масштаба"
 
 class Magazine(models.Model):
+    image = models.ImageField(
+        upload_to="service_magazine",
+        verbose_name="Фотография"
+    )
     title = models.CharField(
         max_length=255,
         verbose_name='Название услуги'

@@ -84,6 +84,7 @@ class About(models.Model):
         verbose_name_plural = "Добавить о нас"
         
 class Banner(models.Model):
+    
     title = RichTextField(
         verbose_name="Информационный текст",
         blank=True,null=True

@@ -16014,9 +16014,7 @@ padding: 50px
 }
 
 /* Modify padding and font size of subscription link for larger clickable area */
-.navbar-container .top-navbar.style-1 .sub-darkLight .subs {
-  padding: 0px; /* Add padding */
-}
+
 
 /* Increase the font size of the icons */
 .navbar-container .top-navbar.style-1 .icon {

@@ -558,7 +558,7 @@
                                         <div class="icon facebook-icon">
                                             <i class="lab la-facebook-f"></i>
                                         </div>
-                                        <h6>1,5M</h6>
+                                        {% comment %} <h6>1,5M</h6> {% endcomment %}
                                     </a>
                                     {% endif %}
                                     {% if setting.instagram %}
@@ -574,7 +574,7 @@
                                         <div class="icon twitter-icon">
                                             <i class="lab la-youtube"></i>
                                         </div>
-                                        <h6>920K</h6>
+                                        {% comment %} <h6>920K</h6> {% endcomment %}
                                     </a> 
                                     {% endif %}
                                     {% if setting.whatsapp %}
@@ -959,32 +959,32 @@
         <!-- ====== end another-news ====== -->
 
         <!-- ====== start download ====== -->
-        <section class="tc-download-style1 pb-50">
-            <div class="container">
-                <div class="content">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4">
-                            <div class="info">
-                                <strong class="title">Download Newzin App</strong>
-                                <div class="text">
-                                    Easy to update latest news, daily podcast and everything in your hand
+            {% comment %} <section class="tc-download-style1 pb-50">
+                <div class="container">
+                    <div class="content">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4">
+                                <div class="info">
+                                    <strong class="title">Download Newzin App</strong>
+                                    <div class="text">
+                                        Easy to update latest news, daily podcast and everything in your hand
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="img">
-                                <a href="#">
-                                    <img src="{% static 'assets/img/apple1.png' %} " alt="">
-                                </a>
-                                <a href="#">
-                                    <img src="{% static 'assets/img/android1.png' %} " alt="">
-                                </a>
+                            <div class="col-lg-3">
+                                <div class="img">
+                                    <a href="#">
+                                        <img src="{% static 'assets/img/apple1.png' %} " alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="{% static 'assets/img/android1.png' %} " alt="">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section> {% endcomment %}
         <!-- ====== end download ====== -->
 
         <!-- ====== start modals ====== -->
