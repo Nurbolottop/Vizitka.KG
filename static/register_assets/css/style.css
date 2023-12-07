@@ -62,6 +62,7 @@ body {
     box-shadow: none;
 }
 
+
 .login-box .alert{
     padding: 15.5px 20px;
     font-size: 13px;
@@ -12669,12 +12670,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }
 
+    
+
 .login-32 .form-section{
     max-width: 600px;
     margin: 0 auto;
     border-radius: 10px;
     padding: 70px;
-    background: #fff2f2;
+    background: #ffe8e3;
 }
 
 .login-32 .login-inner-form .form-group {
@@ -14062,3 +14065,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }
 /** Login 35 end **/
+element.style {
+    width: 100%;
+}
