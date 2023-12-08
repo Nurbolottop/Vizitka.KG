@@ -1,6 +1,4 @@
 from django.shortcuts import render,redirect
-import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
 from django.core.paginator import Paginator
 # my imports
@@ -10,6 +8,7 @@ from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category
 from apps.all_categories import blogs_detail
 from apps.secondary.models import Stories
 from apps.index.parsing import get_weather_data
+from asgiref.sync import async_to_sync
 
 # Create your views here.
 
@@ -27,7 +26,8 @@ def blog(request):
     category = Category.objects.all().order_by("?")[:]
     
     # < end advert >
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+
     # < end temperature>
     paginator = Paginator(blog, 5)  # Показывать по 5 блогов на каждой странице
     page = request.GET.get('page')
@@ -54,7 +54,7 @@ def blog_detail(request, id):
     blog = Blog.objects.get(id=id)
     popular_posts = Blog.objects.order_by('-views')[:5]
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     category = Category.objects.all().order_by("?")[:]
     # category in blog detail
     d1 = blogs_detail.d1_method()

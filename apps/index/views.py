@@ -15,15 +15,17 @@ from apps.secondary.models import Team,History,Stories,Partners
 
 from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data
 from apps.blog import blogs 
+from asgiref.sync import async_to_sync
 
 # Create your views here.
 def index(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
-    dollar = dollar_pars()
-    euro = euro_pars()
-    rub = rub_pars()
-    tenge = tenge_pars()
+    dollar_rate = async_to_sync(dollar_pars)()
+    euro_rate = async_to_sync(euro_pars)()
+    ruble_rate = async_to_sync(rub_pars)()
+    tenge_rate = async_to_sync(tenge_pars)()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -70,7 +72,7 @@ def index(request):
 
 def category_view(request, category_id):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -99,7 +101,7 @@ def storie(request,id):
 
 def contact(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -123,7 +125,7 @@ def contact(request):
 
 def about(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     
     setting = models.Settings.objects.latest('id')
     about = models.About.objects.latest('id')
@@ -135,7 +137,7 @@ def about(request):
 
 def search(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")
     
@@ -156,7 +158,7 @@ def search(request):
 
 def subscribe_done(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
     
@@ -164,7 +166,7 @@ def subscribe_done(request):
 
 def subscribe_nodone(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
     
@@ -182,7 +184,7 @@ def team(request):
 
 def banner(request):
     current_date = datetime.now()
-    temperature, weather_condition = get_weather_data()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
