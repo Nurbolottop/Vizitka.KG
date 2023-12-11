@@ -51,8 +51,7 @@ INSTALLED_APPS = [
     'apps.secondary',
     'apps.all_categories',
     'apps.magazine',
-    
-    
+    'apps.vote',
     
     # Google
     'allauth',

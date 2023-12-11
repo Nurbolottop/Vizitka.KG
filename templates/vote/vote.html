@@ -39,85 +39,122 @@
 
     <!--Contents-->
     <main>
-
         <section class="tc-popular-posts-blog">
             <div class="container">
-                <div class="content pt-50 pb-50 border-1 border-bottom brd-gray">
-                    <p class="color-000 text-uppercase mb-30 ltspc-1"> Популярные посты </p>
-                    <div class="tc-post-grid-default">
-                        <div class="tc-popular-posts-blog-slider9 tc-slider-style1">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    {% for popular in popular_posts %}
-                                    <div class="swiper-slide">
-                                        <div class="item">
-                                            <div class="img img-cover th-180">
-                                                <img src="{{popular.image.url}}" alt="">
-                                            </div>
-                                            <div class="content pt-20">
-                                                <a href="{% url 'blog_detail' popular.id%}"
-                                                    class="news-cat color-999 fsz-13px text-uppercase mb-10">{{popular.category}}</a>
-                                                <h4 class="title ltspc--1 mb-10">
-                                                    <a href="{% url 'blog_detail' popular.id%}">
-                                                        {{popular.title|truncatewords:5}}
-                                                    </a>
-                                                </h4>
-                                                <div class="text color-666">
-                                                    {{popular.sub_title|truncatewords:5}}
-                                                </div>
-                                                <div class="meta-bot lh-1 mt-20">
-                                                    <ul class="d-flex">
-                                                        <li class="date me-5">
-                                                            <a href=""><i class="la la-calendar me-2"></i>{{popular.created_at}}
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="content-widgets pt-50 pb-50">
                     <div class="row">
+                        
                         <div class="col-lg-9">
                             <div class="tc-post-list-style3">
                                 <div class="items">
-                                    {% if blogs %}
-                                        {% for blog in blogs %}
-                                            <div class="row">
-                                                <div class="col-lg-5">
-                                                    <div class="img th-230 img-cover overflow-hidden">
-                                                        <img src="{{blog.image.url}}" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-7">
-                                                    <div class="content mt-20 mt-lg-0">
-                                                        <a href="{% url 'blog_detail' blog.id%}"
-                                                            class="color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
-                                                        <h4 class="title mb-15"> 
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.title|truncatewords:10}}</a>
-                                                        </h4>
-                                                        <div class="meta-bot fsz-13px color-666">
-                                                            <ul class="d-flex">
-                                                                <li class="date me-5">
-                                                                    <a href="{% url 'blog_detail' blog.id%}">
-                                                                        <i class="la la-calendar me-2"></i> {{blog.created_at}}
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                {% if user.is_authenticated%}
+                                    
+                                    <div class="voting-container">
+                                        <div class="voting-header">
+                                          Лучшая студия лазерной эпиляции - 2022
+                                        </div>
+                                        <form id="voting-form">
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option1"> Студия лазерной эпиляции Laser.shugar.n1</label>
+                                          </div>
+                                      
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option2"> Сеть студий лазерной эпиляции Айкибы</label>
+                                          </div>
+                                      
+                                          <button type="button" class="vote-button" onclick="submitVote()">Проголосовать</button>
+                                        </form>
+                                      
+                                        <!-- ... ваш код до этого места ... -->
+                                      
+                                        <div class="voting-results" id="voting-results">
+                                            <div>Студия лазерной эпиляции Laser.shugar.n1 - <span id="option1-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%"></div>
                                             </div>
-                                        {% endfor %}
-                                        {% else %}
-                                        <p>Нет блогов.</p>
-                                        {% endif %}
+                                        
+                                            <div>Сеть студий лазерной эпиляции Айкибы - <span id="option2-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%" style="width: 50%;"> <!-- Width должен быть установлен в соответствии с процентами --></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="voting-container">
+                                        <div class="voting-header">
+                                          Кто самый умный
+                                        </div>
+                                        <form id="voting-form">
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option1"> Жаныш</label>
+                                          </div>
+                                      
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option2"> Асхат</label>
+                                          </div>
+                                      
+                                          <button type="button" class="vote-button" onclick="submitVote()">Проголосовать</button>
+                                        </form>
+                                      
+                                        <!-- ... ваш код до этого места ... -->
+                                      
+                                        <div class="voting-results" id="voting-results">
+                                            <div>Жаныш - <span id="option1-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%"></div>
+                                            </div>
+                                        
+                                            <div>Асхат - <span id="option2-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%" style="width: 50%;"> <!-- Width должен быть установлен в соответствии с процентами --></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="voting-container">
+                                        <div class="voting-header">
+                                          Кто тупой
+                                        </div>
+                                        <form id="voting-form">
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option1"> Асхат</label>
+                                          </div>
+                                      
+                                          <div class="voting-option">
+                                            <label><input type="radio" name="vote" value="option2"> Бексултан</label>
+                                          </div>
+                                      
+                                          <button type="button" class="vote-button" onclick="submitVote()">Проголосовать</button>
+                                        </form>
+                                      
+                                        <!-- ... ваш код до этого места ... -->
+                                      
+                                        <div class="voting-results" id="voting-results">
+                                            <div>Асхат - <span id="option1-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%"></div>
+                                            </div>
+                                        
+                                            <div>Бексултан - <span id="option2-result">0.00%</span></div>
+                                            <div class="result-bar">
+                                            <div class="result-fill" id="option1-fill" data-percent="0.00%" style="width: 50%;"> <!-- Width должен быть установлен в соответствии с процентами --></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <div class="content mt-20 mt-lg-0">
+                                                <h4 class="title mb-15">Что бы голосовать вы должны 
+                                                    <a href="{% url 'register' %}">Зарегистрироваться</a>
+                                                </h4>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
                                 </div>
                             </div>
  
@@ -140,7 +177,7 @@
                                     <a href="?page={{ blogs.next_page_number }}"><span>Следующий</span></a>
                                     <a href="?page={{ blogs.paginator.num_pages }}"><span>{{ blogs.paginator.num_pages }}</span></a>
                                 {% endif %}
-                            </div>
+                            </div>  
                         </div>
                         <div class="col-lg-3">
                             <div class="widgets-sticky mt-5 mt-lg-0">
