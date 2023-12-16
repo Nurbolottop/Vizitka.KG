@@ -15,11 +15,10 @@ class Nomination(models.Model):
         verbose_name_plural = "Номинации"
 
 class Option(models.Model):
-    nomination = models.ForeignKey(Nomination, related_name="options", on_delete=models.CASCADE, verbose_name="Номинация")
-    name = models.CharField(max_length=200, verbose_name="Вариант")
-    votes = models.IntegerField(default=0, verbose_name="Голоса")
+    nomination = models.ForeignKey(Nomination, related_name='options', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0) 
 
-    # Метод для увеличения количества голосов
     def increment_vote(self):
         self.votes += 1
         self.save()

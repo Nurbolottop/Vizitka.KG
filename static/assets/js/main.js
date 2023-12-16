@@ -1431,39 +1431,5 @@ if ($(window).width() > 1200) {
     });
 }
 
-// Имитация базы данных голосов
-var votes = {
-    option1: 0,
-    option2: 0,
-    totalVotes: 0
-  };
-  
-  function submitVote() {
-    var selectedOption = document.querySelector('input[name="vote"]:checked').value;
-    // Увеличиваем количество голосов для выбранного варианта и общее количество голосов
-    votes[selectedOption]++;
-    votes.totalVotes++;
-  
-    updateResults();
-    // Disable the form to prevent multiple submissions
-    document.getElementById("voting-form").style.display = "none";
-  }
-  
-  function updateResults() {
-    var resultsDiv = document.getElementById('voting-results');
-    resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = ''; // Очищаем предыдущие результаты
-  
-    // Обновляем результаты для каждого варианта
-    for (var option in votes) {
-      if (option !== 'totalVotes') {
-        var percentage = (votes[option] / votes.totalVotes * 100).toFixed(2);
-        resultsDiv.innerHTML += '<div>' + document.querySelector('label input[value="' + option + '"]').parentNode.textContent.trim() + ' - ' + percentage + '%</div>';
-        resultsDiv.innerHTML += '<div class="result-bar"><div class="result-fill" style="width: ' + percentage + '%;">' + percentage + '%</div></div>';
-      }
-    }
-  }
-// В функции updateResults или аналогичной
-document.getElementById('option1-fill').setAttribute('data-percent', percent1 + '%');
-// Установите ширину элемента result-fill в соответствии с процентами
-document.getElementById('option1-fill').style.width = percent1 + '%';
+// Голосование
+

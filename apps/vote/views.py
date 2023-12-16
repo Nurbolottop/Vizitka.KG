@@ -29,15 +29,17 @@ def vote(request):
         option.increment_vote()
 
         # Подсчет результатов для номинации
+        total_votes = sum(o.votes for o in option.nomination.options.all())
         results = [{
-            'option_id': opt.id,
+            'name': opt.name,
             'votes': opt.votes,
-            'percentage': opt.votes / sum(o.votes for o in option.nomination.options.all()) * 100
+            'percentage': round(opt.votes / total_votes * 100, 2)  # Округление до двух знаков после запятой
         } for opt in option.nomination.options.all()]
 
+        # Возвращаем JSON с результатами
         return JsonResponse({
-            'success': True,
-            'results': results
+            'results': results,
+            'total_votes': total_votes
         })
 
     # Если это не POST запрос, просто отобразите страницу с формами
