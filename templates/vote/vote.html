@@ -62,47 +62,8 @@
                                             </div>
                                         {% endfor %}
                                     </div>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $(".vote-button").click(function() {
-                                                var nominationId = $(this).data('nomination-id');
-                                                var selectedOption = $("#options" + nominationId + " input[type='radio']:checked").val();
-                                                if (selectedOption) {
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: '{% url "vote" %}',
-                                                        data: {
-                                                            'option_id': selectedOption,
-                                                            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-                                                        },
-                                                        dataType: 'json',
-                                                        success: function(data) {
-                                                            var resultsContainer = $("#resultsContainer" + nominationId);
-                                                            resultsContainer.empty();
-                                                            data.results.forEach(function(result) {
-                                                                var progressBarWidth = result.percentage + '%';
-                                                                resultsContainer.append(
-                                                                    '<div class="result-item">' +
-                                                                        '<span class="result-name">' + result.name + ' - ' + result.votes + ' голос(ов)</span>' +
-                                                                        '<div class="result-progress-background">' +
-                                                                            '<div class="result-progress-bar" style="width: ' + progressBarWidth + ';"></div>' +
-                                                                        '</div>' +
-                                                                        '<span class="result-percentage">' + progressBarWidth + '</span>' +
-                                                                    '</div>'
-                                                                );
-                                                            });
-                                                            resultsContainer.show();
-                                                        },
-                                                        error: function(error) {
-                                                            console.error('Ошибка: ', error);
-                                                        }
-                                                    });
-                                                } else {
-                                                    alert('Выберите вариант перед голосованием.');
-                                                }
-                                            });
-                                        });
-                                        </script>
+                                    
+                                        
                                         
                                         
                                 
@@ -228,4 +189,92 @@
     </main>
     {% include 'include/footer.html' %}
 
+<style>
+    .result-item {
+      background: #f7f7f7; /* Цвет фона, как у ваших блоков голосования */
+      border: 1px solid #ddd; /* Граница, как у ваших блоков голосования */
+      border-radius: 8px; /* Скругление углов, как у ваших блоков голосования */
+      margin: 20px 0; /* Отступы, как у ваших блоков голосования */
+      padding: 15px; /* Внутренние отступы, как у ваших блоков голосования */
+      transition: all 0.2s ease-in-out; /* Плавность переходов, если таковые имеются */
+    }
+    
+    .result-name {
+      display: block; /* Если вам нужно, чтобы имя результата было на отдельной строке */
+      margin-bottom: 10px; /* Если вам нужен отступ между именем и прогресс-баром */
+    }
+    
+    .result-progress-background {
+      background-color: #e6e6e6; /* Цвет фона прогресс-бара */
+      border-radius: 8px; /* Скругление углов прогресс-бара */
+      overflow: hidden; /* Скрытие части прогресс-бара, выходящей за пределы радиуса */
+    }
+    
+    .result-progress-bar {
+      height: 20px; /* Высота прогресс-бара */
+      background-color: #4db765; /* Цвет прогресс-бара */
+      width: 0; /* Начальная ширина, которая будет изменена через JS */
+      line-height: 20px; /* Высота строки, чтобы текст был по центру прогресс-бара */
+      color: white; /* Цвет текста внутри прогресс-бара */
+      text-align: right; /* Выравнивание текста внутри прогресс-бара */
+      padding-right: 5px; /* Отступ справа для текста внутри прогресс-бара */
+      border-radius: 8px 0 0 8px; /* Скругление только левых углов прогресс-бара */
+    }
+    
+    .result-percentage {
+      font-size: 14px; /* Размер шрифта для процентов */
+      margin-left: 5px; /* Отступ слева для процентов */
+    }
+</style>
+ 
+<script>
+    $(document).ready(function() {
+        $(".vote-button").click(function() {
+            var nominationId = $(this).data('nomination-id');
+            var form = $(this).closest('form'); // Найти ближайшую форму от кнопки голосования
+    
+            var selectedOption = $("#options" + nominationId + " input[type='radio']:checked").val();
+            if (selectedOption) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "vote" %}',
+                    data: {
+                        'option_id': selectedOption,
+                        'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        form.hide(); // Скрыть форму после голосования
+                        var resultsContainer = $("#resultsContainer" + nominationId);
+                        resultsContainer.empty();
+    
+                        data.results.forEach(function(result) {
+                            var progressBarWidth = result.percentage + '%';
+                            resultsContainer.append(
+                                '<div class="result-item">' +
+                                    '<span class="result-name">' + result.name + ' - ' + result.votes + ' голос(ов)</span>' +
+                                    '<div class="result-progress-background">' +
+                                        '<div class="result-progress-bar" style="width: ' + progressBarWidth + ';">' +
+                                            progressBarWidth +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>'
+                            );
+                        });
+                        resultsContainer.show(); // Показать результаты
+                    },
+                    error: function(error) {
+                        console.error('Ошибка: ', error);
+                    }
+                });
+            } else {
+                alert('Выберите вариант перед голосованием.');
+            }
+        });
+    });
+</script>
+
 {% endblock %}
+
+
+

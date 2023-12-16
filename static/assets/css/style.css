@@ -457,8 +457,8 @@ body {
 
 .container, .container-lg, .container-md, .container-sm, .container-xl {
   max-width: 1200px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .row:not(.gx-0):not(.gx-1):not(.gx-2):not(.gx-3):not(.gx-4):not(.gx-5) {
@@ -16022,7 +16022,7 @@ padding: 50px
   font-size: 24px; /* Larger font size for icons */
 }
 
-
+/* Голосование */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f7f7;
@@ -16039,7 +16039,7 @@ body {
 }
 
 .voting-header {
-  background-color: #5C6BC0;
+  background-color: #4f4e57;
   color: #ffffff;
   padding: 20px;
   font-size: 24px;
@@ -16070,7 +16070,7 @@ body {
 
 .vote-button {
   width: 100%;
-  background-color: #26A69A;
+  background-color: #85353d;
   color: white;
   padding: 15px 20px;
   border: none;
@@ -16083,7 +16083,7 @@ body {
 }
 
 .vote-button:hover {
-  background-color: #2BBBAD;
+  background-color: #c53b49;
 }
 
 .results-container {
@@ -16125,4 +16125,47 @@ body {
 .result-percentage {
   font-size: 14px;
   margin-left: 5px;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+  body {
+    padding: 20px; /* Уменьшить отступы для экранов меньшего размера */
+  }
+
+  .voting-container,
+  .results-container {
+    padding: 15px; /* Увеличить отступы для элементов голосования */
+  }
+
+  .voting-header,
+  .results-header {
+    font-size: 16px; /* Уменьшить размер текста для заголовков */
+  }
+
+  .voting-option label,
+  .result-name {
+    font-size: 14px; /* Уменьшить размер текста для вариантов голосования и имен результатов */
+  }
+
+  .voting-option {
+    margin: 15px 0; /* Увеличить отступ для каждого варианта */
+  }
+
+  .vote-button {
+    padding: 20px 25px; /* Увеличить пэддинг для кнопки */
+    font-size: 18px; /* Увеличить размер текста для кнопки */
+  }
+
+  .result-progress-bar {
+    height: 25px; /* Увеличить высоту полосы прогресса */
+  }
+
+  .result-item {
+    margin-bottom: 15px; /* Увеличить отступы между элементами результатов */
+  }
+
+  .result-percentage {
+    font-size: 16px; /* Увеличить размер текста для процентов */
+  }
 }
