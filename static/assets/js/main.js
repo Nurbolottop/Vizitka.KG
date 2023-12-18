@@ -170,7 +170,10 @@ $(document).ready(function() {
          const $this = $(this);
          $this.addClass(showClass);
          $this.find($dropdownToggle).attr("aria-expanded", "true");
-         $this.find($dropdownMenu).addClass(showClass);
+         setTimeout(()=>{
+$this.find($dropdownMenu).addClass(showClass);
+         },1000)
+         
        },
        function() {
          const $this = $(this);

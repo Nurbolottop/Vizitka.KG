@@ -2449,7 +2449,7 @@ small.text {
 .navbar.style-1 .dropdown:hover .dropdownMenu {
   opacity: 1;
   visibility: visible;
-  top: 85.5px;
+  top: 53.5px;
 }
 .navbar.style-1 .sClose-btn {
   position: absolute;
@@ -2895,7 +2895,7 @@ small.text {
   overflow: hidden;
 }
 .navbar.style-3 .dropdown:hover .dropdownMenu {
-  top: 100%;
+  top: 40%;
 }
 
 /* --------------- navbar style-4 --------------- */
