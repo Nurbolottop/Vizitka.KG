@@ -10,7 +10,9 @@ class AdvertFilterAdmin(admin.ModelAdmin):
 
 
 class VotingFilterAdmin(admin.ModelAdmin):
-    list_display = ['end_time']
+    list_filter = ('title','descriptions', 'end_time')
+    list_display = ('title', 'descriptions', 'end_time')
+    search_fields = ('title', 'descriptions', 'end_time')
 
 admin.site.register(Voting,VotingFilterAdmin)
 admin.site.register(Advert,AdvertFilterAdmin)

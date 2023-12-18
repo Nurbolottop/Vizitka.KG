@@ -2,6 +2,7 @@ from django.db import models
 from django_resized.forms import ResizedImageField 
 from django.utils import timezone
 from apps.users.models import User  # Убедитесь, что путь до модели User верный
+from ckeditor.fields import RichTextField
 
 class Nomination(models.Model):
     name = models.CharField(max_length=200, verbose_name="Номинация")
@@ -68,6 +69,14 @@ class Advert(models.Model):
         verbose_name_plural = "Рекаламы"
 
 class Voting(models.Model):
+    title = models.CharField(
+        max_length = 255,
+        verbose_name = "Название"
+    )
+    descriptions = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
     end_time = models.DateTimeField('Время окончания голосования')
 
     def __str__(self):
