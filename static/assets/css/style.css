@@ -16048,7 +16048,7 @@ body {
   font-size: 24px;
   font-weight: 600;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .voting-option {
@@ -16078,7 +16078,7 @@ body {
   color: white;
   padding: 15px 20px;
   border: none;
-  border-radius: 40px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;

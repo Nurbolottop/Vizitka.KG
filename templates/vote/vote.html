@@ -36,6 +36,16 @@
                             <div class="tc-post-list-style3">
                                 <div class="items">
                                     <div class="container">
+                                        <div class="pre-nomination-section">
+                                            <p>Vizitka Magazine Awards 2023</p>
+                                            <p>VII Ежегодная Церемония награждения премии «Vizitka Magazine Awards 2023» – главное событие года в сфере бизнеса.</p>
+                                            <!-- ... другое содержимое, такое как информация о голосовании и таймер ... -->
+                                            <div class="timer">
+                                              <!-- Таймер обратного отсчёта -->
+                                              До окончания голосования осталось: 29 дней 05:58:53
+                                            </div>
+                                          </div>
+                                        {% if user.is_authenticated %}
                                         {% for nomination in nominations %}
                                             <div class="voting-container" id="nominationContainer{{ nomination.id }}">
                                                 <div class="initial-poll" id="initialPoll{{ nomination.id }}">
@@ -61,35 +71,33 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
+                                        {% else %}
+                                            <p>Для участия в голосовании необходимо <a href="{% url 'login' %}">войти в систему</a>.</p>
+                                        {% endif %}
                                     </div>
-                                    
-                                        
-                                        
-                                        
-                                
                                 </div>
                             </div>
  
                             <div class="pagination style-1 color-main justify-content-center mt-60">
-                                {% if blogs.has_previous %}
+                                {% if nominations.has_previous %}
                                     <a href="?page=1"><span>1</span></a>
-                                    <a href="?page={{ blogs.previous_page_number }}"><span>
-                                        Предыдущий</span></a>
+                                    <a href="?page={{ nominations.previous_page_number }}"><span>Предыдущий</span></a>
                                 {% endif %}
-                
-                                {% for num in blogs.paginator.page_range %}
-                                    {% if blogs.number == num %}
+                            
+                                {% for num in nominations.paginator.page_range %}
+                                    {% if nominations.number == num %}
                                         <a href="?page={{ num }}" class="active"><span>{{ num }}</span></a>
                                     {% else %}
                                         <a href="?page={{ num }}"><span>{{ num }}</span></a>
                                     {% endif %}
                                 {% endfor %}
-                
-                                {% if blogs.has_next %}
-                                    <a href="?page={{ blogs.next_page_number }}"><span>Следующий</span></a>
-                                    <a href="?page={{ blogs.paginator.num_pages }}"><span>{{ blogs.paginator.num_pages }}</span></a>
+                            
+                                {% if nominations.has_next %}
+                                    <a href="?page={{ nominations.next_page_number }}"><span>Следующий</span></a>
+                                    <a href="?page={{ nominations.paginator.num_pages }}"><span>{{ nominations.paginator.num_pages }}</span></a>
                                 {% endif %}
-                            </div>  
+                            </div>
+                             
                         </div>
                         <div class="col-lg-3">
                             <div class="widgets-sticky mt-5 mt-lg-0">
@@ -273,6 +281,8 @@
         });
     });
 </script>
+
+
 
 {% endblock %}
 

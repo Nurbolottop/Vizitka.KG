@@ -7,6 +7,7 @@ class Nomination(models.Model):
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
     order = models.IntegerField(default=100, verbose_name="Порядок / Сортировка")
 
+
     def __str__(self):
         return self.name
 
@@ -29,3 +30,22 @@ class Option(models.Model):
     class Meta:
         verbose_name = "Вариант"
         verbose_name_plural = "Варианты"
+
+
+
+from apps.users.models import User  # Убедитесь, что путь до модели User верный
+
+
+class Vote(models.Model):
+    nomination = models.ForeignKey(Nomination, on_delete=models.CASCADE, verbose_name='Номинация', related_name='votes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    option = models.ForeignKey(Option, on_delete=models.CASCADE, verbose_name='Опция')
+    date_voted = models.DateTimeField(auto_now_add=True, verbose_name='Дата голосования')
+
+    class Meta:
+        unique_together = ('user', 'option')  # Один пользователь может голосовать за опцию только один раз
+        verbose_name = 'Голос'
+        verbose_name_plural = 'Голоса'
+
+    def __str__(self):
+        return f"{self.user.username} голосовал за {self.option.name} в номинации {self.nomination.name}"

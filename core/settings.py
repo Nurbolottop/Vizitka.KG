@@ -32,8 +32,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'adminlte3',
-    'adminlte3_theme',
+    # 'adminlte3',
+    # 'adminlte3_theme',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,26 +156,7 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Настройки o
-ADMINLTE3_SETTINGS = {
-    "site_title": "Vizitka.KG",
-    "site_header": "Vizitka.KG",
-    "site_brand": "Vizitka.KG",
-    "welcome_sign": "Добро пожаловать в Vizitka.KG",
-    "search_model": ["auth.User", "blog.Post"],
-    "topmenu_links": [
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Support", "url": "https://t.me/geeksosh", "new_window": True},
-        {"model": "auth.User"},
-        {"app": "blog"},
-    ],
-    "show_sidebar": True,
-    "show_ui_builder": True,
-    "navigation_expanded": True,
-    "css": {
-        "extra": ["css/custom.css"],  # замените на путь к вашему CSS-файлу
-    },
-}
-#Ckeditor
+
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'  # URL to jQuery
 CKEDITOR_IMAGE_BACKEND = "pillow"  # Путь к пакету Pillow для обработки изображений
@@ -260,3 +242,42 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
 #Admin Panel
+JAZZMIN_SETTINGS = {
+    "site_title": "Visitka.KG",  # Заголовок админ-панели
+    "site_header": "Visitka.KG",  # Заголовок на экране входа
+    "site_brand": "Visitka.KG",  # Бренд в верхней части админ-панели
+    "welcome_sign": "Добро пожаловать в Visitka.KG",  # Приветственное сообщение
+    "site_title": "Vizitka.KG",  # Заголовок админ-панели
+    "site_header": "Vizitka.KG",  # Заголовок на экране входа
+    "site_brand": "Vizitka.KG",  # Бренд в верхней части админ-панели
+    "welcome_sign": "Добро пожаловать в Vizitka.KG",  # Приветственное сообщение
+    "search_model": ["auth.User", "blog.Post"],  # Модели, доступные для поиска
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+    "show_sidebar": True,
+    "changeform_format": "horizontal_tabs",
+    "header_classes": "navbar-dark bg-dark",  # Темный фон верхней части админ-панели
+    "header_color": "#000000",  # Черный цвет верхней части админ-панели
+    "dark_mode_theme": True,  # Включить темный режим
+    "show_language_chooser": True,  # Включить выбор языка в админ-панели
+    "custom_css": None,  # Путь к пользовательскому CSS-файлу (если нужен)
+    "show_ui_builder": True,  # Показать UI Builder
+    "menu": [
+        {
+            "app": "index",  # Имя вашего приложения Django
+            "name": "Основные параметры",  # Имя модели
+            "icon": "fa fa-cogs",  # Иконка для меню
+            "models": [
+                {
+                    "name": "Первая модель",  # Имя вашей модели
+                    "icon": "fa fa-cog",  # Иконка для модели
+                    "model": "index.Settings",  # Имя модели в формате "app_label.model_name"
+                },
+                # Добавьте другие модели, если необходимо
+            ],
+        },
+        # Добавьте другие приложения и модели, если необходимо
+    ],
+
+}
