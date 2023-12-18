@@ -1,5 +1,20 @@
 from django.contrib import admin
-from .models import Nomination, Option, Vote
+from .models import Nomination, Option, Vote,Advert,Voting
+
+####################################################################################################
+class AdvertFilterAdmin(admin.ModelAdmin):
+    verbose_name_plural = 'Новости'
+    list_filter = ('url', )
+    list_display = ('url', 'image')
+    search_fields = ('url', 'image')
+
+
+class VotingFilterAdmin(admin.ModelAdmin):
+    list_display = ['end_time']
+
+admin.site.register(Voting,VotingFilterAdmin)
+admin.site.register(Advert,AdvertFilterAdmin)
+####################################################################################################
 
 class OptionInline(admin.TabularInline):
     model = Option

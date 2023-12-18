@@ -4197,6 +4197,18 @@ small.text {
   opacity: 1;
   visibility: visible;
   top: 85.5px;
+  z-index: 99999999;
+
+}
+.navbar.style-10 .dropdown .dropdownMenu:hover {
+  opacity: 1;
+  visibility: visible;
+  top: 85.5px;
+  z-index: 99999999;
+}
+.navbar.style-10 .dropdown .dropdownMenu li{
+  position: relative !important;
+  z-index: 999999999999 !important;
 }
 .navbar.style-10 .sClose-btn {
   position: absolute;
@@ -16172,4 +16184,62 @@ body {
   .result-percentage {
     font-size: 16px; /* Увеличить размер текста для процентов */
   }
+}
+
+
+
+
+/* Apply a font-family that suits your design, ensure it's loaded in your HTML */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+.voting-section {
+    font-family: 'Open Sans', sans-serif; /* This is a clean, modern sans-serif font */
+    color: #333; /* A darker grey that's easy on the eyes */
+    background-color: #f8f8f8; /* A light background to offset the text */
+    padding: 20px; /* Add some space around the content */
+    border-bottom: 2px solid #eaeaea; /* A subtle bottom border for some visual separation */
+}
+
+.voting-section h1 {
+    font-weight: 700; /* Make the title bold */
+    font-size: 2rem; /* A larger font size for the title */
+    margin-bottom: 0.5em; /* Add some space below the title */
+}
+
+.voting-section p {
+    font-weight: 400; /* Regular font weight for the paragraph */
+    font-size: 1rem; /* Standard font size for the paragraph */
+    margin-bottom: 1em; /* Space below each paragraph */
+}
+
+.countdown {
+    font-size: 1.25rem; /* Slightly larger font size for the countdown */
+    font-weight: bold; /* Bold font weight for emphasis */
+    color: #d9534f; /* A color that stands out, but you can choose any color */
+}
+
+.timer {
+  background-color: #f32d29; /* Тёмно-красный фон */
+  color: #ffffff; /* Белый текст */
+  padding: 10px 0; /* Вертикальные отступы */
+  text-align: center; /* Текст по центру */
+  font-size: 1.5em; /* Увеличенный размер шрифта */
+  font-weight: bold; /* Жирное начертание */
+  margin: 0; /* Убрать внешние отступы */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Тень для объёма */
+  border-top: 3px solid #820c0c; /* Тёмная линия сверху */
+  border-bottom: 3px solid #820c0c; /* Тёмная линия снизу */
+}
+
+.advertisement-section {
+  text-align: center; /* Центрирование содержимого секции */
+  margin: 20px 0; /* Отступы сверху и снизу для секции */
+  padding: 20px 0; /* Внутренние отступы для секции */
+  background-color: #f4f4f4; /* Цвет фона для секции, если необходим */
+}
+
+.advertisement-image {
+  max-width: 100%; /* Изображение будет масштабироваться для подстройки под ширину контейнера */
+  height: auto; /* Высота изображения будет автоматически регулироваться */
+  border: 0; /* Убрать рамку, если она есть */
 }

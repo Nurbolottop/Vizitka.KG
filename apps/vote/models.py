@@ -1,4 +1,7 @@
 from django.db import models
+from django_resized.forms import ResizedImageField 
+from django.utils import timezone
+from apps.users.models import User  # Убедитесь, что путь до модели User верный
 
 class Nomination(models.Model):
     name = models.CharField(max_length=200, verbose_name="Номинация")
@@ -6,7 +9,6 @@ class Nomination(models.Model):
     end_date = models.DateField(verbose_name="Окончание")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
     order = models.IntegerField(default=100, verbose_name="Порядок / Сортировка")
-
 
     def __str__(self):
         return self.name
@@ -31,11 +33,6 @@ class Option(models.Model):
         verbose_name = "Вариант"
         verbose_name_plural = "Варианты"
 
-
-
-from apps.users.models import User  # Убедитесь, что путь до модели User верный
-
-
 class Vote(models.Model):
     nomination = models.ForeignKey(Nomination, on_delete=models.CASCADE, verbose_name='Номинация', related_name='votes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
@@ -49,3 +46,33 @@ class Vote(models.Model):
 
     def __str__(self):
         return f"{self.user.username} голосовал за {self.option.name} в номинации {self.nomination.name}"
+
+class Advert(models.Model):
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='blog_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+    url = models.URLField(
+        verbose_name = "Ссылка",
+        blank = True,null = True
+    )
+    
+    def __str__(self):
+        return f"{self.url} - {self.image}"
+    
+    class Meta:
+        verbose_name = "Рекалама"
+        verbose_name_plural = "Рекаламы"
+
+class Voting(models.Model):
+    end_time = models.DateTimeField('Время окончания голосования')
+
+    def __str__(self):
+        return f"Голосование до {self.end_time}"
+    
+    @property
+    def has_ended(self):
+        return timezone.now() >= self.end_time

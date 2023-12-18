@@ -36,43 +36,56 @@
                             <div class="tc-post-list-style3">
                                 <div class="items">
                                     <div class="container">
-                                        <div class="pre-nomination-section">
-                                            <p>Vizitka Magazine Awards 2023</p>
+                                        <div class="voting-section">
+                                            <h1>Vizitka Magazine Awards 2023</h1>
                                             <p>VII Ежегодная Церемония награждения премии «Vizitka Magazine Awards 2023» – главное событие года в сфере бизнеса.</p>
-                                            <!-- ... другое содержимое, такое как информация о голосовании и таймер ... -->
-                                            <div class="timer">
-                                              <!-- Таймер обратного отсчёта -->
-                                              До окончания голосования осталось: 29 дней 05:58:53
+                                            <p>Уважаемые участники голосования (номинанты)!</p>
+                                            <p>В виду того, что редакция Vizitka.kg создает условия для определения действительно лучших в своей сфере, прилагаются максимальные усилия для обеспечения честности в онлайн-голосовании. В связи с этим, в случае выявления сомнительных и противоправных действий со стороны номинантов, редакция Vizitka KG в праве на свое усмотрение дисквалифицировать номинантов без возмещения стоимости регистрации.</p>
+                                            <p>Редакция Vizitka KG оставляет за собой право исключить подозрительные голоса номинантов, без дисквалификации самих номинантов.</p>
+                                            <div class="timer" id="countdown-timer">
+                                                До окончания голосования осталось: <br> 
+                                                <!-- Сюда будет вставлен обратный отсчет -->
                                             </div>
-                                          </div>
-                                        {% if user.is_authenticated %}
-                                        {% for nomination in nominations %}
-                                            <div class="voting-container" id="nominationContainer{{ nomination.id }}">
-                                                <div class="initial-poll" id="initialPoll{{ nomination.id }}">
-                                                    <div class="voting-header">{{ nomination.name }}</div>
-                                                    <form method="post" action="{% url 'vote' %}" class="voteForm">
-                                                        {% csrf_token %}
-                                                        <ul class="options" id="options{{ nomination.id }}">
-                                                            {% for option in nomination.options.all %}
-                                                                <li class="voting-option">
-                                                                    <input type="radio" id="option{{ option.id }}" name="option{{ nomination.id }}" value="{{ option.id }}">
-                                                                    <label for="option{{ option.id }}">{{ option.name }}</label>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                        <button class="vote-button" type="button" data-nomination-id="{{ nomination.id }}">Проголосовать</button>
-                                                    </form>
-                                                </div>
-                                                <div class="results-container" id="resultsContainer{{ nomination.id }}" style="display: none;">
-                                                    <h2 class="results-header">Результаты голосования</h2>
-                                                    <div class="resultsList" id="resultsList{{ nomination.id }}">
-                                                        <!-- Результаты будут добавлены здесь -->
+                                            <div class="advertisement-section">
+                                            {%if advert.url%}
+                                            <a href="{{advert.url}}">
+                                            {% endif %}
+                                                <img src="{{advert.image.url}}" alt="Реклама" class="advertisement-image">
+                                            </a>
+                                            </div>
+                                              
+                                        </div>
+                                        <br>
+                                        {% if not voting.has_ended %}
+                                            {% if user.is_authenticated %}
+                                            {% for nomination in nominations %}
+                                                <div class="voting-container" id="nominationContainer{{ nomination.id }}">
+                                                    <div class="initial-poll" id="initialPoll{{ nomination.id }}">
+                                                        <div class="voting-header">{{ nomination.name }}</div>
+                                                        <form method="post" action="{% url 'vote' %}" class="voteForm">
+                                                            {% csrf_token %}
+                                                            <ul class="options" id="options{{ nomination.id }}">
+                                                                {% for option in nomination.options.all %}
+                                                                    <li class="voting-option">
+                                                                        <input type="radio" id="option{{ option.id }}" name="option{{ nomination.id }}" value="{{ option.id }}">
+                                                                        <label for="option{{ option.id }}">{{ option.name }}</label>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                            <button class="vote-button" type="button" data-nomination-id="{{ nomination.id }}">Проголосовать</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="results-container" id="resultsContainer{{ nomination.id }}" style="display: none;">
+                                                        <h2 class="results-header">Результаты голосования</h2>
+                                                        <div class="resultsList" id="resultsList{{ nomination.id }}">
+                                                            <!-- Результаты будут добавлены здесь -->
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        {% endfor %}
-                                        {% else %}
-                                            <p>Для участия в голосовании необходимо <a href="{% url 'login' %}">войти в систему</a>.</p>
+                                            {% endfor %}
+                                            {% else %}
+                                                <p>Для участия в голосовании необходимо <a href="{% url 'login' %}">войти в систему</a>.</p>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>
@@ -197,6 +210,7 @@
     </main>
     {% include 'include/footer.html' %}
 
+
 <style>
     .result-item {
       background: #f7f7f7; /* Цвет фона, как у ваших блоков голосования */
@@ -281,7 +295,33 @@
         });
     });
 </script>
-
+<!-- Не забудьте подключить этот блок кода перед закрывающим тегом </body> -->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const countdownTimer = document.getElementById('countdown-timer');
+        const endTime = new Date('{{ end_time|safe }}').getTime();
+  
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+  
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+        countdownTimer.innerHTML = `До окончания голосования осталось: <br> ${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
+  
+        if (distance < 0) {
+          clearInterval(timerInterval);
+          countdownTimer.innerHTML = "Голосование окончено";
+        }
+      };
+  
+      const timerInterval = setInterval(updateTimer, 1000);
+    });
+  </script>
+  
 
 
 {% endblock %}
