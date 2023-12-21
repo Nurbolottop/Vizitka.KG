@@ -68,7 +68,7 @@ class Advert(models.Model):
         verbose_name = "Рекалама"
         verbose_name_plural = "Рекаламы"
 
-class Voting(models.Model):
+class VotingInfo(models.Model):
     title = models.CharField(
         max_length = 255,
         verbose_name = "Название"

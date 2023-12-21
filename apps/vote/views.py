@@ -7,7 +7,7 @@ from apps.index import models
 from apps.blog.models import BigAdvert,NormalAdvert,SmallAdvert,Category
 from apps.index.parsing import get_weather_data
 from asgiref.sync import async_to_sync
-from apps.vote.models import Nomination, Option,Vote,Advert,Voting
+from apps.vote.models import Nomination, Option,Vote,Advert,VotingInfo
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from apps.blog.models import Blog
@@ -23,7 +23,7 @@ def vote(request):
     popular_posts = Blog.objects.order_by('-views')[:5]
     temperature, weather_condition = async_to_sync(get_weather_data)()
     #########################################################################
-    voting = Voting.objects.first()
+    voting = VotingInfo.objects.first()
     
     # Проверяем, что объект существует и имеет установленное время окончания
     if voting and voting.end_time:

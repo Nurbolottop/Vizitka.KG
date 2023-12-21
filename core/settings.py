@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import config as config
@@ -42,6 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Google
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.telegram',
+    'allauth.socialaccount.providers.facebook',
+
     #settings
     'ckeditor',
     
@@ -53,15 +62,6 @@ INSTALLED_APPS = [
     'apps.all_categories',
     'apps.magazine',
     'apps.vote',
-    
-    # Google
-    'allauth',
-    'allauth.account', 
-    'allauth.socialaccount', 
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.telegram',
-    'allauth.socialaccount.providers.facebook',
-    
 ]
 
 
@@ -144,10 +144,11 @@ USE_TZ = config.USE_TZ
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-# STATIC_ROOT = BASE_DIR /'static'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Или любой другой путь, где вы хотите собирать статические файлы
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Если у вас есть дополнительные статические файлы для вашего приложения
+]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/ 'media'
 # Default primary key field type
@@ -169,76 +170,13 @@ CKEDITOR_CONFIGS = {
 }
 
 
+
 EMAIL_USE_TLS = True  # Использовать TLS для защищенного соединения
 EMAIL_HOST = 'smtp.gmail.com'  # Адрес SMTP сервера Gmail
 EMAIL_PORT = 587  # Порт для подключения к SMTP серверу Gmail
 EMAIL_HOST_USER = 'bullabratan@gmail.com'
 EMAIL_HOST_PASSWORD = 'zlrwdyljhsupxnfo'
 
-
-#Google
-AUTHENTICATION_BACKENDS = (
-    'allauth.account.auth_backends.AuthenticationBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-    
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'offline'}
-    },
-    'telegram': {
-        'APP': {
-            'client_id': '6583749734',  # Замените на свой client_id
-            'secret': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",  # Замените на свой secret
-        },
-        'AUTH_PARAMS': {'auth_date_validity': 30},
-    },
-    'facebook':
-       {'METHOD': 'oauth2',
-        'SCOPE': ['email','public_profile', 'user_friends'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'gender',
-            'updated_time'],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': lambda request: 'kr_KR',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.4'}
-    
-
-}
-SOCIAL_AUTH_FACEBOOK_KEY = 'secret!'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET ='secret!' #app key
-
-LOGIN_REDIRECT_URL = "/" 
-#если вам удастся войти в систему, вы будете перенаправлены на главную страницу.
-
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
-AUTH_USER_MODEL = 'users.User'
-# LOGIN_URL = '/users/login/'
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/' 
-
-# Additional configuration settings
-SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_USERNAME_REQURIED=True
-ACCOUNT_LOGOUT_ON_GET= True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
 #Admin Panel
@@ -281,3 +219,61 @@ JAZZMIN_SETTINGS = {
     ],
 
 }
+
+
+AUTH_USER_MODEL = 'users.User'
+
+#################################################################################################################################################################################
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'offline'},
+        'APP': {
+            'client_id': '518006412511-gkg1u3rp1kmqtsmqiibnb1clgpv4eftj.apps.googleusercontent.com',
+            'secret': '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',
+        }
+    },
+    'telegram': {
+        'APP': {
+            'client_id': '6583749734',
+            'secret': '6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c',
+        }
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id', 'email', 'name', 'first_name', 'last_name', 'verified', 'locale', 'timezone', 'link', 'gender', 'updated_time'
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'ru_RU',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Аутентификация по электронной почте
+ACCOUNT_EMAIL_REQUIRED = True  # Требовать электронную почту
+ACCOUNT_UNIQUE_EMAIL = True  # Электронная почта должна быть уникальной
+ACCOUNT_USERNAME_REQUIRED = False  # Не требовать имя пользователя
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Требовать подтверждения электронной почты
+SOCIALACCOUNT_QUERY_EMAIL = True  # Запрашивать адрес электронной почты при регистрации через соцсеть
+SOCIALACCOUNT_EMAIL_REQUIRED = ACCOUNT_EMAIL_REQUIRED  # Требовать электронную почту для соцсетей
+SOCIALACCOUNT_STORE_TOKENS = True  # Сохранять токены доступа
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '518006412511-gkg1u3rp1kmqtsmqiibnb1clgpv4eftj.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_FACEBOOK_KEY = '1100812914240995'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'aea6d1977ed776d11621db2fd5e22f1d'

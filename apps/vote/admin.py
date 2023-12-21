@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Nomination, Option, Vote,Advert,Voting
+from .models import Nomination, Option, Vote,Advert,VotingInfo
 
 ####################################################################################################
 class AdvertFilterAdmin(admin.ModelAdmin):
@@ -9,12 +9,12 @@ class AdvertFilterAdmin(admin.ModelAdmin):
     search_fields = ('url', 'image')
 
 
-class VotingFilterAdmin(admin.ModelAdmin):
+class VotingInfoFilterAdmin(admin.ModelAdmin):
     list_filter = ('title','descriptions', 'end_time')
     list_display = ('title', 'descriptions', 'end_time')
     search_fields = ('title', 'descriptions', 'end_time')
 
-admin.site.register(Voting,VotingFilterAdmin)
+admin.site.register(VotingInfo,VotingInfoFilterAdmin)
 admin.site.register(Advert,AdvertFilterAdmin)
 ####################################################################################################
 
