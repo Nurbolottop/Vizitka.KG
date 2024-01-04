@@ -15,7 +15,6 @@ def register(request):
 
     if request.method == "POST":
         username = request.POST.get("username")
-        email = request.POST.get("email")
         phone = request.POST.get("phone")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
@@ -29,12 +28,12 @@ def register(request):
             messages.error(request, "Пароли не совпадают.")
             return render(request, 'users/register-32.html', locals())
 
-        if not all([username, password, email, phone]):
+        if not all([username, password,  phone]):
             messages.error(request, "Пожалуйста, заполните все поля.")
             return render(request, 'users/register-32.html', locals())
 
         # Создайте пользователя и установите его атрибуты
-        user = models.User.objects.create_user(username=username, email=email, password=password)
+        user = models.User.objects.create_user(username=username, password=password)
         user.phone = phone
         user.save()
 
