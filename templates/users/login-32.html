@@ -37,11 +37,13 @@
                             </a>
                         </div>
                         <div class="btn-section">
-                            <a href="{% url 'login' %}" class="link-btn active">Логин</a>
-                            <a href="{% url 'register' %}" class="link-btn">Регистрация</a>
+                            <a href="{% url 'login' %}" class="link-btn active">Главная страница</a>
+                            {% comment %} <a href="{% url 'register' %}" class="link-btn">Регистрация</a> {% endcomment %}
                         </div>
                         <div class="login-inner-form">
-                            <form  method="POST">
+                            <h2>Войдите через</h2>
+                            <br>
+                            {% comment %} <form  method="POST">
                                 {% csrf_token %}
                                 <div class="form-group form-box">
                                     <input type="text" name="username" class="form-control" placeholder="Имя" aria-label="Имя пользователя">
@@ -63,15 +65,13 @@
                                 <div class="form-group mb-0">
                                     <button type="submit" class="btn-md btn-theme w-100">Войти</button>
                                 </div>
-                            </form>
-                            <div class="extra-login">
-                                <span>Или Войдите Через</span>
-                            </div>
+                            </form> {% endcomment %}
+                                
                             <ul class="social-list clearfix">
                                 <li><a href="{% provider_login_url 'telegram' %}" class="facebook-bg"><i class="fa fa-telegram"></i></a></li>
                                 {% comment %} <li><a href="{% provider_login_url 'facebook'  %}" class="twitter-bg"><i class="fa fa-facebook"></i></a></li> {% endcomment %}
                                 <li><a href="{% provider_login_url 'google'%}" class="google-bg"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -79,8 +79,6 @@
             </div>
         </div>
     </div>
-    <div class="animate-image-2"><img src="{% static 'register_assets/img/img-36.png' %}" alt="photo"></div>
-    <div class="animate-image-1"><img src="{% static 'register_assets/img/img-37.png' %}" alt="photo"></div>
 </div>
 <!-- Login 32 end -->
 
