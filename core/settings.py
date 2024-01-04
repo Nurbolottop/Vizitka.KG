@@ -237,14 +237,14 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {'access_type': 'offline'},
         'APP': {
-            'client_id': f'{config.google_usr_id}',
-            'secret': f'{config.google_secret}',
+            'client_id': "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",
+            'secret': "518006412511-gkg1u3rp1kmqtsmqiibnb1clgpv4eftj.apps.googleusercontent.com",
         }
     },
     'telegram': {
         'APP': {
-            'client_id': f'{config.telegram_usr_id}',
-            'secret': f'{config.telegram_secret}',
+            'client_id': "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",
+            'secret': "6583749734",
         }
     },
     'facebook': {
@@ -273,7 +273,7 @@ SOCIALACCOUNT_QUERY_EMAIL = True  # Запрашивать адрес элект
 SOCIALACCOUNT_EMAIL_REQUIRED = ACCOUNT_EMAIL_REQUIRED  # Требовать электронную почту для соцсетей
 SOCIALACCOUNT_STORE_TOKENS = True  # Сохранять токены доступа
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = f'{config.google_usr_id}',
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f'{config.google_secret}',
-SOCIAL_AUTH_FACEBOOK_KEY = f'{config.facebook_usr_id}',
-SOCIAL_AUTH_FACEBOOK_SECRET = f'{config.facebook_secret}',
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "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",
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "518006412511-gkg1u3rp1kmqtsmqiibnb1clgpv4eftj.apps.googleusercontent.com",
+SOCIAL_AUTH_FACEBOOK_KEY = "6583749734:AAG3PM0QImo--VOBLd2eSyBf0X4Pcr--K9c",
+SOCIAL_AUTH_FACEBOOK_SECRET = "6583749734",

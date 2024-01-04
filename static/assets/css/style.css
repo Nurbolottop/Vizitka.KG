@@ -15885,12 +15885,19 @@ justify-content: center;
 
 .c-layout {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Выравнивание элементов по центру */
+  flex-wrap: wrap; /* Если элементы не помещаются, они будут переноситься */
   align-items: center;
   margin: 0 auto;
   max-width: 1200px;
   padding: 0px 47px;
 }
+
+.c-layout > * {
+  flex: 1 1 auto; /* Каждый элемент будет занимать равное пространство */
+  text-align: center; /* Текст в каждом элементе будет центрирован */
+}
+
 
 .c-header-nav-logo {
   display: flex;

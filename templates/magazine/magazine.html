@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="info">
-                        <h2>Журанлы</h2>
+                        <h2>Журналы</h2>
                         {% comment %} <div class="links">
                             <a href="page-blog.html#">NFL</a>
                             <a href="page-blog.html#">NBA</a>
@@ -47,14 +47,14 @@
                         <div class="col-lg-9">
                             <div class="tc-post-list-style3">
                                 <div class="items">
-                                    {% if magazine %}
-                                        {% for magazine in magazine %}
+                                    {% if magazines %}
+                                        {% for magazine in magazines %}
                                         <div class="item">
                                             <div class="row">
                                                 <div class="col-lg-5">
-                                                    <div class="img th-230 img-cover overflow-hidden">
-                                                        <img src="{{blog.image.url}}" alt="">
-                                                    </div>
+                                                    {% if magazine.first_page_image_url %}
+                                                    <img src="{{ magazine.first_page_image_url }}" style="max-width:190px;"                                                    alt="{{ magazine.title }} cover" />
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <div class="content mt-20 mt-lg-0">

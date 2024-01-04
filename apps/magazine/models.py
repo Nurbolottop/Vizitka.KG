@@ -57,3 +57,35 @@ class Magazine(models.Model):
 
         pdf.close()
         return image_paths
+
+    def get_first_page_image_url(self):
+        """
+        Извлекает изображение первой страницы PDF и сохраняет его в формате WEBP.
+        Возвращает путь к сохраненному изображению.
+        """
+        if not self.pdf:
+            return None  # Если PDF нет, то и изображения первой страницы быть не может
+
+        pdf = fitz.open(self.pdf.path)
+        
+        # Берём только первую страницу PDF
+        page = pdf[0]
+        pix = page.get_pixmap()
+        img_data = BytesIO(pix.tobytes("ppm"))
+        img = Image.open(img_data)
+
+        img_io = BytesIO()
+        img.save(img_io, format="WEBP", quality=80)  # Сохраняем в формате WEBP
+        img_io.seek(0)  # Возвращаем указатель в начало файла
+        
+        # Формируем имя файла для первой страницы
+        filename = f'magazine_{self.id}_page_1.webp'
+        webp_path = os.path.join(settings.MEDIA_ROOT, 'magazines', filename)
+
+        # Сохраняем изображение, если оно ещё не существует
+        if not os.path.exists(webp_path):
+            with open(webp_path, 'wb') as image_file:
+                image_file.write(img_io.getvalue())
+        
+        pdf.close()
+        return os.path.join(settings.MEDIA_URL, 'magazines', filename)  # Возвращаем URL изображения

@@ -24,8 +24,10 @@ def magazine(request):
     small_advert = SmallAdvert.objects.reverse().first()
     stories = Stories.objects.all()
     category = Category.objects.all().order_by("?")[:]
-    magazine = Magazine.objects.all()
-    
+    magazines = Magazine.objects.all()
+    for magazine in magazines:
+        # Используем новый метод для получения URL первой страницы
+        magazine.first_page_image_url = magazine.get_first_page_image_url()
     return render(request,"magazine/magazine.html",locals())
 
 

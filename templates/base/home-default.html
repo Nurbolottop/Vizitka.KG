@@ -24,32 +24,45 @@
                         <div class="swiper-slide">
                             <div class="slider-card">
                                 <a href="{{banner.url}}"><img src="{{banner.image.url}}" alt="" class="img-back"></a>
-                                {% comment %} <div class="container">
-                                    <div class="info">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-6">
-                                                <div class="tags">
-                                                    <a href="home-gaming.html#" class="bg-orange1 text-white py-1 px-3 rounded-pill fsz-13px text-uppercase mb-20">reviews</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> {% endcomment %}
                             </div>
                         </div>
                     {% endfor %}
-
                     </div>
-
-                </div>
-    
                 <!-- pagination -->
-                <div class="swiper-pagination"></div>
     
                 <!-- arrows -->
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
+            <style>
+                .image-frame {
+                  overflow: hidden;
+                  border-radius: 15px;
+                }
+                .image-content {
+                  width: 100%;
+                  height: 300px !important;
+                  border-radius: 15px; 
+                  object-fit: cover; /* Это гарантирует, что изображение покроет область без искажения */
+                  object-position: center; /* Это центрирует изображение в рамке */
+                }
+                .tc-header-style3 .tc-header-slider-style3 .slider-card  {
+                  border-radius: 30px;
+                  height: 452px; /* Высота для экранов больше 767px */
+
+                }
+              
+                /* Медиа-запрос для экранов с шириной меньше или равной 767px */
+                @media only screen and (max-width: 767px) {
+                  .tc-header-style3 .tc-header-slider-style3 .slider-card {
+                    height: 200px; /* Высота для мобильных устройств */
+                    border-radius: 15px;
+
+                  }
+                }
+              </style>
+              
+            
         </header>
         <section class="tc-trends-news-style1 pt-50 pb-50 bg-gray1">
             <div class="container">
