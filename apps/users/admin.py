@@ -9,8 +9,8 @@ class SubscriberFilterAdmin(admin.ModelAdmin):
     
 class UserFilterAdmin(admin.ModelAdmin):
     list_filter = ('username', )
-    list_display = ('username', 'email')
-    search_fields = ('username', 'email')
+    list_display = ('username',)
+    search_fields = ('username',)
     
 class ContactFilterAdmin(admin.ModelAdmin):
     list_filter = ('name', )

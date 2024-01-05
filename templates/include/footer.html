@@ -17,7 +17,7 @@
                                     <span class="icon">
                                         <i class="la la-envelope"></i>
                                     </span>
-                                    <input type="text" name="email" class="form-control" placeholder="Введите почту">
+                                    <input style="border-radius: 15px;" type="text" name="email" class="form-control" placeholder="Введите почту">
                                     <button>ПОДПИСАТЬСЯ</button>
                                 </div>
                                 {% comment %} <p class="mt-2 color-666 fsz-13px fst-italic">Оформив подписку, вы приняли наше  <a
@@ -79,18 +79,18 @@
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <a href {% url 'vote' %} class="title">Голосование</a>
+                            <a href  = "{% url 'vote' %}" class="title">Голосование</a>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <a href {% url 'blog' %} class="title">Рекламадателям</a>
+                            <a href = "{% url 'banner' %}" class="title">Рекламадателям</a>
                         </div>
                         
                     </div>
                     <div class="col-lg-2">
                         <div class="link-group">
-                            <a href {% url 'blog' %} class="title">Новости</a>
+                            <a href =  "{% url 'blog' %}" class="title">Новости</a>
                             
                         </div>
                     </div>
@@ -99,9 +99,9 @@
                         <div class="link-group">
                             <div class="title">Страницы</div>
                             <ul>
-                                 <li>
+                                 {% comment %} <li>
                                     <a href="{% url 'team' %}" class="f-link">Наша команда</a>
-                                </li>
+                                </li> {% endcomment %}
                                 <li>
                                     <a href="{% url 'about' %}" class="f-link">О нас</a>
                                 </li>

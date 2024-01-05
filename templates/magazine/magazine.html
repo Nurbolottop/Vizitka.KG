@@ -53,8 +53,8 @@
                                             <div class="row">
                                                 <div class="col-lg-5">
                                                     {% if magazine.first_page_image_url %}
-                                                    <img src="{{ magazine.first_page_image_url }}" style="max-width:190px;"                                                    alt="{{ magazine.title }} cover" />
-                                                    {% endif %}
+                                                    <a href="{% url 'index_detail' magazine.id%}" ><img  src="{{ magazine.first_page_image_url }}"  style="max-width:190px;border-radius: 15px;"                                                    alt="{{ magazine.title }} cover" />
+                                                    {% endif %} </a>
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <div class="content mt-20 mt-lg-0">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="widgets-sticky mt-5 mt-lg-0">
+                            <div class="widgets-sticky mt-5 mt-lg-0" style="border-radius: 15px;">
                                 <p class="color-000 text-uppercase mb-30"> ОСТАВАЙСЯ НА СВЯЗИ  </p>
                                 <!-- widget-social -->
                                 <div class="tc-widget-social-style5 mb-40">
@@ -142,9 +142,9 @@
                                 </div>
 
                                 <!-- widget-trends -->
-                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40">
+                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40" style="border-radius: 15px;">
                                     <p class="color-000 text-uppercase p-15">Популярные Новости</p>
-                                    <div class="tc-post-list-style1">
+                                    <div class="tc-post-list-style1" >
                                         {% for blog in popular_post%}
                                             <div class="tc-post-overlay-default">
                                                 <div class="img th-200 img-cover">

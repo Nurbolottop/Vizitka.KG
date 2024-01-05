@@ -140,9 +140,12 @@ class SmallAdvert(models.Model):
         verbose_name_plural = "Добавить рекламу маленького масштаба"
 
 class Magazine(models.Model):
-    image = models.ImageField(
-        upload_to="service_magazine",
-        verbose_name="Фотография"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='service/',
+        verbose_name="Баннер в размере ",
+        blank = True, null = True
     )
     title = models.CharField(
         max_length=255,
@@ -157,11 +160,18 @@ class Magazine(models.Model):
         return f"{self.title} - {self.price}"
     
     class Meta:
-        verbose_name = "Журнал"
-        verbose_name_plural = "Журналы"
+        verbose_name = "Услуга Журнала"
+        verbose_name_plural = "Услуги Журнала"
         
 class Site(models.Model):
-    title = models.CharField(
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='service/',
+        verbose_name="Баннер в размере ",
+        blank = True, null = True
+    )
+    title = models.CharField(   
         max_length=255,
         verbose_name='Название услуги'
     )        
@@ -174,17 +184,20 @@ class Site(models.Model):
         return f"{self.title} - {self.price}"
     
     class Meta:
-        verbose_name = "Сайт"
-        verbose_name_plural = "Сайты"
+        verbose_name = "Услуга Сайта"
+        verbose_name_plural = "Услуги Сайта"
 
 class Banner(models.Model):
     title = models.CharField(
         max_length=255,
         verbose_name="Название"
     )
-    image = models.ImageField(
-        max_length=255,
-        verbose_name="Фотография"
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='banner/',
+        verbose_name="Баннер в размере ",
+        blank = True, null = True
     )
     url = models.URLField(
         verbose_name="Ccылка"

@@ -52,7 +52,7 @@
                                     <div class="swiper-slide">
                                         <div class="item">
                                             <div class="img img-cover th-180">
-                                                <img src="{{popular.image.url}}" alt="">
+                                                <img src="{{popular.image.url}}" style="border-radius: 15px;" alt="">
                                             </div>
                                             <div class="content pt-20">
                                                 <a href="{% url 'blog_detail' popular.id%}"
@@ -92,7 +92,7 @@
                                             <div class="row">
                                                 <div class="col-lg-5">
                                                     <div class="img th-230 img-cover overflow-hidden">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px; "  alt="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-7">
@@ -114,6 +114,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <br>
                                         {% endfor %}
                                         {% else %}
                                         <p>Нет блогов.</p>
@@ -124,20 +125,20 @@
                             <div class="pagination style-1 color-main justify-content-center mt-60">
                                 {% if blogs.has_previous %}
                                     <a href="?page=1"><span>1</span></a>
-                                    <a href="?page={{ blogs.previous_page_number }}"><span>
+                                    <a href="?page={{ blogs.previous_page_number }}" style="border-radius: 15px;"><span>
                                         Предыдущий</span></a>
                                 {% endif %}
                 
                                 {% for num in blogs.paginator.page_range %}
                                     {% if blogs.number == num %}
-                                        <a href="?page={{ num }}" class="active"><span>{{ num }}</span></a>
+                                        <a href="?page={{ num }}" style="border-radius: 15px;" class="active"><span>{{ num }}</span></a>
                                     {% else %}
-                                        <a href="?page={{ num }}"><span>{{ num }}</span></a>
+                                        <a href="?page={{ num }}" style="border-radius: 15px;"><span>{{ num }}</span></a>
                                     {% endif %}
                                 {% endfor %}
                 
                                 {% if blogs.has_next %}
-                                    <a href="?page={{ blogs.next_page_number }}"><span>Следующий</span></a>
+                                    <a href="?page={{ blogs.next_page_number }}" style="border-radius: 10px;" ><span>Следующий</span></a>
                                     <a href="?page={{ blogs.paginator.num_pages }}"><span>{{ blogs.paginator.num_pages }}</span></a>
                                 {% endif %}
                             </div>
@@ -146,7 +147,7 @@
                             <div class="widgets-sticky mt-5 mt-lg-0">
                                 <p class="color-000 text-uppercase mb-30"> ОСТАВАЙСЯ НА СВЯЗИ  </p>
                                 <!-- widget-social -->
-                                <div class="tc-widget-social-style5 mb-40">
+                                <div class="tc-widget-social-style5 mb-40" style="border-radius: 15px;">
                                     {% if setting.facebook%}
                                     <a href="{{setting.facebook}}" class="social-card">
                                         <div class="icon facebook-icon">
@@ -190,13 +191,13 @@
                                 </div>
 
                                 <!-- widget-trends -->
-                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40">
+                                <div class="tc-trending-news-style5 border border-1 brd-gray mb-40" style="border-radius: 15px;">
                                     <p class="color-000 text-uppercase p-15">Популярные Новости</p>
-                                    <div class="tc-post-list-style1">
+                                    <div class="tc-post-list-style1" >
                                         {% for blog in popular_post%}
                                             <div class="tc-post-overlay-default">
                                                 <div class="img th-200 img-cover">
-                                                    <img src="{{blog.image.url}}" alt="">
+                                                    <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                 </div>
                                                 <div class="content ps-20 pe-20 pb-20 text-white">
                                                     <a href="{% url 'blog_detail' blog.id%}" class="text-uppercase fsz-13px mb-1">{{blog.category}}</a>

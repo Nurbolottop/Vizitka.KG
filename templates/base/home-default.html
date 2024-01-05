@@ -37,7 +37,7 @@
             <style>
                 .image-frame {
                   overflow: hidden;
-                  border-radius: 15px;
+                  border-radius: 15px; 
                 }
                 .image-content {
                   width: 100%;
@@ -64,13 +64,13 @@
               
             
         </header>
-        <section class="tc-trends-news-style1 pt-50 pb-50 bg-gray1">
-            <div class="container">
+        <section class="tc-trends-news-style1 pt-50 pb-50 bg-gray1" style="border-radius: 30px;">
+            <div class="container" >
                 
-                <div class="section-content">
-                    <div class="row">
+                <div class="section-content" >
+                    <div class="row" >
                         <div class="col-lg-3">
-                            <div class="tc-stock-card mb-30">
+                            <div class="tc-stock-card mb-30" style="border-radius: 15px;" >
                                 <a href="#" class="stock-card-title">
                                     Курс валют 
                                     <span class="la la-arrow-circle-o-right color-666"></span>
@@ -104,12 +104,12 @@
                                 </div>
                             </div>
                             {% if big_advert %}
-                            <div class="tc-post-grid-default">
-                                <div class="item">
+                            <div class="tc-post-grid-default" >
+                                <div class="item" >
                                     <div class="img img-cover th-200">
-                                        <img src="{{big_advert.image.url}}" alt="">
+                                        <img src="{{big_advert.image.url}}" style="border-radius: 15px;" alt="">
                                     </div>
-                                    <div class="content py-4 px-3 bg-gray2">
+                                    <div class="content py-4 px-3 bg-gray2" style="border-radius: 15px;">
                                         <p class="color-main fsz-13px text-uppercase mb-1">{{big_advert.title}}</p>
                                         <h4 class="title ltspc--1"> <a href="{{big_advert.url_booking}}">{{big_advert.sub_title}}</a> </h4>
                                         <a href="{{big_advert.url_booking}}" class="color-999 fsz-12px mt-20">Перейти<i
@@ -125,19 +125,19 @@
                             {% if blog%}
                             <div class="tc-trends-news-slider1 tc-slider-style2">
                                 <div class="swiper-container">
-                                    <div class="swiper-wrapper">
+                                    <div class="swiper-wrapper" >
                                         {% for blog in blog%}
-                                        <div class="swiper-slide">
-                                            <div class="tc-post-overlay-default">
-                                                <div class="img th-650 img-cover">
-                                                    <img src="{{blog.image.url}}" alt="">
+                                        <div class="swiper-slide" style="border-radius: 15px;" >
+                                            <div class="tc-post-overlay-default" style="border-radius: 15px;">
+                                                <div class="img th-650 img-cover" >  
+                                                    <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
 
                                                 </div>
-                                                <div class="content ps-40 pe-40 pb-40">
-                                                    <h2 class="title mb-20">
+                                                <div class="content ps-40 pe-40 pb-40" style="border-radius: 15px;">
+                                                    <h2 class="title mb-20" style="border-radius: 15px;">
                                                         <a href="{% url 'blog_detail' blog.id%}">{{blog.title|truncatewords:8}}</a>
                                                     </h2>
-                                                    <div class="text mb-40">{{blog.descriptions|truncatewords:5}}
+                                                    <div class="text mb-40" >{{blog.descriptions|truncatewords:5}}
                                                     </div>
                                                     <div class="meta-bot lh-1">
                                                         <ul class="d-flex">
@@ -158,15 +158,15 @@
                             {% endif %}
                         </div>
                         {% if popular_post %}
-                        <div class="col-lg-3">
-                            <div class="tc-post-list-style1">
-                                <div class="tc-post-title-style1">
+                        <div class="col-lg-3" style="border-radius: 15px;"> 
+                            <div class="tc-post-list-style1" style="border-radius: 15px;" >
+                                <div class="tc-post-title-style1" style="border-radius: 15px;">
                                     <a href="page-blog.html"> Трендовые посты </a>
                                 </div>
                                 {% for popular_post in popular_post%}
-                                <div class="tc-post-overlay-default">
+                                <div class="tc-post-overlay-default" >
                                     <div class="img th-200 img-cover">
-                                        <img src="{{popular_post.image.url}}" alt="">
+                                        <img src="{{popular_post.image.url}}" style="border-radius: 15px;" alt="">
                                     </div>
                                     <div class="content ps-20 pe-20 pb-20 text-white">
                                         <a href="#"
@@ -177,9 +177,9 @@
                                     </div>
                                 </div>
                                 {% endfor %}
-                                <div class="items">
+                                <div class="items" style="border-radius: 15px;">
                                     {% for popular in popular_posts%}
-                                    <a href="{% url 'blog_detail' popular.id%}" class="item hover-main">
+                                    <a href="{% url 'blog_detail' popular.id%}" class="item hover-main" >
                                         <h2 class="num">
                                             2
                                         </h2>
@@ -215,7 +215,7 @@
                                 <div class="swiper-slide">
                                     <a href="{% url 'stories' stories.id%}" class="story-item">
                                         <div class="img img-cover">
-                                            <img src="{{stories.image.url}}" alt="">
+                                            <img src="{{stories.image.url}}"  alt="">
                                         </div>
                                         <div class="title fsz-14px color-000 mt-10">
                                             {{stories.title}}
@@ -248,7 +248,7 @@
                             <div class="tc-post-grid-default">
                                 <div class="item">
                                     <div class="img img-cover th-330">
-                                        <img src="{{latest_new.image.url}} " alt="">
+                                        <img src="{{latest_new.image.url}} " style="border-radius: 15px;" alt="">
                                         <a href="https://youtu.be/pGbIOC83-So?t=21" data-lity
                                             class="video_icon icon-70">
                                             <i class="ion-play"></i>
@@ -283,7 +283,7 @@
                                         <div class="row gx-3 align-items-center">
                                             <div class="col-4">
                                                 <div class="img th-70 img-cover">
-                                                    <img src="{{latest_news.image.url}}" alt="">
+                                                    <img src="{{latest_news.image.url}}" style="border-radius: 15px;" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -320,7 +320,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
                             <a href="{{noraml_advert.url_booking}}" class="d-block img-cover">
-                                <img src="{{normal_advert.image.url}}" alt="">
+                                <img src="{{normal_advert.image.url}}" style="border-radius: 15px;" alt="">
                             </a>
                         </div>
                     </div>
@@ -346,7 +346,7 @@
                                         {% for blog in first_blog1 %}
                                             <div class="col-lg-5">
                                                 <div class="img img-cover th-230">
-                                                    <img src="{{blog.image.url}} " alt="">
+                                                    <img src="{{blog.image.url}}" style="border-radius: 15px;"alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-7">
@@ -374,7 +374,7 @@
                                         <div class="col-lg-4 border-1 border-end brd-gray">
                                             <div class="item">
                                                 <div class="img img-cover th-180 mb-20">
-                                                    <img src="{{ blog.image.url }}" alt="">
+                                                    <img src="{{ blog.image.url }}"  style="border-radius: 15px;"alt="">
                                                 </div>
                                                 <div class="content">
                                                     <a href="{% url 'blog_detail' blog.id%}" class="news-cat color-999 fsz-13px text-uppercase mb-1">{{ blog.category }}</a>
@@ -403,7 +403,7 @@
                                         <div class="col-lg-8 border-1 border-end brd-gray">
                                             <div class="tc-post-overlay-default">
                                                 <div class="img th-400 img-cover">
-                                                    <img src="{{blog.image.url}}" alt="">
+                                                    <img src="{{blog.image.url}}"  style="border-radius: 15px;" alt="">
                                                     <div class="tags">
                                                         <a href="{% url 'blog_detail' blog.id%}">{{ blog.category}}</a>
                                                     </div>
@@ -456,7 +456,7 @@
                                                     <div class="row gx-3 align-items-center">
                                                         <div class="col-4">
                                                             <div class="img th-90 img-cover">
-                                                                <img src="{{blog.image.url}}" alt="">
+                                                                <img src="{{blog.image.url}}"  style="border-radius: 15px;" alt="">
                                                             </div>
                                                         </div>
                                                         <div class="col-8">
@@ -485,7 +485,7 @@
                                     <div class="row justify-content-center">
                                         <div class="col-lg-10">
                                             <a href="{{normal_advert.url}}" class="d-block img-cover">
-                                                <img src="{{normal_advert.image.url}}" alt="">
+                                                <img src="{{normal_advert.image.url}}" style="border-radius: 15px;" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -501,7 +501,7 @@
                             {% for blog in third_blog1 %}
                                 <div class="tc-post-overlay-default">
                                     <div class="img th-600 img-cover">
-                                        <img src="{{blog.image.url}}" alt="">
+                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         <div class="tags">
                                             <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
                                         </div>
@@ -530,7 +530,7 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="img th-200 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
@@ -563,7 +563,7 @@
                     <div class="col-lg-3">
                         <div class="tc-side-widgets">
                             <!-- widget-social -->
-                            <div class="tc-widget-social-style1">
+                            <div class="tc-widget-social-style1" style="border-radius: 15px;">
                                 <p class="color-000 text-uppercase mb-30 ltspc-1 lh-2"> ОСТАВАЙСЯ НА СВЯЗИ </p>
                                 <div class="content">
                                     {% if setting.facebook %}
@@ -601,9 +601,9 @@
                                 </div>
                             </div>
                            {% if big_advert%}
-                            <div class="tc-widget-sponsored-style1">
+                            <div class="tc-widget-sponsored-style1" style="border-radius: 15px;">
                                 <div class="img img-cover">
-                                    <img src="{{big_advert.image.url}}" alt="">
+                                    <img src="{{big_advert.image.url}}" style="border-radius: 15px;" alt="">
                                 </div>
                                 <div class="info pt-10">
                                     <div class="spon-cat"> {{big_advert.title|truncatechars:50}} </div>
@@ -621,8 +621,8 @@
                                 <p class="color-000 text-uppercase mb-20 ltspc-1"> Популярные посты </p>
                                 {% for popular_post in popular_post%}
                                 <div class="main-card">
-                                    <div class="img th-300 img-cover">
-                                        <img src="{{popular_post.image.url}}" alt="">
+                                    <div class="img th-300 img-cover" style="border-radius: 15px;">
+                                        <img src="{{popular_post.image.url}}" style="border-radius: 15px;" alt="">
                                         <div class="tags">
                                             <a href="{% url 'blog_detail' popular_post.id%}">{{popular_post.category}}</a>
                                         </div>
@@ -645,7 +645,7 @@
                                     {% for popular in popular_posts %}
                                     <a href="{% url 'blog_detail' popular.id%}" class="item">
                                         <div class="img img-cover">
-                                            <img src="{{popular.image.url}}" alt="">
+                                            <img src="{{popular.image.url}}" style="border-radius: 15px;" alt="">
                                         </div>
                                         <div class="info">
                                             <h6 class="title">
@@ -661,7 +661,7 @@
                             {% if small_advert%}
                             <div class="tc-widget-adbox-style1">
                                 <a href="{{small_advert.url_booking}}" class="img">
-                                    <img src="{{small_advert.image.url}} " alt="" class="">
+                                    <img src="{{small_advert.image.url}} " style="border-radius: 15px;" alt="" class="">
                                 </a>
                             </div>
                             {% endif %}
@@ -689,7 +689,7 @@
                             <div class="tc-post-grid-default">
                                 <div class="item">
                                     <div class="img img-cover th-400">
-                                        <img src="{{blog.image.url}}" alt="">
+                                        <img src="{{blog.image.url}}"  style="border-radius: 15px;" alt="">
                                     </div>
                                     <div class="content pt-30">
                                         <a href="{% url 'blog_detail' blog.id%}" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
@@ -718,7 +718,7 @@
                                         <div class="row gx-3 align-items-center">
                                             <div class="col-4">
                                                 <div class="img th-50 img-cover">
-                                                    <img src="{{blog.image.url}} " alt="">
+                                                    <img src="{{blog.image.url}} " style="border-radius: 15px;" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -757,7 +757,7 @@
                                     <div class="columnist-card d-flex align-items-center">
                                         <div
                                             class="img img-cover icon-100 rounded-circle overflow-hidden flex-lg-shrink-0 me-4">
-                                            <img src="{{team.image.url}}" alt="">
+                                            <img src="{{team.image.url}}" style="border-radius: 15px;" alt="">
                                         </div>
                                         <div class="info">
                                             <h6 class="name fsz-20px mb-10">
@@ -798,7 +798,7 @@
                                     <div class="tc-post-grid-default">
                                         <div class="item">
                                             <div class="img img-cover th-250">
-                                                <img src="{{blog.image.url}}" alt="">
+                                                <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                             </div>
                                             <div class="content pt-20">
                                                 <a href="{% url 'blog_detail' blog.id%}"
@@ -857,7 +857,7 @@
                                     <div class="tc-post-grid-default">
                                         <div class="item">
                                             <div class="img img-cover th-250">
-                                                <img src="{{blog.image.url}}" alt="">
+                                                <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                             </div>
                                             <div class="content pt-20">
                                                 <a href="{% url 'blog_detail' blog.id%}"
@@ -916,7 +916,7 @@
                                     <div class="tc-post-grid-default">
                                         <div class="item">
                                             <div class="img img-cover th-250">
-                                                <img src="{{blog.image.url}}" alt="">
+                                                <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                             </div>
                                             <div class="content pt-20">
                                                 <a href="{% url 'blog_detail' blog.id%}"

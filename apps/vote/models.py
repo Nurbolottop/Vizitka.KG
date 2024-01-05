@@ -41,9 +41,12 @@ class Vote(models.Model):
     date_voted = models.DateTimeField(auto_now_add=True, verbose_name='Дата голосования')
 
     class Meta:
-        unique_together = ('user', 'option')  # Один пользователь может голосовать за опцию только один раз
-        verbose_name = 'Голос'
-        verbose_name_plural = 'Голоса'
+        try:
+            unique_together = ('user', 'option')  # Один пользователь может голосовать за опцию только один раз
+            verbose_name = 'Голос'
+            verbose_name_plural = 'Голоса'
+        except:
+            print("Пользователь уже голосовал")
 
     def __str__(self):
         return f"{self.user.username} голосовал за {self.option.name} в номинации {self.nomination.name}"

@@ -41,15 +41,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card">
                                     <div class="img">
-                                        <img src="{{magazine.image.url}}" alt="">
-                                        {% comment %} <div class="btns">
-                                            <a href="page-product.html#" class="butn">
-                                                <span> <i class="la la-eye me-2"></i> Quick View</span>
-                                            </a>
-                                            <a href="page-product.html#" class="butn">
-                                                <span> <i class="la la-shopping-bag me-2"></i> Add To Cart</span>
-                                            </a>
-                                        </div> {% endcomment %}
+                                        <img src="{{magazine.image.url}}"  style="border-radius: 15px;" alt="">
                                     </div>
                                     <div class="info pt-30">
                                         <a href="#" class="title">{{magazine.title}}</a>
@@ -67,62 +59,41 @@
                 </div>
             </div>
         </section>
-        <!-- ====== start another posts ====== -->
-        {% comment %} {% if magazine %}
-        <div class="title text-center mb-30">
-            <h2 class="fsz-30px"> Журнал </h2>
-        </div>
-        <ul class="restaurant-menu-list">
-            {% for magazine in magazine %}
-            <li>
-                <div class="restaurant-menu-title">
-                    <div class="restaurant-menu-name">
-                        <span>{{magazine.title}}</span>
-                    </div>
-                    <div class="restaurant-menu-dots"></div>
-                    <div class="restaurant-menu-price">{{magazine.price}}</div>
-                </div>
-                <div class="restaurant-menu-description">
-                </div>
-            </li>	
-            {% endfor %}
-        </ul>
-        <br>
-        {% endif %} {% endcomment %}
-        |safe
+
         {% if site %}
-        <div class="title text-center mb-30">
-            <h2 class="fsz-30px"> Сайт </h2>
-        </div>
-        <ul class="restaurant-menu-list">
-            {% for site in site %}
-            <li>
-                <div class="restaurant-menu-title">
-                    <div class="restaurant-menu-name">
-                        <span>{{site.title}}</span>
-                    </div>
-                    <div class="restaurant-menu-dots"></div>
-                    <div class="restaurant-menu-price">{{site.price}}</div>
-                </div>
-                <div class="restaurant-menu-description">
-                </div>
-            </li>	
-            {% endfor %}
-        </ul>
-        <br>
-        {% endif %}
-        {% comment %} <section class="another-news">
+        <section class="tc-products-content section-padding">
             <div class="container">
-                
+                <div class="title text-center mb-30">
+                    <h2 class="fsz-30px"> Сайт </h2>
+                </div>
+                <div class="related-products-slider tc-products position-relative tc-slider-style1">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                         {% for magazine in site %}
+
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <div class="img">
+                                        <img src="{{magazine.image.url}}" style="border-radius: 15px;" alt="">
+                                    </div>
+                                    <div class="info pt-30">
+                                        <a href="#" class="title">{{magazine.title}}</a>
+                                        <br>
+                                        <strong class="price"> {{magazine.price}} </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
-        </section> {% endcomment %}
-
-        
-        <!-- ====== end modals ====== -->
-
+        </section>
+        {% endif %}
     </main>
-    <!--End-Contents-->
-
     <!-- ====== start footer ====== -->
     {% include 'include/footer.html' %}
 

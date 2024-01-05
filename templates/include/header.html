@@ -169,21 +169,21 @@
                                     </a>
 
                                     <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                        <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li>
+                                        {% comment %} <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li> {% endcomment %}
                                         <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
                                     </ul>
                                 </li>
                             {% else %}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="{% url 'login' %}" role="button"
+                                        aria-expanded="false">
                                         Войти
                                     </a>
 
-                                    <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                        <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li>
+                                    {% comment %} <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                        {% comment %} <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li> 
                                         <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
-                                    </ul>
+                                    </ul> {% endcomment %}
                                 </li>
                             {% endif %}
                            

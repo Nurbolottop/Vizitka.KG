@@ -4,9 +4,9 @@ from django.contrib.auth import views as auth_views
 #my imports
 from apps.users import views,resset_password
 urlpatterns = [
-    path('register/', views.register, name="register"),
+    # path('register/', views.register, name="register"),
     path('login/', views.user_login, name="login"),
-    path('profile/<int:id>/', views.profile, name="profile"),
+    # path('profile/<int:id>/', views.profile, name="profile"),
     path("logout/", LogoutView.as_view(next_page = "index"), name = "logout"),
     
     # reset password

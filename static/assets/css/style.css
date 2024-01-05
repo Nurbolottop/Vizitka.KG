@@ -5989,6 +5989,7 @@ small.text {
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.8)), to(transparent));
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   z-index: 1;
+  border-radius: 15px !important;
 }
 .tc-post-overlay-default .img .tags {
   position: absolute;
@@ -16061,7 +16062,7 @@ body {
 }
 
 .voting-header {
-  background-color: #85353d;
+  background-color: #f32d29;
   color: #ffffff;
   padding: 20px;
   font-size: 24px;
@@ -16234,8 +16235,6 @@ body {
   font-weight: bold; /* Жирное начертание */
   margin: 0; /* Убрать внешние отступы */
   box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Тень для объёма */
-  border-top: 3px solid #820c0c; /* Тёмная линия сверху */
-  border-bottom: 3px solid #820c0c; /* Тёмная линия снизу */
 }
 
 .advertisement-section {
