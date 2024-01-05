@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from django.db.models import F, Sum, FloatField, ExpressionWrapper
 # my imports
 from apps.index import models
 from apps.blog.models import BigAdvert,NormalAdvert,SmallAdvert,Category
@@ -37,22 +38,35 @@ def vote(request):
     context = {'end_time': end_time.isoformat()}
     #########################################################################
 
-    # Логика подсчета
     if request.method == 'POST':
         option_id = request.POST.get('option_id')
         option = get_object_or_404(Option, pk=option_id)
-        option.increment_vote()
         nomination = option.nomination
-        Vote.objects.create(user=request.user, option=option,nomination=nomination)
-        total_votes = sum(o.votes for o in option.nomination.options.all())
-        results = [{
-            'name': opt.name,
-            'votes': opt.votes,
-            'percentage': round(opt.votes / total_votes * 100, 2)  
-        } for opt in option.nomination.options.all() 
-        ]
 
+        # Вычисляем текущие результаты для номинации
+        total_votes = nomination.options.aggregate(total=Sum('votes'))['total'] or 0
+        results = list(nomination.options.values('name', 'votes').annotate(
+            percentage=ExpressionWrapper(F('votes') * 100 / total_votes, output_field=FloatField())
+        ))
+
+        # Проверяем, голосовал ли пользователь
+        if Vote.objects.filter(user=request.user, nomination=nomination).exists():
+            # Если пользователь уже голосовал, отправляем текущие результаты
+            return JsonResponse({'already_voted': True, 'results': results})
+
+        # Если пользователь не голосовал, учитываем его голос
+        option.increment_vote()  # Увеличиваем количество голосов
+        Vote.objects.create(user=request.user, option=option, nomination=nomination)
+
+        # Пересчитываем результаты после голосования
+        total_votes = nomination.options.aggregate(total=Sum('votes'))['total'] or 0
+        results = list(nomination.options.values('name', 'votes').annotate(
+            percentage=ExpressionWrapper(F('votes') * 100 / total_votes, output_field=FloatField())
+        ))
+
+        # Возвращаем обновленные результаты
         return JsonResponse({
+            'already_voted': False,
             'results': results,
             'total_votes': total_votes
         })

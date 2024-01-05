@@ -242,24 +242,28 @@
                     },
                     dataType: 'json',
                     success: function(data) {
-                        form.hide(); // Скрыть форму после голосования
-                        var resultsContainer = $("#resultsContainer" + nominationId);
-                        resultsContainer.empty();
-    
-                        data.results.forEach(function(result) {
-                            var progressBarWidth = result.percentage + '%';
-                            resultsContainer.append(
-                                '<div class="result-item">' +
-                                    '<span class="result-name">' + result.name + ' - ' + result.votes + ' голос(ов)</span>' +
-                                    '<div class="result-progress-background">' +
-                                        '<div class="result-progress-bar" style="width: ' + progressBarWidth + ';">' +
-                                            progressBarWidth +
-                                        '</div>' +
-                                    '</div>' +  
-                                '</div>'
-                            );
-                        });
-                        resultsContainer.show(); // Показать результаты
+                        if (data.hasVoted) { // Предположим, что 'hasVoted' - это поле в ответе от сервера
+                            alert('Вы уже голосовали.');
+                        } else {
+                            form.hide(); // Скрыть форму после голосования
+                            var resultsContainer = $("#resultsContainer" + nominationId);
+                            resultsContainer.empty();
+        
+                            data.results.forEach(function(result) {
+                                var progressBarWidth = result.percentage + '%';
+                                resultsContainer.append(
+                                    '<div class="result-item">' +
+                                        '<span class="result-name">' + result.name + ' - ' + result.votes + ' голос(ов)</span>' +
+                                        '<div class="result-progress-background">' +
+                                            '<div class="result-progress-bar" style="width: ' + progressBarWidth + ';">' +
+                                                progressBarWidth +
+                                            '</div>' +
+                                        '</div>' +  
+                                    '</div>'
+                                );
+                            });
+                            resultsContainer.show(); // Показать результаты
+                        }
                     },
                     error: function(error) {
                         console.error('Ошибка: ', error);
@@ -301,6 +305,5 @@
 
 
 {% endblock %}
-
 
 
