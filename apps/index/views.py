@@ -136,26 +136,14 @@ def contact(request):
         context = {
             "setting":setting
         }
-        
-        body {
-            margin: 0;
-            background: #020202;
-            cursor: crosshair;
-        }
-        canvas{display:block}
-        h1 {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-family: "Source Sans Pro";
-            font-size: 5em;
-            font-weight: 900;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-    </style>
+        if "message_send" in request.POST:
+            email = request.POST.get('email')  # Получаем email из request.POST
+            if not Subscriber.objects.filter(email=email).exists():
+                subscriber = Subscriber(email=email)
+                subscriber.save()
+                return redirect( 'subscribe_done')
+            else:
+                    return redirect( 'subscribe_nodone')
     return render(request, 'base/page-contact.html', locals())
 
 def about(request):
