@@ -11,6 +11,6 @@ urlpatterns = [
     path('subscribe_done', views.subscribe_done,name = "subscribe_done"),
     path('subscribe_nodone', views.subscribe_nodone,name = "subscribe_nodone"),
     path('category/<int:category_id>/', views.category_view, name='category'),
-    path('team', views.team,name = "team"),
+    path('wooow', views.team,name = "team"),
     path('banner', views.banner,name = "banner"),
 ]
