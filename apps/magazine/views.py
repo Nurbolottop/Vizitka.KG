@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from datetime import datetime
 from apps.index import models
+from apps.users.models import Subscriber,Contact
 from apps.blog.models import Blog,BigAdvert,SmallAdvert,NormalAdvert,Category
 from apps.secondary.models import Stories
 from apps.magazine.models import Magazine
@@ -28,6 +29,14 @@ def magazine(request):
     for magazine in magazines:
         # Используем новый метод для получения URL первой страницы
         magazine.first_page_image_url = magazine.get_first_page_image_url()
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request,"magazine/magazine.html",locals())
 
 

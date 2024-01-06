@@ -88,7 +88,14 @@ def category_view(request, category_id):
     paginator = Paginator(blog, 5)  # Показывать по 5 блогов на каждой странице
     page = request.GET.get('page')
     blogs = paginator.get_page(page)
-    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request, 'secondary/category.html',locals())
 
 def storie(request,id):
@@ -97,6 +104,14 @@ def storie(request,id):
     
     stories_all = Stories.objects.exclude(id=id)
     stories = Stories.objects.get(id=id)
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request, 'base/stories.html', locals())
 
 def contact(request):
@@ -104,23 +119,43 @@ def contact(request):
     temperature, weather_condition = async_to_sync(get_weather_data)()
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
-    
     if request.method =="POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-        Contact.objects.create(name = name,email = email,message = message)
-        send_mail(
-            f'{message}',
+        if "contact_send" in request.POST:
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            message = request.POST.get('message')
+            Contact.objects.create(name = name,email = email,message = message)
+            send_mail(
+                f'{message}',
 
-            f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
-            "noreply@somehost.local",
-            [email])
+                f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
+                "noreply@somehost.local",
+                [email])
+            
+            return redirect('index')
+        context = {
+            "setting":setting
+        }
         
-        return redirect('index')
-    context = {
-        "setting":setting
-    }
+        body {
+            margin: 0;
+            background: #020202;
+            cursor: crosshair;
+        }
+        canvas{display:block}
+        h1 {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-family: "Source Sans Pro";
+            font-size: 5em;
+            font-weight: 900;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    </style>
     return render(request, 'base/page-contact.html', locals())
 
 def about(request):
@@ -133,6 +168,14 @@ def about(request):
     team = Team.objects.all()
     partner = Partners.objects.all()
     category = Category.objects.all().order_by("?")[:]
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request,'base/page-about.html', locals())
 
 def search(request):
@@ -154,6 +197,14 @@ def search(request):
         paginator = Paginator(blog_results, 5)
         page = request.GET.get('page')
         blogs = paginator.get_page(page)
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request, 'secondary/search_result.html', locals())
 
 def subscribe_done(request):
@@ -161,7 +212,14 @@ def subscribe_done(request):
     temperature, weather_condition = async_to_sync(get_weather_data)()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
-    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request, 'subscribe/subscribe_done.html', locals())
 
 def subscribe_nodone(request):
@@ -169,7 +227,14 @@ def subscribe_nodone(request):
     temperature, weather_condition = async_to_sync(get_weather_data)()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
-    
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request, 'subscribe/subscribe_nodone.html', locals())
 
 
@@ -178,8 +243,15 @@ def team(request):
     # temperature, weather_condition = get_weadher_data()
     category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
-    
     team = Team.objects.all()
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request,'base/page-team.html', locals())
 
 def banner(request):
@@ -192,4 +264,12 @@ def banner(request):
     site = Site.objects.all()
     
     banner = models.Banner.objects.latest("id")
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     return render(request,"secondary/banner.html", locals())

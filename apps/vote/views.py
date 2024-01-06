@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from datetime import datetime, timedelta
+from datetime import datetime
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.db.models import F, Sum, FloatField, ExpressionWrapper
@@ -12,6 +12,7 @@ from apps.vote.models import Nomination, Option,Vote,Advert,VotingInfo
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from apps.blog.models import Blog
+from apps.users.models import Subscriber
 # Create your views here.
 def vote(request):
     current_date = datetime.now()
@@ -39,6 +40,15 @@ def vote(request):
     #########################################################################
 
     if request.method == 'POST':
+        if "message_send" in request.POST:
+            email = request.POST.get('email')  # Получаем email из request.POST
+            if not Subscriber.objects.filter(email=email).exists():
+                subscriber = Subscriber(email=email)
+                subscriber.save()
+                return redirect( 'subscribe_done')
+            else:
+                    return redirect( 'subscribe_nodone')
+            
         option_id = request.POST.get('option_id')
         option = get_object_or_404(Option, pk=option_id)
         nomination = option.nomination
@@ -80,5 +90,5 @@ def vote(request):
 
     page_number = request.GET.get('page')
     nominations = paginator.get_page(page_number)
-
+   
     return render(request, 'vote/vote.html', locals())

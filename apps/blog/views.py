@@ -33,15 +33,11 @@ def blog(request):
     page = request.GET.get('page')
     blogs = paginator.get_page(page)
     if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-
-        # Проверяем, не подписан ли уже пользователь с таким email
+        email = request.POST.get('email') 
         if not Subscriber.objects.filter(email=email).exists():
             # Если не подписан, создаем новую запись в базе данных
             subscriber = Subscriber(email=email)
             subscriber.save()
-            # Затем отправляем подтверждение подписчику
-            # send_subscription_email(email)  # Расскомментируйте, если есть функция отправки письма
 
             return redirect( 'subscribe_done')
         else:
@@ -62,19 +58,12 @@ def blog_detail(request, id):
     d3 = blogs_detail.d3_method()
     
     if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-
-        # Проверяем, не подписан ли уже пользователь с таким email
+        email = request.POST.get('email') 
         if not Subscriber.objects.filter(email=email).exists():
-            # Если не подписан, создаем новую запись в базе данных
             subscriber = Subscriber(email=email)
             subscriber.save()
-            # Затем отправляем подтверждение подписчику
-            # send_subscription_email(email)  # Расскомментируйте, если есть функция отправки письма
-
             return redirect( 'subscribe_done')
         else:
-            # Подписчик с таким email уже существует
                 return redirect( 'subscribe_nodone')
     return render(request, 'detail/page-single-post-creative.html', locals())
 
