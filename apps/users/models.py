@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 # Create your models here.
 
 class User(AbstractUser):
+    email = models.EmailField(
+        blank = True, null = True
+    )
     phone = models.CharField(
         max_length=255,
         verbose_name="Телефонный номер",
