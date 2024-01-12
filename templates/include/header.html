@@ -137,16 +137,19 @@
                                 Рекламодателям
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">
-                                О нас
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Страницы
                             </a>
+                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
+                                <li><a class="dropdown-item" href="{% url 'about' %}">О нас</a></li>
+                                <li><a class="dropdown-item" href="{% url 'contact' %}">Контакты</a></li>
+                                 <li><a class="dropdown-item" href="page-product.html">Партнеры</a></li>
+                                {% comment %}<li><a class="dropdown-item" href="page-404.html">404 page</a></li> {% endcomment %}
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">
-                                Контакты
-                            </a>
-                        </li>
+                        
                         {% comment %} <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">

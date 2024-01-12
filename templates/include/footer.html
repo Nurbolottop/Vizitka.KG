@@ -1,140 +1,129 @@
 {% load static %}
-    <!-- ====== start footer ====== -->
-    <footer class="footer-style1">
-        <div class="container">
-            <div class="tc-subscribe-style1">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-4">
-                        <div class="sub-info">
-                            <h5>Получайте лучшие истории из блога на свой почтовый ящик</h5>
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-cta pt-5 pb-5">
+            <div class="row">
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="cta-text">
+                            <h4>Найди нас</h4>
+                            <span>{{setting.location}}</span>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="sub-form">
-                                <div class="form-group">
-                                    <span class="icon">
-                                        <i class="la la-envelope"></i>
-                                    </span>
-                                    <input style="border-radius: 15px;" type="text" name="email" class="form-control" placeholder="Введите почту">
-                                    <button name = "message_send">ПОДПИСАТЬСЯ</button>
-                                </div>
-                                {% comment %} <p class="mt-2 color-666 fsz-13px fst-italic">Оформив подписку, вы приняли наше  <a
-                                        href="home-default.html#" class="text-decoration-underline fst-normal color-000">Политика</a></p> {% endcomment %}
-                            </div>
-                        </form> 
                     </div>
                 </div>
-            </div>
-
-            <div class="content">
-                <div class="row gx-lg-5">
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <div class="foot-logo">
-                                <img src="{{setting.logo.url}}" alt="" class="dark-none">
-                                <img src="{% static 'assets/img/logo_home1_lt.png' %}" alt="" class="light-none">
-                            </div>
-                            <div class="data-info">
-                                {% comment %} <p>
-                                    <b>Operated by : </b> ThemesCamp Company, Inc.
-                                </p>
-                                <p>
-                                    <b> Tax Code: </b> 0514234567
-                                </p> {% endcomment %}
-                                <p>
-                                    <b> Адрес: </b> {{setting.location}}
-                                <p>
-                                    <b> Почта : </b> {{setting.email}}
-                                </p>
-                                <p>
-                                    <b> Телефоннный номер : </b> {{setting.phone    }}
-                                </p>
-                            </div>
-
-                            <div class="social-links">
-                                {% if setting.facebook%}
-                                <a href="{{setting.facebook}}">
-                                    <i class="la la-facebook"></i>
-                                </a>
-                                {% endif %}
-                                {% if setting.whatsapp %}
-                                <a href="{{setting.whatsapp}}">
-                                    <i class="la la-whatsapp"></i>
-                                </a>
-                                {% endif %}
-                                {% if setting.instagram %}
-                                <a href="{{setting.instagram}}">
-                                    <i class="la la-instagram"></i>
-                                </a>
-                                {% endif %}
-                                {% if setting.youtube  %}
-                                <a href="{{setting.youtube }}">
-                                    <i class="la la-youtube"></i>
-                                </a>
-                                {% endif %}
-                            </div>
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                        <i class="fas fa-phone"></i>
+                        <div class="cta-text">
+                            <h4>Позвоните нам</h4>
+                            <span>{{setting.phone}}</span>
                         </div>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="link-group">
-                            <a href  = "{% url 'vote' %}" class="title">Голосование</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="link-group">
-                            <a href = "{% url 'banner' %}" class="title">Рекламадателям</a>
-                        </div>
-                        
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="link-group">
-                            <a href =  "{% url 'blog' %}" class="title">Новости</a>
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-2">
-                        <div class="link-group">
-                            <div class="title">Страницы</div>
-                            <ul>
-                                 {% comment %} <li>
-                                    <a href="{% url 'team' %}" class="f-link">Наша команда</a>
-                                </li> {% endcomment %}
-                                <li>
-                                    <a href="{% url 'about' %}" class="f-link">О нас</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'contact' %}" class="f-link">Контакты </a>
-                                </li>
-                               
-                            </ul>
-                        </div>
-                    </div>
-                    {% comment %} <div class="col-lg-2">
-                        <div class="link-group">
-                            <div class="title">Категории</div>
-                            <ul>
-                                {% for category in category %}
-                                <li>
-                                    <a href="home-default.html#" class="f-link">{{category.title}}</a>
-                                </li>
-                               {% endfor %}
-                            </ul>
-                        </div>
-                      
-                    </div> {% endcomment %}
                 </div>
-            </div>
-
-            <div class="foot text-center py-4 border-1 border-top brd-gray">
-                <p class="fsz-13px color-666">© 2023 Copyrights by <a href="https://codexstudio.site/" class="color-000">CodexStudio</a>
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                        <i class="far fa-envelope-open"></i>
+                        <div class="cta-text">
+                            <h4>Напишите нам</h4>
+                            <span>{{setting.email}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- ====== start to top button ====== -->
-        <a href="home-default.html#" class="to_top">
-            <i class="la la-angle-up"></i>
-        </a>
-        <!-- ====== end to top button ====== -->
-    </footer>
+        <div class="footer-content pt-5 pb-5">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 mb-50">
+                    <div class="footer-widget">
+                        <div class="footer-logo">
+                            <a href="{% url 'index' %}"><img src="{{setting.logo_white.url}}" class="img-fluid" alt="logo"></a>
+                        </div>
+                        <div class="footer-text">
+                            <p>{{setting.descriptions}}</p>
+                        </div>
+                        <div class="footer-social-icon">
+                            <span>Follow us</span>
+                            {% if setting.facebook%}
+                            <a href="{{setting.facebook}}">
+                                <i class="la la-facebook"></i>
+                            </a>
+                            {% endif %}
+                            {% if setting.whatsapp %}
+                            <a href="{{setting.whatsapp}}">
+                                <i class="la la-whatsapp"></i>
+                            </a>
+                            {% endif %}
+                            {% if setting.instagram %}
+                            <a href="{{setting.instagram}}">
+                                <i class="la la-instagram"></i>
+                            </a>
+                            {% endif %}
+                            {% if setting.youtube  %}
+                            <a href="{{setting.youtube }}">
+                                <i class="la la-youtube"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                    <div class="footer-widget">
+                        <div class="footer-widget-heading">
+                            <h3>Полезные ссылки</h3>
+                        </div>
+                        <ul>
+                            <li><a href="{% url 'index' %}">Главная страница    </a></li>
+                            <li><a href="{% url 'blog' %}">Новости</a></li>
+                            
+                            <li><a href="{% url 'contact' %}">Контакты</a></li>
+                            <li><a href="{% url 'magazine' %}">Журналы</a></li>
+                            <li><a href="{% url 'vote' %}">Голосование</a></li>
+                            <li><a href="{% url 'banner' %}">Рекламадателям</a></li>
+                            <li><a href="{% url 'about' %}">О нас</a></li>
+                            <li><a href="#">Партнеры</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                    <div class="footer-widget">
+                        <div class="footer-widget-heading">
+                            <h3>Подписаться</h3>
+                        </div>
+                        <div class="footer-text mb-25">
+                            <p>Получайте лучшие истории из блога на свой почтовый ящик</p>
+                        </div>
+                        <div class="subscribe-form">
+                            <form method = "POST">
+                                {% csrf_token %}
+                                <input type="text" name="email" placeholder="Почта">
+                                <button name = "message_send" ><i class="la la-telegram"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                    <div class="copyright-text">
+                        <p>Copyright &copy; 2018, All Right Reserved <a href="https://www.instagram.com/codex_kg/">CodexStudio</a></p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Главная страница</a></li>
+                            <li><a href="{% url 'about' %}">О нас</a></li>
+                            <li><a href="#">Партнеры</a></li>
+                            <li><a href="{% url 'contact' %}">Контакты</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

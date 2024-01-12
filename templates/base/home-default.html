@@ -180,9 +180,6 @@
                                 <div class="items" style="border-radius: 15px;">
                                     {% for popular in popular_posts%}
                                     <a href="{% url 'blog_detail' popular.id%}" class="item hover-main" >
-                                        <h2 class="num">
-                                            2
-                                        </h2>
                                         <div class="content">
                                             <span class="fsz-12px color-999 text-uppercase mb-2">{{popular.category}}</span>
                                             <h6 class="title">{{popular.title|truncatewords:7}}</h6>
