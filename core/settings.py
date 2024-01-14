@@ -145,7 +145,7 @@ USE_TZ = config.USE_TZ
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Или любой другой путь, где вы хотите собирать статические файлы
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Или любой другой путь, где вы хотите собирать статические файлы
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Если у вас есть дополнительные статические файлы для вашего приложения
 ]
