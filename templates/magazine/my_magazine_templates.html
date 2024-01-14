@@ -3,12 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Важно для адаптивного дизайна -->
     <title>My Magazine</title>
     <link rel="stylesheet" href="{% static 'magazines/css/magazine_style.css' %}">
     <script src="{% static 'magazines/js/jquery.min.js' %}"></script>
     <script src="{% static 'magazines/js/turn.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script> <!-- Добавлено для сенсорных событий -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 </head>
 <body>
 
@@ -25,20 +26,11 @@
         <span class="page-indicator" id="page-indicator">1/8</span>
         <button class="nav-button" id="nav-next"><i class="fas fa-step-forward"></i></button>
         <button class="nav-button" id="nav-last"><i class="fas fa-fast-forward"></i></button>
-      </div>
+        <button class="nav-button" id="zoom-in">+</button>
+        <button class="nav-button" id="zoom-out">-</button>
+        <button class="nav-button" id="zoom-reset">&#x21bb;</button>
+    </div>
 </div>
-
-  
 <script src="{% static 'magazines/js/your-script.js' %}"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#flipbook").turn({
-            width: 1300,
-            height: 920,
-            autoCenter: true
-        });
-    });
-</script>
-
 </body>
 </html>

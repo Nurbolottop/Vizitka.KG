@@ -1,50 +1,69 @@
-for (var i = 1; i <= 10; i++) {
-  $("#flipbook").turn("addPage", "<div style='background-size: cover;'><img src='/media/magazines/" + i + ".webp' style='width: 100%; height: auto;'></div>");
-}
+$(document).ready(function() {
+    // Инициализация flipbook
+    var flipbook = $("#flipbook").turn({
+        width: 800,
+        height: 600,
+        autoCenter: true
+    });
 
-// Подключение обработчиков событий после загрузки документа
-document.addEventListener('DOMContentLoaded', function() {
-  // Получение элемента книги и инициализация turn.js
-  var flipbook = document.getElementById('flipbook');
-  // Инициализируйте turn.js на вашем элементе книги здесь
-  
-  // Обновление индикатора страницы
-  function updatePageIndicator() {
-    var currentPage = $(flipbook).turn('page');
-    var totalPages = $(flipbook).turn('pages');
-    document.getElementById('page-indicator').textContent = currentPage + '/' + totalPages;
-  }
-  
-  // Перелистывание на первую страницу
-  document.getElementById('nav-first').addEventListener('click', function() {
-    $(flipbook).turn('page', 1);
-    updatePageIndicator();
-  });
+    // Добавление страниц
+    for (var i = 1; i <= 10; i++) {
+        flipbook.turn("addPage", "<div style='background-size: cover;'><img src='/media/magazines/" + i + ".webp' style='width: 100%; height: auto;'></div>");
+    }
 
-  // Перелистывание на предыдущую страницу
-  document.getElementById('nav-prev').addEventListener('click', function() {
-    $(flipbook).turn('previous');
-    updatePageIndicator();
-  });
+    // Инициализация Hammer.js
+    var hammertime = new Hammer(flipbook[0]);
+    hammertime.on('swipe', function(e) {
+        if (e.direction == Hammer.DIRECTION_LEFT) {
+            flipbook.turn('next');
+        } else if (e.direction == Hammer.DIRECTION_RIGHT) {
+            flipbook.turn('previous');
+        }
+    });
 
-  // Перелистывание на следующую страницу
-  document.getElementById('nav-next').addEventListener('click', function() {
-    $(flipbook).turn('next');
-    updatePageIndicator();
-  });
+    // Обработчики для навигационных кнопок
+    $("#nav-first").on('click', function() {
+        flipbook.turn('page', 1);
+    });
 
-  // Перелистывание на последнюю страницу
-  document.getElementById('nav-last').addEventListener('click', function() {
-    var lastPage = $(flipbook).turn('pages');
-    $(flipbook).turn('page', lastPage);
-    updatePageIndicator();
-  });
+    $("#nav-prev").on('click', function() {
+        flipbook.turn('previous');
+    });
 
-  // При каждом перелистывании обновлять индикатор страницы
-  $(flipbook).bind('turned', function(event, page, view) {
-    updatePageIndicator();
-  });
-  
-  // Инициализация индикатора страницы
-  updatePageIndicator();
+    $("#nav-next").on('click', function() {
+        flipbook.turn('next');
+    });
+
+    $("#nav-last").on('click', function() {
+        flipbook.turn('page', flipbook.turn('pages'));
+    });
+
+    // Обновление индикатора страниц при перелистывании
+    flipbook.bind('turned', function(event, page, view) {
+        $("#page-indicator").text(page + "/" + flipbook.turn('pages'));
+    });
+});
+$(document).ready(function() {
+    var currentScale = 1;
+    var zoomStep = 0.1;
+
+    function zoomIn() {
+        currentScale += zoomStep;
+        $('#flipbook').css('transform', 'scale(' + currentScale + ')');
+        $('#flipbook').css('transform-origin', 'center center');
+    }
+
+    function zoomOut() {
+        currentScale = Math.max(currentScale - zoomStep, zoomStep);
+        $('#flipbook').css('transform', 'scale(' + currentScale + ')');
+    }
+
+    function zoomReset() {
+        currentScale = 1;
+        $('#flipbook').css('transform', 'none');
+    }
+
+    $('#zoom-in').click(zoomIn);
+    $('#zoom-out').click(zoomOut);
+    $('#zoom-reset').click(zoomReset);
 });
