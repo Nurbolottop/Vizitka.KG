@@ -82,7 +82,7 @@ def B3Blog1_mtehod():
                 break       
 
 
-def B3Blog2_mtehod():
+def B3Blog3_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
     third_blog = models.B3Blog.objects.latest('id')  
     result_blogs = []
@@ -91,7 +91,7 @@ def B3Blog2_mtehod():
         if third_blog.third ==blogs.category:
             result_blogs.append(blogs)
             n+=1
-            if n ==2:
+            if n ==3:
                 return result_blogs
                 break       
 
@@ -118,13 +118,117 @@ def B4Blog3_mtehod():
         if four_blog.four ==blogs.category:
             result_blogs.append(blogs)
             n+=1
-            if n ==4:
+            if n ==3:
+                return result_blogs
+                break     
+
+def B5Blog1_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    five_blog = models.B5Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if five_blog.five ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==1:
                 return result_blogs
                 break       
 
+def B5Blog3_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    five_blog = models.B5Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if five_blog.five ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==3:
+                return result_blogs
+                break     
+
+def B6Blog1_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    six_blog = models.B6Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if six_blog.six ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==1:
+                return result_blogs
+                break       
+
+def B6Blog3_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    six_blog = models.B6Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if six_blog.six ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==3:
+                return result_blogs
+                break   
+
+def B7Blog1_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    seven_blog = models.B7Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if seven_blog.seven ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==1:
+                return result_blogs
+                break       
+
+def B7Blog3_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    seven_blog = models.B7Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if seven_blog.seven ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==3:
+                return result_blogs
+                break   
+
+def B8Blog1_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    eight_blog = models.B8Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if eight_blog.eight ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==1:
+                return result_blogs
+                break       
+
+def B8Blog3_mtehod():
+    blog = Blog.objects.all().order_by("?")[:]
+    eight_blog = models.B8Blog.objects.latest('id')  
+    result_blogs = []
+    n = 0
+    for blogs in blog:
+        if eight_blog.eight ==blogs.category:
+            result_blogs.append(blogs)
+            n+=1
+            if n ==3:
+                return result_blogs
+                break   
+
 def fiveone1_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fiveone_blog = models.B5Blog.objects.latest('id')  
+    fiveone_blog = models.B9Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -136,7 +240,7 @@ def fiveone1_mtehod():
                 break    
 def fiveone2_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fiveone_blog = models.B5Blog.objects.latest('id')  
+    fiveone_blog = models.B9Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -149,7 +253,7 @@ def fiveone2_mtehod():
             
 def fivetwo1_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fivetwo_blog = models.B6Blog.objects.latest('id')  
+    fivetwo_blog = models.B10Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -161,7 +265,7 @@ def fivetwo1_mtehod():
                 break    
 def fivetwo2_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fivetwo_blog = models.B6Blog.objects.latest('id')  
+    fivetwo_blog = models.B10Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -174,7 +278,7 @@ def fivetwo2_mtehod():
             
 def fivethree1_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fivetwo_blog = models.B7Blog.objects.latest('id')  
+    fivetwo_blog = models.B11Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -187,7 +291,7 @@ def fivethree1_mtehod():
             
 def fivethree2_mtehod():
     blog = Blog.objects.all().order_by("?")[:]
-    fivethree_blog = models.B7Blog.objects.latest('id')  
+    fivethree_blog = models.B11Blog.objects.latest('id')  
     result_blogs = []
     n = 0
     for blogs in blog:
@@ -197,3 +301,5 @@ def fivethree2_mtehod():
             if n ==2:
                 return result_blogs
                 break    
+
+

@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('work', models.CharField(max_length=255, verbose_name='Профессия')),
             ],
             options={
-                'verbose_name': 'Наша комманда',
-                'verbose_name_plural': 'Наша комманда',
+                'verbose_name': 'Наша команда',
+                'verbose_name_plural': 'Наша команда',
             },
         ),
     ]

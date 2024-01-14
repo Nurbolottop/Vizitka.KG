@@ -73,7 +73,7 @@ class B3Blog(models.Model):
     )
     class Meta:
         verbose_name = "Изменить категорию для B3"
-        verbose_name_plural = "Изменить категорию для B3"
+        verbose_name_plural = " Изменить категорию для B3"
         
 class B4Blog(models.Model):
     four = models.ForeignKey(
@@ -84,12 +84,12 @@ class B4Blog(models.Model):
     )
     class Meta:
         verbose_name = "Изменить категорию для B4"
-        verbose_name_plural = "Изменить категорию для B4"
-        
+        verbose_name_plural = " Изменить категорию для B4"
+
 class B5Blog(models.Model):
-    five_one = models.ForeignKey(
+    five = models.ForeignKey(
         Category,on_delete=models.CASCADE,
-        related_name="five_one_category",
+        related_name="five_category",
         verbose_name="Категория которую будете отображать",
         blank=True,null=True
     )
@@ -98,9 +98,9 @@ class B5Blog(models.Model):
         verbose_name_plural = "Изменить категорию для B5"
 
 class B6Blog(models.Model):
-    five_two = models.ForeignKey(
+    six = models.ForeignKey(
         Category,on_delete=models.CASCADE,
-        related_name="five_two_category",
+        related_name="six_category",
         verbose_name="Категория которую будете отображать",
         blank=True,null=True
     )
@@ -109,6 +109,50 @@ class B6Blog(models.Model):
         verbose_name_plural = "Изменить категорию для B6"
 
 class B7Blog(models.Model):
+    seven = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="seven_category",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    class Meta:
+        verbose_name = "Изменить категорию для B7"
+        verbose_name_plural = "Изменить категорию для B7"
+
+class B8Blog(models.Model):
+    eight = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="eight_category",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    class Meta:
+        verbose_name = "Изменить категорию для B8"
+        verbose_name_plural = "Изменить категорию для B8"
+      
+class B9Blog(models.Model):
+    five_one = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="five_one_category",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    class Meta:
+        verbose_name = "Изменить категорию для B9"
+        verbose_name_plural = "Изменить категорию для B9"
+
+class B10Blog(models.Model):
+    five_two = models.ForeignKey(
+        Category,on_delete=models.CASCADE,
+        related_name="five_two_category",
+        verbose_name="Категория которую будете отображать",
+        blank=True,null=True
+    )
+    class Meta:
+        verbose_name = "Изменить категорию для B10"
+        verbose_name_plural = "Изменить категорию для B10"
+
+class B11Blog(models.Model):
     five_three = models.ForeignKey(
         Category,on_delete=models.CASCADE,
         related_name="five_three_category",
@@ -116,5 +160,5 @@ class B7Blog(models.Model):
         blank=True,null=True
     )
     class Meta:
-        verbose_name = "Изменить категорию для B7"
-        verbose_name_plural = "Изменить категорию для B7"
+        verbose_name = "Изменить категорию для B11"
+        verbose_name_plural = "Изменить категорию для B11"

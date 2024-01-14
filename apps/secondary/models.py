@@ -23,7 +23,7 @@ class Team(models.Model):
         return f"{self.name} - {self.work}"
     
     class Meta:
-        verbose_name = "Наша комманда"
+        verbose_name = "Наша команда"
         verbose_name_plural = "Наша комманды"
     
 class History(models.Model):

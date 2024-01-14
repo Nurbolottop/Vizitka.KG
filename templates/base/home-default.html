@@ -475,86 +475,9 @@
                         </section>
 
                         <!-- banner2 -->
-                        {% if  normal_advert %}
-                        <section class="banner2">
-                            <div class="container">
-                                <div class="content">
-                                    <div class="row justify-content-center">
-                                        <div class="col-lg-10">
-                                            <a href="{{normal_advert.url}}" class="d-block img-cover">
-                                                <img src="{{normal_advert.image.url}}" style="border-radius: 15px;" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        {% endif %}
+                        
 
-                        <!-- technology -->
-                        <div class="tc-technology-style1 pt-50">
-                            <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B3.подробнее</a> <iclass="la la-angle-right ms-1"></i> </p>
-                            {% if third_blog1%}
-                            {% for blog in third_blog1 %}
-                                <div class="tc-post-overlay-default">
-                                    <div class="img th-600 img-cover">
-                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
-                                        <div class="tags">
-                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="content ps-40 pe-40 pb-40">
-                                        <h2 class="title mb-30">
-                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.title|truncatechars:50}} <br> the zappi EV charger</a>
-                                        </h2>
-                                        <div class="meta-bot lh-1">
-                                            <ul class="d-flex">
-                                                <li class="date me-5">
-                                                    <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                            {% endif %}
-                            {% if third_blog2%}
-                            <div class="tc-post-list-style2">
-                                <div class="items">
-                                    {% for blog in third_blog2 %}
-                                        <div class="item pt-30 pb-30 mt-30 border-1 border-top border-bottom brd-gray">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="img th-200 img-cover">
-                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <div class="content">
-                                                        <div class="news-cat color-999 fsz-13px text-uppercase mb-3">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
-                                                        </div>
-                                                        <h3 class="title ltspc--1">
-                                                            <a href="{% url 'blog_detail' blog.id%}"> {{blog.title|truncatechars:50}}</a>
-                                                        </h3>
-                                                        <div class="meta-bot lh-1 mt-80">
-                                                            <ul class="d-flex">
-                                                                <li class="date me-5">
-                                                                    <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i>{{blog.created_at}}</a>
-                                                                </li>
-                                                               
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                   {% endfor %}
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
+                       
                     </div>
 
                     <div class="col-lg-3">
@@ -669,82 +592,482 @@
             </div>
         </section>
 
-        <!-- ====== end must read ====== -->
 
-        <!-- ====== start hot videos ====== -->
-        <!-- ====== end hot vedios ====== -->
-
-        <!-- ====== start lifestyle ====== -->
-        {% if four_blog1 %}
-        <section class="tc-lifestyle pt-50 pb-50">
+        {% if third_blog1 and four_blog1 and five_blog1%}
+        <section class="pb-70 overflow-hidden">
             <div class="container">
-                <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B4.подробнее</a> <i class="la la-angle-right ms-1"></i> </p>
+                <div class="row gx-5">
+                    <div class="titles">
+                        <div class="row gx-5">
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B3. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B4. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B5. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 border-1 border-end">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> business <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if third_blog1%}
+                            {% for blog in third_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if third_blog2%}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in third_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 border-1 border-end">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> politics <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if four_blog1%}
+                            {% for blog in four_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if four_blog2%}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in four_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> market <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if five_blog1%}
+                            {% for blog in five_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if five_blog2%}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in five_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="container">
                 <div class="content">
-                    <div class="row">
-                        <div class="col-lg-9 border-end brd-gray border-1">
-                            {% for blog in four_blog1%}
-                            <div class="tc-post-grid-default">
-                                <div class="item">
-                                    <div class="img img-cover th-400">
-                                        <img src="{{blog.image.url}}"  style="border-radius: 15px;" alt="">
-                                    </div>
-                                    <div class="content pt-30">
-                                        <a href="{% url 'blog_detail' blog.id%}" class="news-cat color-999 fsz-13px text-uppercase mb-10">{{blog.category}}</a>
-                                        <h3 class="title ltspc--1 mb-20"> <a href="{% url 'blog_detail' blog.id%}">
-                                                {{blog.title|truncatechars:50}}
-                                            </a> </h3>
-                                        <div class="meta-bot lh-1 mt-40">
-                                            <ul class="d-flex">
-                                                <li class="date me-5">
-                                                    <a href="{% url 'blog_detail' blog.id%}"><i class="la la-calendar me-2"></i> {{blog.created_at}}</a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor%}
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <a href="{{normal_advert.url}}" class="d-block img-cover">
+                                <img src="{{normal_advert.image.url}}" style="border-radius: 15px;" alt="">
+                            </a>
                         </div>
-                        <div class="col-lg-3 border-end brd-gray border-1">
-                            <div class="tc-post-list-style2">
-                                <div class="items">
-                                    {% for blog in four_blog2%}
-                                    <a href="{% url 'blog_detail' blog.id%}"
-                                        class="item d-block border-1 border-top border-bottom-0 brd-gray pt-15 mt-15">
-                                        <div class="row gx-3 align-items-center">
-                                            <div class="col-4">
-                                                <div class="img th-50 img-cover">
-                                                    <img src="{{blog.image.url}} " style="border-radius: 15px;" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="content">
-                                                    <h6 class="title ltspc--1">
-                                                        {{blog.title|truncatechars:50}}
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                       
                     </div>
                 </div>
             </div>
         </section>
         {% endif %}
-        <!-- ====== end lifestyle ====== -->
+        {% if  normal_advert %}
+            <section class="banner2">
+                
+                
+            </section>
 
+        {% endif %}
+        {% if six_blog1 and seven_blog1 and eight_blog1%}
+        <br>
+
+        <section class="pb-70 overflow-hidden">
+            <div class="container">
+                <div class="row gx-5">
+                    <div class="titles">
+                        <div class="row gx-5">
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B3. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B4. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="{% url 'blog'  %}" class="color-000 text-uppercase mb-30 d-none d-lg-block"> B5. Подробнее <i class="la la-angle-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 border-1 border-end">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> business <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if six_blog1%}
+                            {% for blog in six_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if six_blog2%}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in six_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 border-1 border-end">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> politics <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if seven_blog1%}
+                            {% for blog in seven_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if seven_blog2%}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in seven_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="page-blog.html" class="color-000 text-uppercase mb-30 d-block d-lg-none"> market <i class="la la-angle-right ms-1"></i></a>
+                        <div class="content-card">
+                            {% if eight_blog1%}
+                            {% for blog in eight_blog1 %}
+                                <div class="tc-post-grid-style5">
+                                    <div class="item pb-30 border-1 border-bottom brd-gray">
+                                        <div class="content">
+                                            <div class="tags mb-20">
+                                                <a href="{% url 'blog'  %}">
+                                                    {{blog.category}}
+                                                </a>
+                                            </div>
+                                            <h3 class="title mb-20"> 
+                                                <a href="{% url 'blog_detail' blog.id%}">
+                                                    {{blog.title|truncatechars:28}}
+                                                </a> 
+                                            </h3>
+                                            <div class="text fsz-14px color-666 mb-30">
+                                            </div>
+                                            <div class="meta-bot fsz-13px color-666 mb-30">
+                                                <ul class="d-flex">
+                                                    <li class="date me-5">
+                                                        <a href="l#"><i class="la la-calendar me-2"></i>  {{blog.created_at}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
+                                            <img src="{{blog.image.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% if eight_blog2 %}
+                                <div class="tc-post-list-style5">
+                                    <div class="items">
+                                        {% for blog in eight_blog2 %}
+                                        <div class="item">
+                                            <div class="row gx-0">
+                                                <div class="col-8 pe-10">
+                                                    <div class="content">
+                                                        <div class="tags mb-15">
+                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                        </div>
+                                                        <h5 class="title">
+                                                            <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
+                                                                {{blog.title|truncatechars:28}}
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="img th-80 img-cover">
+                                                        <img src="{{blog.image.url}}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
         <!-- ====== start columnist ====== -->
         {% if team%}
         <section class="tc-columnist-style1">
             <div class="container">
                 <div class="content pt-50 pb-50 border-1 border-top brd-gray">
-                    <p class="color-000 text-uppercase mb-40 ltspc-1 lh-1">Наша комманда <i
+                    <p class="color-000 text-uppercase mb-40 ltspc-1 lh-1">Наша команда <i
                             class="la la-angle-right ms-1"></i> </p>
                     <div class="columnist-slider1 tc-slider-style1">
                         <div class="swiper-container">
@@ -789,7 +1112,7 @@
                             
                                 <div class="col-12 border-1 border-end brd-gray">
                                     {% for blog in fiveone_blog1 %}
-                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B5.{{blog.category}}</a> <i
+                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B9.{{blog.category}}</a> <i
                                         class="la la-angle-right ms-1"></i> </p>
                                 <div class="row">
                                     <div class="tc-post-grid-default">
@@ -849,7 +1172,7 @@
                             <div class="row">
                                 <div class="col-12 border-1 border-end brd-gray">
                                     {% for blog in fivetwo_blog1 %}
-                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B6.{{blog.category}}</a> <i
+                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">B10.{{blog.category}}</a> <i
                                         class="la la-angle-right ms-1"></i> </p>
                                     <div class="tc-post-grid-default">
                                         <div class="item">
@@ -908,7 +1231,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     {% for blog in fivethree_blog1 %}
-                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="page-blog.html">B7.{{blog.category}}</a> <i
+                                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="page-blog.html">B11.{{blog.category}}</a> <i
                                         class="la la-angle-right ms-1"></i> </p>
                                     <div class="tc-post-grid-default">
                                         <div class="item">

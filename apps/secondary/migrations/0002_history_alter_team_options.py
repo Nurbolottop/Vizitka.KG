@@ -25,6 +25,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterModelOptions(
             name='team',
-            options={'verbose_name': 'Наша комманда', 'verbose_name_plural': 'Наша комманды'},
+            options={'verbose_name': 'Наша команда', 'verbose_name_plural': 'Наша комманды'},
         ),
     ]

@@ -43,16 +43,36 @@ class B4BlogFilterAdmin(admin.ModelAdmin):
     search_fields = ('four', )
 
 class B5BlogFilterAdmin(admin.ModelAdmin):
+    list_filter = ('five', )
+    list_display = ('five', )
+    search_fields = ('five', )
+
+class B6BlogFilterAdmin(admin.ModelAdmin):
+    list_filter = ('six', )
+    list_display = ('six', )
+    search_fields = ('six', )
+
+class B7BlogFilterAdmin(admin.ModelAdmin):
+    list_filter = ('seven', )
+    list_display = ('seven', )
+    search_fields = ('seven', )
+
+class B8BlogFilterAdmin(admin.ModelAdmin):
+    list_filter = ('eight', )
+    list_display = ('eight', )
+    search_fields = ('eight', )
+
+class B9BlogFilterAdmin(admin.ModelAdmin):
     list_filter = ('five_one', )
     list_display = ('five_one', )
     search_fields = ('five_one', )
 
-class B6BlogFilterAdmin(admin.ModelAdmin):
+class B10BlogFilterAdmin(admin.ModelAdmin):
     list_filter = ('five_two', )
     list_display = ('five_two', )
     search_fields = ('five_two', )
 
-class B7BlogFilterAdmin(admin.ModelAdmin):
+class B11BlogFilterAdmin(admin.ModelAdmin):
     list_filter = ('five_three', )
     list_display = ('five_three', )
     search_fields = ('five_three', )       
@@ -64,3 +84,7 @@ admin.site.register(models.B4Blog, B4BlogFilterAdmin)
 admin.site.register(models.B5Blog, B5BlogFilterAdmin)
 admin.site.register(models.B6Blog, B6BlogFilterAdmin)
 admin.site.register(models.B7Blog, B7BlogFilterAdmin)
+admin.site.register(models.B8Blog, B8BlogFilterAdmin)
+admin.site.register(models.B9Blog, B9BlogFilterAdmin)
+admin.site.register(models.B10Blog, B10BlogFilterAdmin)
+admin.site.register(models.B11Blog, B11BlogFilterAdmin)

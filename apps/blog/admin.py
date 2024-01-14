@@ -14,8 +14,6 @@ class BlogFilterAdmin(admin.ModelAdmin):
     list_display = ('title', 'sub_title')
     search_fields = ('title', 'sub_title')
 
-
-
 class BigAdvertFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )
     list_display = ('title', 'sub_title')
