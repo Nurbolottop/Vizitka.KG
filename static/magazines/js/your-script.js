@@ -43,27 +43,3 @@ $(document).ready(function() {
         $("#page-indicator").text(page + "/" + flipbook.turn('pages'));
     });
 });
-$(document).ready(function() {
-    var currentScale = 1;
-    var zoomStep = 0.1;
-
-    function zoomIn() {
-        currentScale += zoomStep;
-        $('#flipbook').css('transform', 'scale(' + currentScale + ')');
-        $('#flipbook').css('transform-origin', 'center center');
-    }
-
-    function zoomOut() {
-        currentScale = Math.max(currentScale - zoomStep, zoomStep);
-        $('#flipbook').css('transform', 'scale(' + currentScale + ')');
-    }
-
-    function zoomReset() {
-        currentScale = 1;
-        $('#flipbook').css('transform', 'none');
-    }
-
-    $('#zoom-in').click(zoomIn);
-    $('#zoom-out').click(zoomOut);
-    $('#zoom-reset').click(zoomReset);
-});
