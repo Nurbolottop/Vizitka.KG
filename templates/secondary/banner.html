@@ -44,7 +44,7 @@
                                         <img src="{{magazine.image.url}}"  style="border-radius: 15px;" alt="">
                                     </div>
                                     <div class="info pt-30">
-                                        <a href="#" class="title">{{magazine.title}}</a>
+                                        <a href="{% url 'magazine_detail' magazine.id %}" class="title">{{magazine.title}}</a>
                                         <br>
                                         <strong class="price"> {{magazine.price}} </strong>
                                     </div>
@@ -77,7 +77,7 @@
                                         <img src="{{magazine.image.url}}" style="border-radius: 15px;" alt="">
                                     </div>
                                     <div class="info pt-30">
-                                        <a href="#" class="title">{{magazine.title}}</a>
+                                        <a href="{% url 'site_detail' magazine.id %}" class="title">{{magazine.title}}</a>
                                         <br>
                                         <strong class="price"> {{magazine.price}} </strong>
                                     </div>

@@ -29,15 +29,25 @@ class SmallAdvertFilterAdmin(admin.ModelAdmin):
     list_display = ('image', 'url_booking')
     search_fields = ('image', 'url_booking')
 
+class MagazineImageInline(admin.TabularInline):
+    model = models.MagazineImage
+    extra = 1 
+
+class SiteImageInline(admin.TabularInline):
+    model = models.SiteImage
+    extra = 1 
+
 class MagazineFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )
     list_display = ('title', 'price')
     search_fields = ('title', 'price')
-
+    inlines = [MagazineImageInline]
+    
 class SiteFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )
     list_display = ('title', 'price')
     search_fields = ('title', 'price')
+    inlines = [SiteImageInline]
 
 class BannerFilterAdmin(admin.ModelAdmin):
     list_filter = ('title', )

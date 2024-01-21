@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Title  -->
+    <title>{{setting.title}}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/v.png' %}" title="Favicon" sizes="16x16" />
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/bootstrap.min.css' %}">
+
+    <!-- font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- ionicons icons  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/ionicons.css' %}">
+    <!-- line-awesome icons  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/line-awesome.css' %}">
+    <!-- animate css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/animate.css' %}" />
+    <!-- fancybox popup  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/jquery.fancybox.css' %}" />
+    <!-- lity popup  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/lity.css' %}" />
+    <!-- swiper slider  -->
+    <link rel="stylesheet" href="{% static 'assets/css/lib/swiper.min.css' %}" />
+
+    <!-- ====== main style ====== -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <title> {{setting.title}} </title>
+</head>
+
+<body class="home-style1 tc-shop-page">
+
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    {% include 'include/header.html' %}
+
+    <!--Contents-->
+    <main class="product-page">
+        <!-- ====== start product ====== -->
+        <section class="product pt-50">
+            <div class="container">
+                <div class="content">
+                    <div class="row gx-5">
+                        <div class="col-lg-6">
+                            <div class="product-slider">
+                                <div class="swiper-container gallery-thumbs">
+                                    <div class="swiper-wrapper">
+                                        {% for magazine in magazine.site_image.all %}
+                                        <div class="swiper-slide">
+                                            <div class="img">
+                                                <img src="{{magazine.image.url}}" alt="">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="swiper-container gallery-top">
+                                    <div class="swiper-wrapper">
+                                        {% for magazine in magazine.site_image.all %}
+                                        <div class="swiper-slide">
+                                            <div class="img">
+                                                <img src="{{magazine.image.url}}" alt="">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-info">
+                                <h5 class="title">{{magazine.title}}</h5>
+                                
+                                <div class="price">
+                                    {{magazine.price}} сомов
+                                </div>
+                                <div class="info-text">
+                                    {{magazine.descriptions|safe}}
+                                </div>
+                                <div class="color-quantity">
+                                    <div class="qyt-addCart">
+                                        <a href="{% url 'service_site_form' magazine.id %}" class="btn rounded-pill">
+                                            <span>Оставить заявку</span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="more-info pt-20 mt-1 border-1 border-top brd-gray">
+                                    <p class="text-uppercase fs-14px color-666 mb-1"> <strong
+                                            class="color-000">Почта:</strong> {{setting.email}}</p>
+                                    <p class="fs-14px color-666 mb-1"> <strong class="color-000">Тел.ном:</strong>
+                                        {{setting.phone}}</p>
+                                    <p class="fs-14px color-666 mb-1"> <strong class="color-000">Адрес:</strong> <a
+                                            href="#">{{setting.location}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ====== end product ====== -->
+
+
+    </main>
+    <!--End-Contents-->
+
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+    <!-- ====== end footer ====== -->
+
+    <!-- ====== start to top button ====== -->
+    <!-- <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102"><path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 220.587;"></path></svg>
+    </div> -->
+    <!-- ====== end to top button ====== -->
+
+    <!-- ====== request ====== -->
+    <script src="{% static 'assets/js/lib/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery-migrate-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.fancybox.js' %}"></script>
+    <script src="{% static 'assets/js/lib/lity.js' %}"></script>
+    <script src="{% static 'assets/js/lib/swiper.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/jquery.counterup.js' %}"></script>
+    <script src="https://newzin-html.themescamp.com/assets/js/lib/pace.js' %}"></script>
+    <script src="{% static 'assets/js/lib/back-to-top.js' %}"></script>
+    <script src="{% static 'assets/js/lib/parallaxie.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -144,7 +144,7 @@ class Magazine(models.Model):
         force_format="WEBP", 
         quality=100, 
         upload_to='service/',
-        verbose_name="Баннер в размере ",
+        verbose_name="Баннер в размере 267х189",
         blank = True, null = True
     )
     title = models.CharField(
@@ -155,7 +155,11 @@ class Magazine(models.Model):
         max_length=255,
         verbose_name="Цена"
     )
-
+    descriptions = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    
     def __str__(self):
         return f"{self.title} - {self.price}"
     
@@ -163,12 +167,28 @@ class Magazine(models.Model):
         verbose_name = "Услуга Журнала"
         verbose_name_plural = "Услуги Журнала"
         
+class MagazineImage(models.Model):
+    settings = models.ForeignKey(Magazine, related_name='magazine_image', on_delete=models.CASCADE)
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='service/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+    class Meta:
+        unique_together = ('settings', 'image')
+        verbose_name = "Дополнительная фотограя баннера в размере 267х189"
+        verbose_name_plural = "Дополнительная фотограя баннера в размере 267х189"
+
+################################################################################################################################################################################
+
 class Site(models.Model):
     image = ResizedImageField(
         force_format="WEBP", 
         quality=100, 
         upload_to='service/',
-        verbose_name="Баннер в размере ",
+        verbose_name="Баннер в размере 267х189",
         blank = True, null = True
     )
     title = models.CharField(   
@@ -179,13 +199,32 @@ class Site(models.Model):
         max_length=255,
         verbose_name="Цена"
     )
-    
+    descriptions = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
     def __str__(self):
         return f"{self.title} - {self.price}"
     
     class Meta:
         verbose_name = "Услуга Сайта"
         verbose_name_plural = "Услуги Сайта"
+
+class SiteImage(models.Model):
+    settings = models.ForeignKey(Site, related_name='site_image', on_delete=models.CASCADE)
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='service/',
+        verbose_name="Фотография ",
+        blank = True, null = True
+    )
+    class Meta:
+        unique_together = ('settings', 'image')
+        verbose_name = "Дополнительная фотограя сайта"
+        verbose_name_plural = "Дополнительная фотограя баннера"
+
+################################################################################################################################################################################
 
 class Banner(models.Model):
     title = models.CharField(
@@ -208,3 +247,4 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "Баннер на главной странице"
         verbose_name_plural = "Баннеры на главной странице"
+

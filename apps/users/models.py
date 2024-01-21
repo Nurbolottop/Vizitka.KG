@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django_resized.forms import ResizedImageField 
+from django.core.mail import EmailMessage
+from ckeditor.fields import RichTextField
 from django.core.mail import send_mail
-
+from apps.blog import models as blog_models
 # Create your models here.
 
 class User(AbstractUser):
@@ -68,9 +70,6 @@ class Contact(models.Model):
         verbose_name_plural = "Обратная связь"
         
 
-from django.core.mail import EmailMessage
-from ckeditor.fields import RichTextField
-
 class Newsletter(models.Model):
     subject = models.CharField(max_length=200, verbose_name="Заголовок")
     message = RichTextField(verbose_name="Сообщение")
@@ -104,3 +103,58 @@ class Newsletter(models.Model):
     class Meta:
         verbose_name = "Отправить рассылку"
         verbose_name_plural = "Отправить рассылку"
+
+class ServiceSiteForm(models.Model):
+    service = models.CharField(
+        max_length=255,
+        verbose_name="Название услуги"
+    )
+    name = models.CharField(
+        max_length=255,
+        verbose_name="Имя"
+    )
+    phone = models.CharField(
+        max_length=255,
+        verbose_name="Телефонный номер"
+    )
+    email = models.EmailField(
+        verbose_name="Почта"
+    )
+    message = models.TextField(
+        verbose_name="Сообщение"
+    )
+    
+    def __str__(self):
+        return f"{self.name} - {self.email} - {self.message} "
+    
+    class Meta:
+        verbose_name = "Заявки на услуги cайта"
+        verbose_name_plural = "Заявка на услугу cайта"
+
+class ServiceMagazineForm(models.Model):
+    service = models.CharField(
+        max_length=255,
+        verbose_name="Название услуги"
+    )
+    name = models.CharField(
+        max_length=255,
+        verbose_name="Имя"
+    )
+    phone = models.CharField(
+        max_length=255,
+        verbose_name="Телефонный номер"
+    )
+    email = models.EmailField(
+        verbose_name="Почта"
+    )
+    message = models.TextField(
+        verbose_name="Сообщение"
+    )
+    
+    def __str__(self):
+        return f"{self.name} - {self.email} - {self.message} "
+    
+    class Meta:
+        verbose_name = "Заявки на услуги магазина"
+        verbose_name_plural = "Заявка на услугу магазина"
+        

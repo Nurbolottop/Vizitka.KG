@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from datetime import datetime
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+
 # my imports
-from apps.users.models import Subscriber
+from apps.users.models import Subscriber,ServiceMagazineForm,ServiceSiteForm
 from apps.index import models
-from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category
+from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine
 from apps.all_categories import blogs_detail
 from apps.secondary.models import Stories
 from apps.index.parsing import get_weather_data
@@ -68,4 +70,81 @@ def blog_detail(request, id):
     return render(request, 'detail/page-single-post-creative.html', locals())
 
 
-        
+
+def magazine_detail(request, id):
+    setting = models.Settings.objects.latest('id')
+    magazine = Magazine.objects.get(id=id)
+    current_date = datetime.now()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+    category = Category.objects.all().order_by("?")[:]
+    # category in blog detail
+    if request.method == 'POST':
+        email = request.POST.get('email') 
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
+    return render(request, 'servise/magazine_servise.html', locals())
+
+def service_magazine_form(request, id):
+    setting = models.Settings.objects.latest('id')
+    magazine = Magazine.objects.get(id=id)
+    if request.method =="POST":
+        if "service_form" in request.POST:
+            service = magazine.title
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            message = request.POST.get('message')
+            ServiceMagazineForm.objects.create(service = service,name = name,phone = phone,email = email,message = message)
+            send_mail(
+                f'{message}',
+
+                f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
+                "noreply@somehost.local",
+                [email])
+            
+            return redirect('index')
+    
+    return render(request, 'servise/service_magazine_form.html', locals())
+
+
+def site_detail(request, id):
+    setting = models.Settings.objects.latest('id')
+    magazine = Site.objects.get(id=id)
+    current_date = datetime.now()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+    category = Category.objects.all().order_by("?")[:]
+    # category in blog detail
+    if request.method == 'POST':
+        email = request.POST.get('email') 
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
+    return render(request, 'servise/site_servise.html', locals())
+
+def service_site_form(request, id):
+    setting = models.Settings.objects.latest('id')
+    magazine = Site.objects.get(id=id)
+    if request.method =="POST":
+        if "service_form" in request.POST:
+            service = magazine.title
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            message = request.POST.get('message')
+            ServiceSiteForm.objects.create(service = service,name = name,phone = phone,email = email,message = message)
+            send_mail(
+                f'{message}',
+                f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
+                "noreply@somehost.local",
+                [email])
+            return redirect('index')
+    
+    return render(request, 'servise/service_site_form.html', locals())
+

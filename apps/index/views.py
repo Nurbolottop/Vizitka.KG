@@ -270,3 +270,15 @@ def banner(request):
         else:
                 return redirect( 'subscribe_nodone')
     return render(request,"secondary/banner.html", locals())
+
+
+
+
+
+
+
+
+
+
+
+
