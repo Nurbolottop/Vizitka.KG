@@ -49,14 +49,14 @@
 
                                         copyLinkBtn.addEventListener('click', function (event) {
                                             event.preventDefault();
-                                            
+
                                             var currentUrl = window.location.href;
                                             copyLinkToServer(currentUrl);
                                         });
 
                                         function copyLinkToServer(url) {
                                             var xhr = new XMLHttpRequest();
-                                            xhr.open("POST", "/copy-link.php", true);
+                                            xhr.open("POST", "{% url 'copy_link_to_clipboard' %}", true);
                                             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                             xhr.onreadystatechange = function () {
                                                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -67,7 +67,8 @@
                                         }
 
                                         function handleServerResponse(response) {
-                                            if (response === "success") {
+                                            var parsedResponse = JSON.parse(response);
+                                            if (parsedResponse.status === "success") {
                                                 Swal.fire({
                                                     icon: 'success',
                                                     title: 'Ссылка скопирована на сервере',

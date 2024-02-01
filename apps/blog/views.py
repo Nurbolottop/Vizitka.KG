@@ -90,6 +90,21 @@ def blog_detail(request, id):
                 return redirect( 'subscribe_nodone')
     return render(request, 'detail/page-single-post-creative.html', locals())
 
+from django.http import JsonResponse
+import pyperclip
+
+def copy_link_to_clipboard(request):
+    if request.method == 'POST':
+        url = request.POST.get('url', '')
+        try:
+            pyperclip.copy(url)
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            print(f"Error copying link to clipboard: {e}")
+            return JsonResponse({'status': 'error'})
+
+    return JsonResponse({'status': 'error'})
+
 
 
 def magazine_detail(request, id):
