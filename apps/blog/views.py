@@ -3,8 +3,6 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from apps.telegram_bot.views import get_text
-from django.http import JsonResponse
-import pyperclip
 
 # my imports
 from apps.users.models import Subscriber,ServiceMagazineForm,ServiceSiteForm
@@ -91,21 +89,6 @@ def blog_detail(request, id):
         else:
                 return redirect( 'subscribe_nodone')
     return render(request, 'detail/page-single-post-creative.html', locals())
-
-
-
-def copy_link_to_clipboard(request):
-    if request.method == 'POST':
-        url = request.POST.get('url', '')
-        try:
-            pyperclip.copy(url)
-            return JsonResponse({'status': 'success'})
-        except Exception as e:
-            print(f"Error copying link to clipboard: {e}")
-            return JsonResponse({'status': 'error'})
-
-    return JsonResponse({'status': 'error'})
-
 
 
 def magazine_detail(request, id):
