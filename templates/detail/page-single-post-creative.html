@@ -45,43 +45,43 @@
                                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function () {
-                                        // Находим кнопку "Copy Link"
                                         var copyLinkBtn = document.querySelector('.copy-link-btn');
 
-                                        // Добавляем обработчик события клика на кнопку
                                         copyLinkBtn.addEventListener('click', function (event) {
-                                            // Отменяем стандартное действие ссылки
                                             event.preventDefault();
+                                            
+                                            var currentUrl = window.location.href;
+                                            copyLinkToServer(currentUrl);
+                                        });
 
-                                            // Проверяем, поддерживается ли API буфера обмена
-                                            if (navigator.clipboard) {
-                                                // Копируем текущий URL в буфер обмена
-                                                var currentUrl = window.location.href;
-                                                navigator.clipboard.writeText(currentUrl).then(function () {
-                                                    // Показываем уведомление о том, что ссылка скопирована
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Ссылка скопирована',
-                                                        showConfirmButton: false,
-                                                        timer: 1500 // Закроется через 1.5 секунды
-                                                    });
-                                                }).catch(function (err) {
-                                                    // Если произошла ошибка при копировании, можно также показать уведомление об ошибке
-                                                    Swal.fire({
-                                                        icon: 'error',
-                                                        title: 'Ошибка',
-                                                        text: 'Не удалось скопировать ссылку'
-                                                    });
+                                        function copyLinkToServer(url) {
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("POST", "/copy-link.php", true);
+                                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                            xhr.onreadystatechange = function () {
+                                                if (xhr.readyState == 4 && xhr.status == 200) {
+                                                    handleServerResponse(xhr.responseText);
+                                                }
+                                            };
+                                            xhr.send("url=" + encodeURIComponent(url));
+                                        }
+
+                                        function handleServerResponse(response) {
+                                            if (response === "success") {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Ссылка скопирована на сервере',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
                                                 });
                                             } else {
-                                                // Если API буфера обмена не поддерживается
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Ошибка',
-                                                    text: 'Ваш браузер не поддерживает копирование в буфер обмена.'
+                                                    text: 'Не удалось скопировать ссылку на сервере'
                                                 });
                                             }
-                                        });
+                                        }
                                     });
                                 </script>
                                 <a href="#" onclick="showComplaintForm()"><i class="la la-exclamation-triangle me-1"></i> Пожаловаться</a>
