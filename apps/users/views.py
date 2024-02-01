@@ -1,11 +1,7 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate, login
-from datetime import datetime
-from django.contrib import messages
-from apps.blog.views import get_weather_data
-from asgiref.sync import async_to_sync
+from apps.telegram_bot.views import get_text
+from django.core.mail import send_mail
 
-from . import models  # Подключите вашу модель Settings и User
 from apps.index.models import Settings
 # def register(request):
 #     current_date = datetime.now()

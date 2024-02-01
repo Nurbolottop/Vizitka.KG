@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from datetime import datetime
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
+from apps.telegram_bot.views import get_text
 
 # my imports
 from apps.users.models import Subscriber,ServiceMagazineForm,ServiceSiteForm
@@ -40,7 +41,20 @@ def blog(request):
             # Если не подписан, создаем новую запись в базе данных
             subscriber = Subscriber(email=email)
             subscriber.save()
-
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
             # Подписчик с таким email уже существует
@@ -64,6 +78,13 @@ def blog_detail(request, id):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -83,6 +104,13 @@ def magazine_detail(request, id):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -105,8 +133,19 @@ def service_magazine_form(request, id):
                 f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
                 "noreply@somehost.local",
                 [email])
-            
-            return redirect('index')
+            get_text(f"""
+                            ✅Пользователь оставил заявку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Название услуги: {service}
+Имя пользователя: {name}
+Почта пользователя: {email}
+Тел.ном пользователя: {phone}
+Сообщение пользователя: {email}
+
+            """)
+            return redirect('banner')
     
     return render(request, 'servise/service_magazine_form.html', locals())
 
@@ -123,6 +162,13 @@ def site_detail(request, id):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -144,7 +190,19 @@ def service_site_form(request, id):
                 f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
                 "noreply@somehost.local",
                 [email])
-            return redirect('index')
+            get_text(f"""
+                            ✅Пользователь оставил заявку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Название услуги: {service}
+Имя пользователя: {name}
+Почта пользователя: {email}
+Тел.ном пользователя: {phone}
+Сообщение пользователя: {email}
+
+            """)
+            return redirect('banner')
     
     return render(request, 'servise/service_site_form.html', locals())
 

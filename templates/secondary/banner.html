@@ -28,7 +28,7 @@
                 </div>
             </div>
         </section>
-        <section class="tc-products-content section-padding">
+        <section class="tc-products-content section-padding" style= "padding: 24px 0;">
             <div class="container">
                 <div class="title text-center mb-30">
                     <h2 class="fsz-30px"> Журнал </h2>
@@ -36,20 +36,23 @@
                 <div class="related-products-slider tc-products position-relative tc-slider-style1">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                         {% for magazine in magazine %}
+                            {% for magazine in magazine %}
 
-                            <div class="swiper-slide">
-                                <div class="product-card">
-                                    <div class="img">
-                                        <img src="{{magazine.image.url}}"  style="border-radius: 15px;" alt="">
-                                    </div>
-                                    <div class="info pt-30">
-                                        <a href="{% url 'magazine_detail' magazine.id %}" class="title">{{magazine.title}}</a>
-                                        <br>
-                                        <strong class="price"> {{magazine.price}} </strong>
-                                    </div>
+                         <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="img">
+                                    <img src="{{magazine.image.url}}" style="border-radius: 15px; max-width: 100%; height: 200px;" alt="">
+                                    <!-- Set max-width to 100% and height to auto to maintain aspect ratio -->
+                                </div>
+                                <div class="info pt-30">
+                                    <a href="{% url 'magazine_detail' magazine.id %}" class="title">{{magazine.title}}</a>
+                                    <br>
+                                    <strong class="price"> {{magazine.price}} </strong>
                                 </div>
                             </div>
+                        </div>
+                        
+                        
                         {% endfor %}
                         
                         </div>
@@ -61,7 +64,7 @@
         </section>
 
         {% if site %}
-        <section class="tc-products-content section-padding">
+        <section class="tc-products-content section-padding"  style= "padding: 24px 0;" >
             <div class="container">
                 <div class="title text-center mb-30">
                     <h2 class="fsz-30px"> Сайт </h2>
@@ -74,7 +77,7 @@
                             <div class="swiper-slide">
                                 <div class="product-card">
                                     <div class="img">
-                                        <img src="{{magazine.image.url}}" style="border-radius: 15px;" alt="">
+                                        <img src="{{magazine.image.url}}" style="border-radius: 15px; max-width: 100%; height: 200px;" alt="">
                                     </div>
                                     <div class="info pt-30">
                                         <a href="{% url 'site_detail' magazine.id %}" class="title">{{magazine.title}}</a>

@@ -1,4 +1,7 @@
 from django.shortcuts import render,redirect
+from apps.telegram_bot.views import get_text
+from django.core.mail import send_mail
+
 from datetime import datetime
 from apps.index import models
 from apps.users.models import Subscriber,Contact
@@ -34,6 +37,13 @@ def magazine(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')

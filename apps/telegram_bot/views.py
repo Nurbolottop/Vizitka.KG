@@ -3,11 +3,14 @@ from telebot import TeleBot, types
 from .models import TelegramUser
 
 # Create your views here.
-TELEGRAM_TOKEN = "6966818358:AAExpZzm8czP9vVkeP61r5bEqvn-TJOnDP8"
+TELEGRAM_TOKEN = "6820458598:AAEkEG4ufdTXimlyMK1dwpubfs6txiuBGdQ"
 ADMIN_ID = 1651703852
+GROUP_ID = -1002017432271
 
 bot = TeleBot(TELEGRAM_TOKEN, threaded=False)
 admin_id = ADMIN_ID
+group_id = GROUP_ID
+
 
 @bot.message_handler(commands=['start','go'])
 def start(message:types.Message):
@@ -38,11 +41,7 @@ def send_mailing(message:types.Message):
     bot.register_next_step_handler(msg, get_message)
 
 def get_text(message):
-    bot.send_message(admin_id, message, parse_mode='HTML')
-
-def get_text_doctor(message, id):
-    bot.send_message(id, message)
-
+    bot.send_message(group_id, message, parse_mode='HTML')
 
 @bot.message_handler()  
 def echo(message:types.Message):

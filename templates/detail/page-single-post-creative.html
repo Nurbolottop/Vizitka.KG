@@ -42,22 +42,78 @@
                         <div class="col-lg-6 text-lg-end">
                             <div class="links-side color-000 fsz-13px">
                                 <a href="#" class="copy-link-btn me-40" onclick="copyLink(event)"><i class="la la-link me-1"></i> Копировать ссылку</a>
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                                 <script>
                                     // Находим кнопку "Copy Link"
                                     var copyLinkBtn = document.querySelector('.copy-link-btn');
-                                  
+
                                     // Добавляем обработчик события клика на кнопку
-                                    copyLinkBtn.addEventListener('click', function(event) {
-                                      // Отменяем стандартное действие ссылки
-                                      event.preventDefault();
-                                  
-                                      // Копируем текущий URL в буфер обмена
-                                      var currentUrl = window.location.href;
-                                      navigator.clipboard.writeText(currentUrl);
+                                    copyLinkBtn.addEventListener('click', function (event) {
+                                        // Отменяем стандартное действие ссылки
+                                        event.preventDefault();
+
+                                        // Копируем текущий URL в буфер обмена
+                                        var currentUrl = window.location.href;
+                                        navigator.clipboard.writeText(currentUrl).then(function () {
+                                            // Показываем уведомление о том, что ссылка скопирована
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Ссылка скопирована',
+                                                showConfirmButton: false,
+                                                timer: 1500 // Закроется через 1.5 секунды
+                                            });
+                                        }).catch(function (err) {
+                                            // Если произошла ошибка при копировании, можно также показать уведомление об ошибке
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Ошибка',
+                                                text: 'Не удалось скопировать ссылку'
+                                            });
+                                        });
                                     });
-                                  </script>
-                                <a href="page-single-post-creative.html#" class="me-40"><i class="la la-bookmark me-1"></i> Сохранить</a>
-                                <a href="page-single-post-creative.html#"><i class="la la-exclamation-triangle me-1"></i> Пожаловаться</a>
+                                </script>
+                                <a href="#" onclick="showComplaintForm()"><i class="la la-exclamation-triangle me-1"></i> Пожаловаться</a>
+
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <style>
+                                    .swal2-popup .swal2-input,
+                                    .swal2-popup .swal2-textarea {
+                                        width: calc(100% - 2em); /* Ширина поля ввода и текстового поля */
+                                        box-sizing: border-box;
+                                        margin: 1em; /* Отступ от краев всплывающего окна */
+                                    }
+
+                                    .swal2-popup .swal2-textarea {
+                                        height: 100px; /* Высота поля текста */
+                                    }
+                                </style>
+                                <script>
+                                    function showComplaintForm() {
+                                        Swal.fire({
+                                            title: 'Пожаловаться',
+                                            html:
+                                                '<input id="swal-input1" class="swal2-input" placeholder="Ваше имя">' +
+                                                '<textarea id="swal-input2" class="swal2-input swal2-textarea" placeholder="Текст жалобы"></textarea>',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Отправить',
+                                            cancelButtonText: 'Отмена',
+                                            focusConfirm: false,
+                                            preConfirm: () => {
+                                                const name = Swal.getPopup().querySelector('#swal-input1').value;
+                                                const complaintText = Swal.getPopup().querySelector('#swal-input2').value;
+
+                                                // Здесь вы можете выполнить дополнительные действия с полученными данными,
+                                                // например, отправить их на сервер для обработки.
+
+                                                // В данном примере просто показываем алерт с введенными данными.
+                                                Swal.fire(`Имя: ${name}`, `Текст жалобы: ${complaintText}`, 'info');
+                                            }
+                                        });
+                                    }
+                                </script>
+
+
+
                             </div>
                         </div>
                     </div>

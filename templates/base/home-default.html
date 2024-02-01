@@ -161,7 +161,7 @@
                         <div class="col-lg-3" style="border-radius: 15px;"> 
                             <div class="tc-post-list-style1" style="border-radius: 15px;" >
                                 <div class="tc-post-title-style1" style="border-radius: 15px;">
-                                    <a href="page-blog.html"> Трендовые посты </a>
+                                    <a href="page-blog.html"> Популярные посты </a>
                                 </div>
                                 {% for popular_post in popular_post%}
                                 <div class="tc-post-overlay-default" >
@@ -200,7 +200,7 @@
         <!-- ====== end trends news ====== -->
 
         <!-- ====== start google web stories ====== -->
-        {% if stories %}
+        {% comment %} {% if stories %}
         <section class="tc-google-stories-style1">
             <div class="container">
                 <div class="section-content pt-70 pb-70 border-0 border-bottom brd-gray">
@@ -229,7 +229,7 @@
                 </div>
             </div>
         </section>
-        {% endif %}
+        {% endif %} {% endcomment %}
         <!-- ====== end google web stories ====== -->
 
         <!-- ====== start Latest news ====== -->
@@ -246,10 +246,7 @@
                                 <div class="item">
                                     <div class="img img-cover th-330">
                                         <img src="{{latest_new.image.url}} " style="border-radius: 15px;" alt="">
-                                        <a href="https://youtu.be/pGbIOC83-So?t=21" data-lity
-                                            class="video_icon icon-70">
-                                            <i class="ion-play"></i>
-                                        </a>
+                                        
                                     </div>
                                     <div class="content pt-30">
                                         <a href="page-blog.html"
@@ -619,7 +616,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -639,7 +636,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -654,7 +651,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -665,7 +662,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -687,7 +684,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -707,7 +704,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -722,7 +719,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -733,7 +730,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -754,7 +751,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -774,7 +771,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -789,7 +786,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -800,7 +797,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -865,7 +862,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -885,7 +882,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -900,7 +897,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -911,7 +908,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -933,7 +930,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -953,7 +950,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -968,7 +965,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -979,7 +976,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1000,7 +997,7 @@
                                     <div class="item pb-30 border-1 border-bottom brd-gray">
                                         <div class="content">
                                             <div class="tags mb-20">
-                                                <a href="{% url 'blog'  %}">
+                                                <a href="{% url 'blog'  %}" style="border-radius: 8px;">
                                                     {{blog.category}}
                                                 </a>
                                             </div>
@@ -1020,7 +1017,7 @@
                                             </div>
                                         </div>
                                         <a href="{% url 'blog_detail' blog.id%}" class="img img-cover d-block th-230">
-                                            <img src="{{blog.image.url}}" alt="">
+                                            <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -1035,7 +1032,7 @@
                                                 <div class="col-8 pe-10">
                                                     <div class="content">
                                                         <div class="tags mb-15">
-                                                            <a href="{% url 'blog_detail' blog.id%}">{{blog.category}}</a>
+                                                            <a href="{% url 'blog_detail' blog.id%}" style="border-radius: 8px;" >{{blog.category}}</a>
                                                         </div>
                                                         <h5 class="title">
                                                             <a href="{% url 'blog_detail' blog.id%}" class="hover-underline">
@@ -1046,7 +1043,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="img th-80 img-cover">
-                                                        <img src="{{blog.image.url}}" alt="">
+                                                        <img src="{{blog.image.url}}" style="border-radius: 15px;" alt="">
                                                     </div>
                                                 </div>
                                             </div>

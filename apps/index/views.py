@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.db.models import Q
 from datetime import datetime
 from django.core.paginator import Paginator
+from apps.telegram_bot.views import get_text
 from django.core.mail import send_mail
 #Files
 from apps.index import models
@@ -74,6 +75,13 @@ def index(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -102,6 +110,13 @@ def category_view(request, category_id):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -118,6 +133,13 @@ def storie(request,id):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -170,6 +192,13 @@ def about(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -199,6 +228,13 @@ def search(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -214,6 +250,13 @@ def subscribe_done(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -229,6 +272,13 @@ def subscribe_nodone(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -246,6 +296,13 @@ def team(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')
@@ -266,6 +323,13 @@ def banner(request):
         if not Subscriber.objects.filter(email=email).exists():
             subscriber = Subscriber(email=email)
             subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
             return redirect( 'subscribe_done')
         else:
                 return redirect( 'subscribe_nodone')

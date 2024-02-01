@@ -157,4 +157,19 @@ class ServiceMagazineForm(models.Model):
     class Meta:
         verbose_name = "Заявки на услуги магазина"
         verbose_name_plural = "Заявка на услугу магазина"
-        
+
+class Lohi(models.Model):
+
+    name  = models.CharField(
+        max_length=255,
+        verbose_name="Название услуги"
+    )
+    message = models.TextField(
+        verbose_name="Сообщение"
+    )
+    def __str__(self):
+        return f"{self.post} - {self.name} - {self.message} "
+    
+    class Meta:
+        verbose_name = "Жалобы пользователей"
+        verbose_name_plural = "Жалобы пользователей"

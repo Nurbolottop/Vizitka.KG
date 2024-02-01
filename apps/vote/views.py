@@ -1,4 +1,7 @@
 from django.shortcuts import render,redirect
+from apps.telegram_bot.views import get_text
+from django.core.mail import send_mail
+
 from datetime import datetime
 from django.core.paginator import Paginator
 from django.http import JsonResponse
