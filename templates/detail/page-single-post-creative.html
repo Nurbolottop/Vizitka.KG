@@ -50,7 +50,8 @@
                                         copyLinkBtn.addEventListener('click', function (event) {
                                             event.preventDefault();
 
-                                            var currentUrl = window.location.href;
+                                            // Получаем текущий URL без хеша
+                                            var currentUrl = window.location.origin + window.location.pathname;
                                             copyLinkToServer(currentUrl);
                                         });
 
