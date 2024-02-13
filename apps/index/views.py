@@ -336,13 +336,57 @@ def banner(request):
     return render(request,"secondary/banner.html", locals())
 
 
+def partners(request):
+    current_date = datetime.now()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+    
+    setting = models.Settings.objects.latest('id')
+    about = models.About.objects.latest('id')
+    history = History.objects.all()
+    team = Team.objects.all()
+    partner = Partners.objects.all()
+    category = Category.objects.all().order_by("?")[:]
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
+    return render(request,"partner/partner.html", locals())
 
-
-
-
-
-
-
-
-
+def partners_detail(request,id):
+    current_date = datetime.now()
+    temperature, weather_condition = async_to_sync(get_weather_data)()
+    
+    setting = models.Settings.objects.latest('id')
+    about = models.About.objects.latest('id')
+    history = History.objects.all()
+    team = Team.objects.all()
+    partner = Partners.objects.get(id=id)
+    category = Category.objects.all().order_by("?")[:]
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
+    return render(request,"partner/partner_detail.html", locals())
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django_resized.forms import ResizedImageField 
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Team(models.Model):
@@ -75,13 +76,28 @@ class Stories(models.Model):
         verbose_name_plural = "Сторисы"
 
 class Partners(models.Model):
+    image = models.ImageField(
+        upload_to="partners_image",
+        verbose_name="Фотография"
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="Название"
     )
-    image = models.ImageField(
-        upload_to="partners_image",
-        verbose_name="Фотография"
+    descriptions = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    location = models.CharField(
+        max_length = 255,
+        verbose_name = "Адрес"
+    )
+    phone = models.CharField(
+        max_length = 255,
+        verbose_name = "Телефонный номер"
+    )
+    email = models.EmailField(
+        verbose_name = "Почта"
     )
     url = models.URLField(
         verbose_name="Ссылка"

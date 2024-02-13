@@ -1,0 +1,113 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+    <!-- ====== start navbar-container ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iOXJOeZL8KKN3ZOIzeddPEwFpXxMQTPIvGnFuFQWS1xl9R+LongXa4Q" crossorigin="anonymous">
+
+    <!-- ====== start nav search ====== -->
+    
+    <main>
+        <section class="tc-popular-posts-blog">
+            <div class="container">
+                <div class="content-widgets pt-50 pb-50">
+                    <div class="row">
+                        <div class="col-lg-9999 pe-lg-5">
+                            <div class="tc-author-info-style1 mb-60">
+                                <div class="tc-author-card pb-50 border-1 border-bottom brd-gray">
+                                    <div class="content d-block d-lg-flex">
+                                        <div class="img img-cover icon-150  overflow-hidden flex-shrink-0 me-50 mt-20">
+                                            <img src="{{partner.image.url}}" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <h5 class="title fsz-50px fw-bold">{{partner.title}}</h5>
+                                            <div class="text fsz-15px color-666 mt-15" >
+                                                {{partner.descriptions|safe}}
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br>
+
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row" style = "padding-left: 15px;">
+                                        <div class="col-md-4">
+                                            <div class="contact-info">
+                                                <div class="contact-info-item">
+                                                    <div class="contact-info-icon">
+                                                        <i class="las la-map-marked"></i>
+                                                    </div>
+                                                    <div class="contact-info-text">
+                                                        <h2>Адрес</h2>
+                                                        <a href="https://maps.google.com/?q={{partner.location}}" target="_blank"><span>{{partner.location}}</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-md-4">
+                                            <div class="contact-info">
+                                                <div class="contact-info-item">
+                                                    <div class="contact-info-icon">
+                                                        <i class="las la-envelope"></i>
+                                                    </div>
+                                                    <div class="contact-info-text">
+                                                        <h2>Почта</h2>
+                                                        <a href="mailto:{{partner.email}}"><span>{{partner.email}}</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="contact-info">
+                                                <div class="contact-info-item">
+                                                    <div class="contact-info-icon">
+                                                        <i class="las la-phone-volume"></i>
+                                                    </div>
+                                                    <div class="contact-info-text">
+                                                        <h2>Телефонный номер</h2>
+                                                        <a href="tel:{{partner.phone}}"><span>{{partner.phone}}</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="contact-info">
+                                                <div class="contact-info-item">
+                                                    <div class="contact-info-icon">
+                                                        <i class="las la-globe"></i>
+                                                    </div>
+                                                    <div class="contact-info-text">
+                                                        <h2>Сайт</h2>
+                                                        <a href="{{partner.url}}" target="_blank"><span>{{partner.url}}</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                      
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--End-Contents-->
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}

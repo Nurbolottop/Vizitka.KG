@@ -5,6 +5,7 @@
     <div id="preloader">
     </div>
     <!-- ====== end loading page ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-... (хэш-сумма) ..." crossorigin="anonymous">
 
     <!-- ====== start navbar-container ====== -->
     {% include 'include/header.html'%}
@@ -142,14 +143,21 @@
                             </h4>
                             <p class="info-text sm-content-width mt-40">
                                 {{blog.info_text|safe}}</p> 
-                        <h4>По вопросам сотрудничества:<br>
-                            What'sApp: +996701204000<br>
-                            Instagram: vizitka_kg<br>
-                            facebook: vizitka_kg<br>
-                            <br>
-                            ТВОЯ ВИЗИТКА В МИРЕ БИЗНЕСА! </h4>
 
-                        </div>
+                            <div class="contact-information">
+                                <h4>Свяжитесь с нами:</h4>
+                                <p><i class="fab fa-whatsapp" id="whatsapp-icon"  style="color: #c0392b;"></i> What'sApp: <a class="phone-number" href="https://wa.me/996701204000" target="_blank">+996701204000</a></p>
+                                <p><i class="fab fa-instagram" id="instagram-icon"  style="color: #c0392b;"></i> Instagram: <a class="instagram-link" href="https://www.instagram.com/vizitka_kg/" target="_blank">@vizitka_kg</a></p>
+                                <p><i class="fab fa-facebook" id="facebook-icon"  style="color: #c0392b;"я></i> Facebook: <a class="facebook-link" href="https://www.facebook.com/vizitka_kg/" target="_blank">vizitka_kg</a></p>
+                                <p>ТВОЯ ВИЗИТКА В МИРЕ БИЗНЕСА!</p>
+                            </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                     </div>
                     
                 </div>

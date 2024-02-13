@@ -13,4 +13,8 @@ urlpatterns = [
     path('category/<int:category_id>/', views.category_view, name='category'),
     path('wooow', views.team,name = "team"),
     path('banner', views.banner,name = "banner"),
+    path('partners', views.partners,name = "partners"),
+    path('partners_detail/<int:id>/', views.partners_detail,name = "partners_detail"),
+    
+    
 ]

@@ -1,0 +1,42 @@
+{% extends 'include/homepage.html'%}
+{% load static %}
+{% block content %}
+    <!-- ====== start loading page ====== -->
+    <div id="preloader">
+    </div>
+    <!-- ====== end loading page ====== -->
+
+    <!-- ====== start navbar-container ====== -->
+    {% include 'include/header.html'%}
+    <!-- ====== start navbar-container ====== -->
+
+    <!-- ====== start nav search ====== -->
+    
+    <main>
+        <section class="section section-default mt-none mb-none">
+            <div class="container">
+              <h2 class="mb-sm">Партнеры <strong style="color: #c0392b;">{{setting.title}}</strong></h2>
+              <br>
+              <strong>
+                <div class="row">
+                    {% for partner in partner%}
+                    <div class="col-sm-6 col-md-4 col-lg-3" >
+                        <div class="square-holder" style="border-radius: 15px;">
+                            <a href="{% url 'partners_detail' partner.id %}">
+                                <img alt="" src="{{partner.image.url}}" style="border-radius: 15px;" />
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+              </strong>
+            </div>
+        </section>
+    </main>
+    <!--End-Contents-->
+    <!-- ====== start footer ====== -->
+    {% include 'include/footer.html' %}
+
+    <!-- ====== end footer ====== -->
+
+{% endblock %}
