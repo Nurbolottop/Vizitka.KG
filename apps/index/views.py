@@ -167,11 +167,18 @@ def contact(request):
         context = {
             "setting":setting
         }
-        if "message_send" in request.POST:
+        if request.method == 'POST':
             email = request.POST.get('email')  # Получаем email из request.POST
             if not Subscriber.objects.filter(email=email).exists():
                 subscriber = Subscriber(email=email)
                 subscriber.save()
+                get_text(f"""
+                                ✅Пользователь подписался на рассылку
+                                        
+    ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                            
+    Почта пользователя: {email}
+                """)
                 return redirect( 'subscribe_done')
             else:
                     return redirect( 'subscribe_nodone')

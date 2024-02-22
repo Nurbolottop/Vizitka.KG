@@ -30,6 +30,21 @@ def vote(request):
     #########################################################################
     voting = VotingInfo.objects.first()
     
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Получаем email из request.POST
+        if not Subscriber.objects.filter(email=email).exists():
+            subscriber = Subscriber(email=email)
+            subscriber.save()
+            get_text(f"""
+                            ✅Пользователь подписался на рассылку
+                                    
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
+            return redirect( 'subscribe_done')
+        else:
+                return redirect( 'subscribe_nodone')
     # Проверяем, что объект существует и имеет установленное время окончания
     if voting and voting.end_time:
         end_time = voting.end_time
@@ -93,5 +108,6 @@ def vote(request):
 
     page_number = request.GET.get('page')
     nominations = paginator.get_page(page_number)
+   
    
     return render(request, 'vote/vote.html', locals())
