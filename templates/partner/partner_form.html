@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="VizitkaKG" />
+    <meta name="description" content="«Vizitka Osh» – единственный глянцевый бизнес-журнал, первое онлайн информационно-рекламное издание Юга Кыргызстана. Наше издание будет интересно всем представителям бизнес сообщества, предпринимателям, инвесторам, экспертам, аналитикам." />
+    <meta name="author" content="" />
+
+    <!-- Title  -->
+    <title>{{ setting.title}} - {{setting.descriptions}}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/v.png' %}" title="Favicon" sizes="16x16" />
+
+</head>
+    <section class="get-in-touch">
+        <a href = "{% url 'index' %}" class="close-button">X</a> <!-- Кнопка-крестик -->
+        <h1 class="title">Стать партнером</h1>
+        <form class="contact-form row" method = "POST">
+            {% csrf_token %}
+            <div class="form-field col x-100">
+                <input name="name" class="input-text js-input" type="text" required placeholder = "Введите ФИО">
+            </div>
+        <div class="form-field col x-50">
+            <input name="phone" class="input-text js-input" type="text" required placeholder = "Введите телефонный номер">
+        </div>
+        <div class="form-field col x-50">
+            <input name="email" class="input-text js-input" type="email" required placeholder = "Введите электронную почту">
+        </div>
+        
+        <div class="form-field col x-100 align-center">
+            <input class="submit-btn" name = "partner_form" type="submit" value="Отправить">
+        </div>
+        </form>
+    </section>
+
+    <style>
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-decoration: none; /* Убираем подчеркивание */
+            color: #000; /* Цвет ссылки */
+            font-size: 24px; /* Размер шрифта */
+            cursor: pointer;
+        }
+        /* Стиль для ссылки при наведении */
+        .close-button:hover {
+            color: #666; /* Изменяем цвет при наведении */
+        }
+        @import url(https://fonts.googleapis.com/css?family=Raleway:300);
+        @import url(https://fonts.googleapis.com/css?family=Lusitana:400,700);
+        .align-center {
+        text-align: center;
+        }
+        .input-text::placeholder {
+            text-align: center;
+          }
+
+        html {
+        height: 100%;
+        }
+        
+        body {
+        height: 100%;
+        position: relative;
+        }
+        
+        .row {
+        margin: -20px 0;
+        }
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        .row .col {
+        padding: 0 20px;
+        float: left;
+        box-sizing: border-box;
+        }
+        .row .col.x-50 {
+        width: 50%;
+        }
+        .row .col.x-100 {
+        width: 100%;
+        }
+        
+        .content-wrapper {
+        min-height: 100%;
+        position: relative;
+        }
+        
+        .get-in-touch {
+        max-width: 650px;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        }
+        .get-in-touch .title {
+        text-align: center;
+        font-family: Raleway, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 36px;
+        line-height: 48px;
+        padding-bottom: 48px;
+        }
+        
+        .contact-form .form-field {
+        position: relative;
+        margin: 32px 0;
+        }
+        .contact-form .input-text {
+        display: block;
+        width: 100%;
+        height: 36px;
+        border-width: 0 0 2px 0;
+        border-color: #000;
+        font-family: Lusitana, serif;
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 400;
+        }
+        .contact-form .input-text:focus {
+        outline: none;
+        }
+        .contact-form .input-text:focus + .label, .contact-form .input-text.not-empty + .label {
+        transform: translateY(-24px);
+        }
+        .contact-form .label {
+        position: absolute;
+        left: 20px;
+        bottom: 11px;
+        font-family: Lusitana, serif;
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 400;
+        color: #888;
+        cursor: text;
+        transition: transform 0.2s ease-in-out;
+        }
+        .contact-form .submit-btn {
+        display: inline-block;
+        background-color: #000;
+        color: #fff;
+        font-family: Raleway, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+        }
+        
+        .note {
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-family: Lusitana, serif;
+        font-size: 16px;
+        line-height: 21px;
+        }
+        .note .link {
+        color: #888;
+        text-decoration: none;
+        }
+        .note .link:hover {
+        text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        $(".js-input").keyup(function () {
+            if ($(this).val()) {
+            $(this).addClass("not-empty");
+            } else {
+            $(this).removeClass("not-empty");
+            }
+        });
+        
+    </script>
+
+</html>

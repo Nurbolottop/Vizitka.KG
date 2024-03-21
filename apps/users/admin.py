@@ -1,5 +1,5 @@
 from django.contrib import admin
-from  .models import User,Subscriber,Contact,Newsletter,ServiceMagazineForm,ServiceSiteForm,Lohi
+from  .models import User,Subscriber,Contact,Newsletter,ServiceMagazineForm,ServiceSiteForm,Lohi,PartnerForm
 
 # Register your models here.
 class SubscriberFilterAdmin(admin.ModelAdmin):
@@ -38,7 +38,13 @@ class ServiceMagazineFormFilterAdmin(admin.ModelAdmin):
     list_filter = ('name', )
     list_display = ('name', 'email')
     search_fields = ('name', 'email')
-
+class PartnerFormSiteFormFilterAdmin(admin.ModelAdmin):
+    readonly_fields = ('name','email','phone',)
+    list_filter = ('name','email','phone', )
+    list_display = ('name','email','phone', )
+    search_fields = ('name','email','phone', )
+    
+admin.site.register(PartnerForm, PartnerFormSiteFormFilterAdmin)
 admin.site.register(User, UserFilterAdmin)
 admin.site.register(Contact, ContactFilterAdmin)
 admin.site.register(ServiceMagazineForm, ServiceMagazineFormFilterAdmin)

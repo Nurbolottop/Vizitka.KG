@@ -173,3 +173,23 @@ class Lohi(models.Model):
     class Meta:
         verbose_name = "Жалобы пользователей"
         verbose_name_plural = "Жалобы пользователей"
+        
+        
+class PartnerForm(models.Model):
+    name = models.CharField(
+        max_length=255,
+        verbose_name="Имя"
+    )
+    phone = models.CharField(
+        max_length=255,
+        verbose_name="Телефонный номер"
+    )
+    email = models.EmailField(
+        verbose_name="Почта"
+    )
+    def __str__(self):
+        return f"{self.name} - {self.email} - {self.phone} "
+    
+    class Meta:
+        verbose_name = "Заявки на партнерства"
+        verbose_name_plural = "Заявка на партнерства"

@@ -10,7 +10,71 @@
     {% include 'include/header.html'%}
 
     <!-- ====== start navbar-container ====== -->
+    <style>
 
+        .element.style {
+            width: 384px;
+            margin-right: -77px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            width: 250px;
+            opacity: 0; /* начальное состояние прозрачности - скрыто */
+            animation: fadeIn 0.5s ease forwards; /* анимация плавного появления */
+        }
+    
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+    
+        .info {
+            height: 120px;
+            padding: 15px;
+            overflow: hidden;
+        }
+    
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    
+        .price {
+            font-size: 20px;
+            color: #000000;
+            font-weight: bold;
+        }
+    
+        .currency {
+            font-size: 18px;
+            color: #f00;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    
+        /* анимация плавного появления */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    
 
     <!--Contents-->
     <main>
@@ -28,74 +92,139 @@
                 </div>
             </div>
         </section>
-        <section class="tc-products-content section-padding" style= "padding: 24px 0;">
+        {% if magazine %}
+        <section class="tc-products-content section-padding" style="padding: 24px 0;">
             <div class="container">
                 <div class="title text-center mb-30">
                     <h2 class="fsz-30px"> Журнал </h2>
                 </div>
                 <div class="related-products-slider tc-products position-relative tc-slider-style1">
-                    <div class="swiper-container">
+                    <div class="swiper-container journal-swiper">
                         <div class="swiper-wrapper">
                             {% for magazine in magazine %}
-
-                         <div class="swiper-slide">
-                            <div class="product-card">
-                                <div class="img">
-                                    <img src="{{magazine.image.url}}" style="border-radius: 15px; max-width: 100%; height: 200px;" alt="">
-                                    <!-- Set max-width to 100% and height to auto to maintain aspect ratio -->
-                                </div>
-                                <div class="info pt-30">
-                                    <a href="{% url 'magazine_detail' magazine.id %}" class="title">{{magazine.title}}</a>
-                                    <br>
-                                    <strong class="price"> {{magazine.price}} </strong>
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <img src="{{ magazine.image.url }}" alt="{{ magazine.title }}">
+                                    <div class="info">
+                                        <a href="{% url 'magazine_detail' magazine.id %}" class="title">{{ magazine.title }}</a>
+                                        <strong class="price">{{ magazine.price }}</strong>
+                                        <span class="currency">Сом</span>
+                                    </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        
-                        
-                        {% endfor %}
-                        
-                        </div>
+                        <div class="swiper-button-next journal-next"></div>
+                        <div class="swiper-button-prev journal-prev"></div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
-
+        {% endif %}
+        
         {% if site %}
-        <section class="tc-products-content section-padding"  style= "padding: 24px 0;" >
+        <section class="tc-products-content section-padding" style="padding: 24px 0;">
             <div class="container">
                 <div class="title text-center mb-30">
                     <h2 class="fsz-30px"> Сайт </h2>
                 </div>
                 <div class="related-products-slider tc-products position-relative tc-slider-style1">
-                    <div class="swiper-container">
+                    <div class="swiper-container site-swiper">
                         <div class="swiper-wrapper">
-                         {% for magazine in site %}
-
+                            {% for site in site %}
                             <div class="swiper-slide">
                                 <div class="product-card">
-                                    <div class="img">
-                                        <img src="{{magazine.image.url}}" style="border-radius: 15px; max-width: 100%; height: 200px;" alt="">
-                                    </div>
-                                    <div class="info pt-30">
-                                        <a href="{% url 'site_detail' magazine.id %}" class="title">{{magazine.title}}</a>
-                                        <br>
-                                        <strong class="price"> {{magazine.price}} </strong>
+                                    <img src="{{ site.image.url }}" alt="{{ site.title }}">
+                                    <div class="info">
+                                        <a href="{% url 'site_detail' site.id %}" class="title">{{ site.title }}</a>
+                                        <strong class="price">{{ site.price }}</strong>
+                                        <span class="currency">Сом</span>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                        
+                            {% endfor %}
                         </div>
+                        <div class="swiper-button-next site-next"></div>
+                        <div class="swiper-button-prev site-prev"></div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
         {% endif %}
+        
+        <script>
+            // Инициализация Swiper для журнала
+            var journalSwiper = new Swiper('.journal-swiper', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.journal-next',
+                    prevEl: '.journal-prev',
+                },
+            });
+        
+            // Инициализация Swiper для сайта
+            var siteSwiper = new Swiper('.site-swiper', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.site-next',
+                    prevEl: '.site-prev',
+                },
+            });
+        </script>
+        
+
+        {% if sites %}
+        <section class="tc-products-content section-padding" style="padding: 24px 0;">
+            <div class="container">
+                <div class="title text-center mb-30">
+                    <h2 class="fsz-30px"> Сайт </h2>
+                </div>
+                <div class="related-products-slider tc-products position-relative tc-slider-style1">
+                    <div class="swiper-container site-swiper">
+                        <div class="swiper-wrapper">
+                            {% for site in sites %}
+                            <div class="swiper-slide">
+                                <div class="product-card">
+                                    <img src="{{ site.image.url }}" alt="{{ site.title }}">
+                                    <div class="info">
+                                        <a href="{% url 'site_detail' site.id %}" class="title">{{ site.title }}</a>
+                                        <strong class="price">{{ site.price }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-button-next site-next"></div>
+                        <div class="swiper-button-prev site-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <script>
+            // Инициализация Swiper для журнала
+            var journalSwiper = new Swiper('.journal-swiper', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.journal-next',
+                    prevEl: '.journal-prev',
+                },
+            });
+
+            // Инициализация Swiper для сайта
+            var siteSwiper = new Swiper('.site-swiper', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                navigation: {
+                    nextEl: '.site-next',
+                    prevEl: '.site-prev',
+                },
+            });
+        </script>
     </main>
     <!-- ====== start footer ====== -->
     {% include 'include/footer.html' %}

@@ -29,6 +29,7 @@ DEBUG = config.DEBUG
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -278,3 +279,19 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = f'{config.google_usr_id}',
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = f'{config.google_secret}',
 SOCIAL_AUTH_FACEBOOK_KEY = f'{config.facebook_usr_id}',
 SOCIAL_AUTH_FACEBOOK_SECRET = f'{config.facebook_secret}',
+
+
+
+
+# from celery.schedules import crontab
+
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Используйте свой URL для Redis
+
+# CELERY_BEAT_SCHEDULE = {
+#    'update_data_every_morning': {
+#        'task': 'apps.index.management.commands.update_data.Command.update_data',
+#        'schedule': crontab(hour=11, minute=34),  # Выполнять каждый день в 06:00 утра
+#    },
+# }
+
+

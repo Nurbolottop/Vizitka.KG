@@ -79,25 +79,25 @@
                                     <div class="stock-card-item">
                                         <div class="title">
                                             <h6>Доллар <small class="indicator text-danger"> </small></h6>
-                                             <span class="price">{{dollar_rate}}</span> 
+                                             <span class="price">{{currency.dollar}}</span> 
                                         </div>
                                     </div>
                                     <div class="stock-card-item">
                                         <div class="title">
                                             <h6>Евро <small class="indicator text-danger"> </small></h6>
-                                             <span class="price">{{euro_rate}}</span> 
+                                             <span class="price">{{currency.euro}}</span> 
                                         </div>
                                     </div>
                                     <div class="stock-card-item">
                                         <div class="title">
                                             <h6>Рубль <small class="indicator text-danger"> </small></h6>
-                                             <span class="price">{{ruble_rate}}</span> 
+                                             <span class="price">{{currency.rub}}</span> 
                                         </div>
                                     </div>
                                     <div class="stock-card-item">
                                         <div class="title">
                                             <h6>Тенге <small class="indicator text-danger"> </small></h6>
-                                        <span class="price">{{tenge_rate}}</span> 
+                                        <span class="price">{{currency.tenge}}</span> 
                                         </div>
                                     </div>
                                     
@@ -237,7 +237,7 @@
         <section class="tc-latest-news-style1">
             <div class="container">
                 <div class="section-content pt-50 pb-50 border-bottom border-1 brd-gray">
-                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="page-blog.html">   Последние новости </a> <i class="la la-angle-right ms-1"></i>
+                    <p class="color-000 text-uppercase mb-30 ltspc-1"> <a href="{% url 'blog' %}">   Последние новости </a> <i class="la la-angle-right ms-1"></i>
                     </p>
                     <div class="row">
                         {% for latest_new in latest_new %}

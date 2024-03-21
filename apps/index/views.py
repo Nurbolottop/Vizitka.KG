@@ -11,27 +11,22 @@ from apps.index import models
 # Classes
 from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine,Banner
 from apps.users.models import Subscriber,Contact
-from apps.secondary.models import Team,History,Stories,Partners
+from apps.secondary.models import Team,History,Partners,Currency,Weather
 # Functions
-
-from apps.index.parsing import dollar_pars,euro_pars,rub_pars,tenge_pars,get_weather_data
+import asyncio
 from apps.blog import blogs 
 from asgiref.sync import async_to_sync
-
+from .parsing import parse_currency, parse_weather
 # Create your views here.
 def index(request):
     current_date = datetime.now()
-    dollar_rate = async_to_sync(dollar_pars)()
-    euro_rate = async_to_sync(euro_pars)()
-    ruble_rate = async_to_sync(rub_pars)()
-    tenge_rate = async_to_sync(tenge_pars)()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
-
+    currency = Currency.objects.latest("id")
+    weather = Weather.objects.latest("id")
+  
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
     team = Team.objects.all()
-    stories = Stories.objects.all()
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
@@ -89,7 +84,7 @@ def index(request):
 
 def category_view(request, category_id):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -122,32 +117,9 @@ def category_view(request, category_id):
                 return redirect( 'subscribe_nodone')
     return render(request, 'secondary/category.html',locals())
 
-def storie(request,id):
-    category = Category.objects.all().order_by("?")[:]
-    setting = models.Settings.objects.latest('id')
-    
-    stories_all = Stories.objects.exclude(id=id)
-    stories = Stories.objects.get(id=id)
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-        if not Subscriber.objects.filter(email=email).exists():
-            subscriber = Subscriber(email=email)
-            subscriber.save()
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
-            return redirect( 'subscribe_done')
-        else:
-                return redirect( 'subscribe_nodone')
-    return render(request, 'base/stories.html', locals())
-
 def contact(request):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     if request.method =="POST":
@@ -162,12 +134,19 @@ def contact(request):
                 f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся.Ваще сообщение: {message} Ваша почта: {email}',
                 "noreply@somehost.local",
                 [email])
-            
+            get_text(f"""
+                                ✅Пользователь оставил заявку на обратную связь
+                                        
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+Имя пользователя: {name}
+Почта пользователя: {email}
+Сообщение пользователя: {message}
+            """)
             return redirect('index')
         context = {
             "setting":setting
         }
-        if request.method == 'POST':
+        if "message_send" in request.POST:
             email = request.POST.get('email')  # Получаем email из request.POST
             if not Subscriber.objects.filter(email=email).exists():
                 subscriber = Subscriber(email=email)
@@ -175,10 +154,10 @@ def contact(request):
                 get_text(f"""
                                 ✅Пользователь подписался на рассылку
                                         
-    ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                            
-    Почта пользователя: {email}
-                """)
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                        
+Почта пользователя: {email}
+            """)
                 return redirect( 'subscribe_done')
             else:
                     return redirect( 'subscribe_nodone')
@@ -186,7 +165,7 @@ def contact(request):
 
 def about(request):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     
     setting = models.Settings.objects.latest('id')
     about = models.About.objects.latest('id')
@@ -213,7 +192,7 @@ def about(request):
 
 def search(request):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")
     
@@ -248,76 +227,20 @@ def search(request):
     return render(request, 'secondary/search_result.html', locals())
 
 def subscribe_done(request):
-    current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
-    category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-        if not Subscriber.objects.filter(email=email).exists():
-            subscriber = Subscriber(email=email)
-            subscriber.save()
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
-            return redirect( 'subscribe_done')
-        else:
-                return redirect( 'subscribe_nodone')
     return render(request, 'subscribe/subscribe_done.html', locals())
 
 def subscribe_nodone(request):
-    current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
-    category = Category.objects.all().order_by("?")[:]
     setting = models.Settings.objects.latest('id')
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-        if not Subscriber.objects.filter(email=email).exists():
-            subscriber = Subscriber(email=email)
-            subscriber.save()
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
-            return redirect( 'subscribe_done')
-        else:
-                return redirect( 'subscribe_nodone')
     return render(request, 'subscribe/subscribe_nodone.html', locals())
 
 
 def team(request):
-    # current_date = datetime.now()
-    # temperature, weather_condition = get_weadher_data()
-    category = Category.objects.all().order_by("?")[:]
-    setting = models.Settings.objects.latest('id')
-    team = Team.objects.all()
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-        if not Subscriber.objects.filter(email=email).exists():
-            subscriber = Subscriber(email=email)
-            subscriber.save()
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
-            return redirect( 'subscribe_done')
-        else:
-                return redirect( 'subscribe_nodone')
     return render(request,'base/page-team.html', locals())
 
 def banner(request):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     setting = models.Settings.objects.latest('id')
     category = Category.objects.all().order_by("?")[:]
     
@@ -345,7 +268,7 @@ def banner(request):
 
 def partners(request):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     
     setting = models.Settings.objects.latest('id')
     about = models.About.objects.latest('id')
@@ -372,7 +295,7 @@ def partners(request):
 
 def partners_detail(request,id):
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     
     setting = models.Settings.objects.latest('id')
     about = models.About.objects.latest('id')

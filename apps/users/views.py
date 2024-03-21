@@ -1,12 +1,13 @@
 from django.shortcuts import render,redirect
 from apps.telegram_bot.views import get_text
 from django.core.mail import send_mail
-
+from apps.users.models import PartnerForm
 from apps.index.models import Settings
+
 # def register(request):
 #     current_date = datetime.now()
 #     setting = Settings.objects.latest('id')
-#     temperature, weather_condition = async_to_sync(get_weather_data)()
+#     weather = Weather.objects.latest("id")
 
 
 #     if request.method == "POST":
@@ -121,5 +122,30 @@ def user_login(request):
     #         return redirect('login')
     
     return render(request, 'users/login-32.html', locals())
+
+def partner_form(request):
+    setting = Settings.objects.latest('id')
+    if request.method =="POST":
+        if "partner_form" in request.POST:
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            PartnerForm.objects.create(name = name,email = email,phone = phone)
+            send_mail(
+                f'{name}',
+
+                f'Здравствуйте {name},Спасибо за заявку на партнерство, Мы скоро свами свяжемся. Ваша почта: {email}',
+                "noreply@somehost.local",
+                [email])
+            get_text(f"""
+                                ✅Пользователь оставил заявку на обратную связь
+                                        
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+Имя пользователя: {name}
+Почта пользователя: {email}
+Телефонный номер пользователя: {phone}
+            """)
+            return redirect('index')
+    return render(request, 'partner/partner_form.html', locals())
 
 

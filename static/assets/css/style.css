@@ -2466,7 +2466,7 @@ small.text {
 .navbar.style-1 .nav-side .icon-link {
   position: relative;
   -webkit-margin-start: 15px;
-          margin-inline-start: 15px;
+  margin-inline-start: -9px;
 }
 .navbar.style-1 .nav-side .icon-link:last-of-type {
   -webkit-margin-start: 25px;
@@ -15945,11 +15945,12 @@ justify-content: center;
 }
 
 .c-header-nav {
-  background-color: #696969; /* черный фон */
+  background-color: #393939; /* черный фон */
   padding: 5px 0; /* уменьшенная высота */
   position: sticky;
   top: 0;
   z-index: 100;
+  border-radius: 10px;
 }
 
 .c-layout {

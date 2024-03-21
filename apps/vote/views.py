@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
-from apps.telegram_bot.views import get_text
-from django.core.mail import send_mail
+
 
 from datetime import datetime
 from django.core.paginator import Paginator
@@ -9,13 +8,13 @@ from django.db.models import F, Sum, FloatField, ExpressionWrapper
 # my imports
 from apps.index import models
 from apps.blog.models import BigAdvert,NormalAdvert,SmallAdvert,Category
-from apps.index.parsing import get_weather_data
-from asgiref.sync import async_to_sync
 from apps.vote.models import Nomination, Option,Vote,Advert,VotingInfo
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from apps.blog.models import Blog
 from apps.users.models import Subscriber
+from apps.secondary.models import Weather
+
 # Create your views here.
 def vote(request):
     current_date = datetime.now()
@@ -26,25 +25,10 @@ def vote(request):
     small_advert = SmallAdvert.objects.reverse().first()
     category = Category.objects.all().order_by("?")[:]
     popular_posts = Blog.objects.order_by('-views')[:5]
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     #########################################################################
     voting = VotingInfo.objects.first()
     
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Получаем email из request.POST
-        if not Subscriber.objects.filter(email=email).exists():
-            subscriber = Subscriber(email=email)
-            subscriber.save()
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
-            return redirect( 'subscribe_done')
-        else:
-                return redirect( 'subscribe_nodone')
     # Проверяем, что объект существует и имеет установленное время окончания
     if voting and voting.end_time:
         end_time = voting.end_time
@@ -108,6 +92,5 @@ def vote(request):
 
     page_number = request.GET.get('page')
     nominations = paginator.get_page(page_number)
-   
    
     return render(request, 'vote/vote.html', locals())

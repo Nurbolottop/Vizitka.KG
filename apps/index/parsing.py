@@ -1,61 +1,79 @@
-import aiohttp
+import requests
 from bs4 import BeautifulSoup
-import asyncio
-from async_lru import alru_cache
+from apps.secondary.models import Currency, Weather
 
-@alru_cache(maxsize=32)
-async def fetch(url):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            return await response.text()
-# Асинхронная функция для получения содержимого страницы
-@alru_cache(maxsize=32)
-async def fetch(url):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            return await response.text()
+def fetch(url):
+    response = requests.get(url)
+    return response.text
 
-# Асинхронные функции парсинга для каждой валюты
-@alru_cache(maxsize=32)
-async def dollar_pars():
+def parse_currency():
+    dollar = dollar_pars()
+    euro = euro_pars()
+    rub = rub_pars()
+    tenge = tenge_pars()
+    
+    currency, created = Currency.objects.get_or_create(
+        defaults={
+            'dollar': dollar,
+            'euro': euro,
+            'rub': rub,
+            'tenge': tenge,
+        }
+    )
+    if not created:
+        currency.dollar = dollar
+        currency.euro = euro
+        currency.rub = rub
+        currency.tenge = tenge
+        currency.save()
+
+def parse_weather():
+    temperature, condition = get_weather_data()
+    
+    weather, created = Weather.objects.get_or_create(
+        defaults={
+            'title': f"{temperature}°C, {condition}",
+        }
+    )
+    if not created:
+        weather.title = f"{temperature}°C, {condition}"
+        weather.save()
+
+def dollar_pars():
     url = 'https://www.akchabar.kg/ru/exchange-rates/dollar/'
-    content = await fetch(url)
+    content = fetch(url)
     soup = BeautifulSoup(content, 'html.parser')
     div_element = soup.find('div', class_='nbkr_tabs_wrapper')
     h2_element = div_element.find('h2') if div_element else None
     return h2_element.text.strip() if h2_element else None
 
-@alru_cache(maxsize=32)
-async def euro_pars():
+def euro_pars():
     url = 'https://www.akchabar.kg/ru/exchange-rates/euro/'
-    content = await fetch(url)
+    content = fetch(url)
     soup = BeautifulSoup(content, 'html.parser')
     div_element = soup.find('div', class_='nbkr_tabs_wrapper')
     h2_element = div_element.find('h2') if div_element else None
     return h2_element.text.strip() if h2_element else None
 
-@alru_cache(maxsize=32)
-async def rub_pars():
+def rub_pars():
     url = 'https://www.akchabar.kg/ru/exchange-rates/ruble/'
-    content = await fetch(url)
-    soup = BeautifulSoup(content, 'html.parser')
-    div_element = soup.find('div', class_='nbkr_tabs_wrapper')
-    h2_element = div_element.find('h2') if div_element else None
-    return h2_element.text.strip() if h2_element else None
-@alru_cache(maxsize=32)
-async def tenge_pars():
-    url = 'https://www.akchabar.kg/ru/exchange-rates/tenge/'
-    content = await fetch(url)
+    content = fetch(url)
     soup = BeautifulSoup(content, 'html.parser')
     div_element = soup.find('div', class_='nbkr_tabs_wrapper')
     h2_element = div_element.find('h2') if div_element else None
     return h2_element.text.strip() if h2_element else None
 
-# Асинхронная функция парсинга погоды
-@alru_cache(maxsize=32)
-async def get_weather_data():
+def tenge_pars():
+    url = 'https://www.akchabar.kg/ru/exchange-rates/tenge/'
+    content = fetch(url)
+    soup = BeautifulSoup(content, 'html.parser')
+    div_element = soup.find('div', class_='nbkr_tabs_wrapper')
+    h2_element = div_element.find('h2') if div_element else None
+    return h2_element.text.strip() if h2_element else None
+
+def get_weather_data():
     url = 'https://yandex.ru/pogoda/bishkek'
-    content = await fetch(url)
+    content = fetch(url)
     soup = BeautifulSoup(content, 'html.parser')
     temperature_element = soup.find('span', class_='temp__value')
     weather_condition_element = soup.find('div', class_='link__condition')

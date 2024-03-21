@@ -1,4 +1,29 @@
 {% load static%} 
+<style>
+    /* Styles for the "Become a Partner" button */
+    .geeks_button {
+        grid-area: btn; /* Определяет область сетки для кнопки */
+        background-color: #ff0000; /* Красный цвет фона */
+        color: #fff !important; /* Белый цвет текста */
+        padding: 8px 16px; /* Уменьшенный внутренний отступ кнопки */
+        border: 2px solid transparent; /* Прозрачная граница */
+        border-radius: 25px; /* Уменьшенный радиус скругления углов кнопки */
+        height: 40px; /* Уменьшенная высота кнопки */
+        display: inline-flex; /* Преобразование кнопки в контейнер inline-flex */
+        align-items: center; /* Выравнивание содержимого по центру по вертикали */
+        text-decoration: none; /* Удаление подчеркивания у ссылки по умолчанию */
+        font-size: 13px; /* Уменьшенный размер шрифта кнопки */
+        font-weight: bold; /* Жирное начертание шрифта кнопки */
+        transition: background-color 0.3s, border-color 0.3s; /* Плавный эффект перехода */
+        margin-right: 10px; /* Отступ между кнопкой и другими элементами */
+        line-height: 1; /* Убирает дополнительное вертикальное пространство из-за высоты строки */
+        margin-inline-start: 15px;
+
+    }
+
+</style>
+
+
 <div class="navbar-container">
     <div class="container">
         <!-- ====== start top navbar ====== -->
@@ -25,7 +50,7 @@
                                             <i class="la la-cloud-sun"></i>
                                         </div>
                                         <div class="inf">
-                                            <strong>{{temperature}}, {{weather_condition}}</strong>
+                                            <strong>{{weather.temperature}}, {{weather.weather_condition}}</strong>
                                             <p>Бишкек</p>
                                         </div>
                                     </div>
@@ -146,33 +171,16 @@
                                 <li><a class="dropdown-item" href="{% url 'about' %}">О нас</a></li>
                                 <li><a class="dropdown-item" href="{% url 'contact' %}">Контакты</a></li>
                                  <li><a class="dropdown-item" href="{% url 'partners' %}">Партнеры</a></li>
-                                {% comment %}<li><a class="dropdown-item" href="page-404.html">404 page</a></li> {% endcomment %}
                             </ul>
                         </li>
-                        
-                        {% comment %} <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Страницы
-                            </a>
-                            <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                <li><a class="dropdown-item" href="{% url 'about'  %}">О нас</a></li>
-                                <li><a class="dropdown-item" href="{% url 'contact'  %}">Контакты</a></li>
-                            </ul>
-                        </li>
-                        
-                    </ul> {% endcomment %}
-                    <div class="nav-side">
+                        <div class="nav-side">
                             {% if user.is_authenticated %}
-
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="home-default.html#" id="navbarDropdown1" role="button"
-                                        data-bs-toggle="dropdown" >
-                                        {{user.username}}
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ user.username }}
                                     </a>
-
-                                    <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                        {% comment %} <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Профиль</a></li> {% endcomment %}
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                                         <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
                                     </ul>
                                 </li>
@@ -182,20 +190,18 @@
                                         aria-expanded="false">
                                         Войти
                                     </a>
-
-                                    {% comment %} <ul class="dropdownMenu" aria-labelledby="navbarDropdown1">
-                                        {% comment %} <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li> 
-                                        <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
-                                    </ul> {% endcomment %}
                                 </li>
                             {% endif %}
-                           
-                            
-                        <a href="#" class="icon-link search-btn-style1">
-                            <i class="la la-search fs-4 sOpen-btn"></i>
-                            <i class="la la-close fs-4 sClose-btn"></i>
-                        </a>
-                    </div>
+                        
+                            <a href="#" class="icon-link search-btn-style1">
+                                <i class="la la-search fs-4 sOpen-btn"></i>
+                                <i class="la la-close fs-4 sClose-btn"></i>
+                            </a>
+                        
+                            <!-- Кнопка "Стать партнером" -->
+                            <a href="{% url 'partner_form' %}" class="geeks_button" data-toggle="modal" data-target="#partner_modal">Стать партнером</a>
+                        
+                        </div>
                     <br>
                 </div>
             </div>

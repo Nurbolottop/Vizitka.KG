@@ -1,17 +1,15 @@
 from django.shortcuts import render,redirect
 from apps.telegram_bot.views import get_text
-from django.core.mail import send_mail
 
 from datetime import datetime
 from apps.index import models
-from apps.users.models import Subscriber,Contact
+from apps.users.models import Subscriber
 from apps.blog.models import Blog,BigAdvert,SmallAdvert,NormalAdvert,Category
-from apps.secondary.models import Stories
+from apps.secondary.models import Weather
 from apps.magazine.models import Magazine
 from django.shortcuts import render, get_object_or_404
 from django.core.cache import cache
-from apps.index.parsing import get_weather_data
-from asgiref.sync import async_to_sync
+
 
 # Create your views here.
 def magazine(request):
@@ -19,14 +17,13 @@ def magazine(request):
     current_date = datetime.now()
     setting = models.Settings.objects.latest('id')
     popular_posts = Blog.objects.order_by('views')[:5]
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
 
 
     # < start advert >
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
-    stories = Stories.objects.all()
     category = Category.objects.all().order_by("?")[:]
     magazines = Magazine.objects.all()
     for magazine in magazines:

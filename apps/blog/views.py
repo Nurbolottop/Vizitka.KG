@@ -9,9 +9,8 @@ from apps.users.models import Subscriber,ServiceMagazineForm,ServiceSiteForm
 from apps.index import models
 from apps.blog.models import Blog,BigAdvert,NormalAdvert,SmallAdvert,Category,Site,Magazine
 from apps.all_categories import blogs_detail
-from apps.secondary.models import Stories
-from apps.index.parsing import get_weather_data
-from asgiref.sync import async_to_sync
+from apps.secondary.models import Weather
+
 
 # Create your views here.
 
@@ -25,11 +24,10 @@ def blog(request):
     big_advert = BigAdvert.objects.reverse().first()
     normal_advert = NormalAdvert.objects.reverse().first()
     small_advert = SmallAdvert.objects.reverse().first()
-    stories = Stories.objects.all()
     category = Category.objects.all().order_by("?")[:]
     
     # < end advert >
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
 
     # < end temperature>
     paginator = Paginator(blog, 5)  # Показывать по 5 блогов на каждой странице
@@ -48,13 +46,7 @@ def blog(request):
                         
 Почта пользователя: {email}
             """)
-            get_text(f"""
-                            ✅Пользователь подписался на рассылку
-                                    
-⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
-                        
-Почта пользователя: {email}
-            """)
+            
             return redirect( 'subscribe_done')
         else:
             # Подписчик с таким email уже существует
@@ -66,7 +58,7 @@ def blog_detail(request, id):
     blog = Blog.objects.get(id=id)
     popular_posts = Blog.objects.order_by('-views')[:5]
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     category = Category.objects.all().order_by("?")[:]
     # category in blog detail
     d1 = blogs_detail.d1_method()
@@ -95,7 +87,7 @@ def magazine_detail(request, id):
     setting = models.Settings.objects.latest('id')
     magazine = Magazine.objects.get(id=id)
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     category = Category.objects.all().order_by("?")[:]
     # category in blog detail
     if request.method == 'POST':
@@ -153,7 +145,7 @@ def site_detail(request, id):
     setting = models.Settings.objects.latest('id')
     magazine = Site.objects.get(id=id)
     current_date = datetime.now()
-    temperature, weather_condition = async_to_sync(get_weather_data)()
+    weather = Weather.objects.latest("id")
     category = Category.objects.all().order_by("?")[:]
     # category in blog detail
     if request.method == 'POST':

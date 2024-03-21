@@ -47,33 +47,6 @@ class History(models.Model):
         verbose_name = "Наша история"
         verbose_name_plural = "Наши истории"
         
-class Stories(models.Model):
-    image = ResizedImageField(
-        force_format="WEBP", 
-        quality=100, 
-        upload_to='stories_image/',
-        verbose_name="Фотография",
-        blank = True, null = True
-    )
-    title = models.CharField(
-        max_length=255,
-        verbose_name="Название",
-        blank=True, null=True
-        )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        blank=True,null=True
-        )
-    permissions = (
-            ("can_edit_mymodel", "Can edit MyModel"),
-        )
-    
-    def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name = "Сторис"
-        verbose_name_plural = "Сторисы"
 
 class Partners(models.Model):
     image = models.ImageField(
@@ -108,3 +81,50 @@ class Partners(models.Model):
     class Meta:
         verbose_name = "Партнер"
         verbose_name_plural = "Партнеры"
+        
+        
+
+# Parsing
+class Currency(models.Model):
+    dollar = models.CharField(
+        verbose_name = "Доллар",
+        max_length = 255
+    )
+    euro = models.CharField(
+        verbose_name = "Евро",
+        max_length = 255
+    )
+    rub = models.CharField(
+        verbose_name = "Рубль",
+        max_length = 255
+    )
+    tenge = models.CharField(
+        verbose_name = "Тенге",
+        max_length = 255
+    )
+    
+    
+    def __str__(self):
+        return self.dollar
+    
+    class Meta:
+        verbose_name = "Курс валют"
+        verbose_name_plural = "Курс валют"
+        
+class Weather(models.Model):
+    temperature = models.CharField(
+        max_length = 255,
+        verbose_name = "Температура",
+        null=True  # Разрешаем пустое значение
+        
+    )
+    weather_condition = models.CharField(
+        max_length=255,
+        verbose_name="Погода",
+        null=True  # Разрешаем пустое значение
+    )
+
+    
+    class Meta:
+        verbose_name = "Погода"
+        verbose_name_plural = "Погода"

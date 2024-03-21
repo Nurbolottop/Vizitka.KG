@@ -6,6 +6,7 @@ from apps.users import views,resset_password
 urlpatterns = [
     # path('register/', views.register, name="register"),
     path('login/', views.user_login, name="login"),
+    path('partner_form/', views.partner_form, name="partner_form"),
     # path('profile/<int:id>/', views.profile, name="profile"),
     path("logout/", LogoutView.as_view(next_page = "index"), name = "logout"),
     
